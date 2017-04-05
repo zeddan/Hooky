@@ -1,6 +1,6 @@
 # Projekt 2 - P16
 
-A React project
+A React project setup
 
 #### Backend
 
