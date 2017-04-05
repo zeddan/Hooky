@@ -1,0 +1,13 @@
+.DS_Store
+*.pyc
+.git
+.env
+src/settings.py
+*.log
+**.sass-cache**
+*.map
+
+node_modules/
+npm-debug.log
+bower_components/
+.module-cache
