@@ -27,3 +27,4 @@ After activating the virtual environment run:
 ```bash
 python server/app.py
 ```
+And open ```localhost:5000``` in browser
