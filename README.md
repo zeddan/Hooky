@@ -1,1 +1,3 @@
-# projekt2-p16
+# Projekt 2 - P16
+
+A React project
