@@ -21,3 +21,9 @@ source .env/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+
+##### Run server
+After activating the virtual environment run:
+```bash
+python server/app.py
+```
