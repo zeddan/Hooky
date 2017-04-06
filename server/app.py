@@ -66,9 +66,24 @@ def products():
         db.session.commit()
         return jsonify( { 'product': prod.serialize() }), 201
 
-@app.route('/products/<int:id>/')
+@app.route('/products/<int:id>/', methods=['GET', 'DELETE', 'PUT'])
 def product(id):
-    return jsonify({'product': Product.query.get(id).serialize()})
+    if request.method == 'GET':
+        return jsonify({'product': Product.query.get(id).serialize()})
+
+    if request.method == 'DELETE':
+        db.session.delete(Product.query.get(id))
+        db.session.commit()
+        return jsonify( {'result' : True} )
+
+    if request.method == 'PUT':
+        prod = Product.query.get(id)
+        prod.name = request.json.get('name', prod.name)
+        prod.image = request.json.get('image', prod.image)
+        prod.description = request.json.get('description', prod.description)
+        prod.published = request.json.get('published', prod.published)
+        db.session.commit()
+        return jsonify( {'product': prod.serialize() })
 
 @app.route('/')
 def index():
