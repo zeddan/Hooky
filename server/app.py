@@ -3,13 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 from oauth import OAuthSignIn
 from flask_login import LoginManager, UserMixin, login_user, logout_user,\
      current_user
+from werkzeug.security import generate_password_hash, \
+     check_password_hash
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
 lm = LoginManager(app)
 lm.login_view = 'index'
-#test
 
 @lm.user_loader
 def load_user(id):
@@ -19,16 +20,24 @@ def load_user(id):
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    social_id = db.Column(db.String(64), unique=True)
+    social_id = db.Column(db.String(64), unique=True, default=None)
     name = db.Column(db.String(64))
     email = db.Column(db.String(80))
     admin = db.Column(db.Boolean)
+    pw_hash = db.Column(db.String(200))
 
-    def __init__(self, name, email, social_id=None, admin=False):
+    def __init__(self, name, email, password, social_id=None, admin=False):
         self.social_id = social_id
         self.name = name
         self.email = email
         self.admin = admin
+	self.set_password(password)
+
+    def set_password(self, password):
+        self.pw_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.pw_hash, password)
 
     def is_authenticated(self):
         return True
@@ -134,7 +143,33 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+@app.route('/register', methods=['POST'])
+def register():
+    email = request.json.get('email')
+    password = request.json.get('password')
+    if email is None or password is None:
+        abort(400)
+    if User.query.filter_by(email = email).first() is not None:
+        abort(400)
+    user = User(request.json.get('name',''), request.json.get('email',''), request.json.get('password',''), request.json.get('admin',''))
+    db.session.add(user)
+    db.session.commit()
+    return redirect(url_for('login'))
 
+@app.route('/login', methods=['POST'])
+def login():
+    mail = request.json.get('email','')
+    password = request.json.get('password','')
+    user = User.query.filter_by(email=mail).first()
+    if user is None:
+        flash('Authentication failed')
+        return redirect(url_for('index'))
+    if user.check_password(password):
+        login_user(user, True)
+        return redirect(url_for('index'))
+    flash('Bad password')
+    return redirect(url_for('index'))
+        
 @app.route('/authorize/<provider>')
 def oauth_authorize(provider):
     if not current_user.is_anonymous:
