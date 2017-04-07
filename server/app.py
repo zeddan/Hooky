@@ -9,7 +9,7 @@ app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
 lm = LoginManager(app)
 lm.login_view = 'index'
-
+#test
 
 @lm.user_loader
 def load_user(id):
