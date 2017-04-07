@@ -2,11 +2,12 @@
 *.pyc
 .git
 .env
-src/settings.py
 *.log
 **.sass-cache**
 *.map
 *.sqlite
+server/config.py
+
 
 node_modules/
 npm-debug.log
