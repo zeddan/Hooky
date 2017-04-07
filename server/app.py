@@ -5,7 +5,7 @@ import json
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
-
+#testing testing
 class User(db.Model):
     __tablename__='users'
     id = db.Column(db.Integer, primary_key=True)
