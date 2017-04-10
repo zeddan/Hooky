@@ -4,7 +4,9 @@
   "description": "Web application for inspiring people of different products",
   "main": "App.jsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build",
+    "build": "webpack -d && cp src/index.html dist/index.html && webpack-dev-server --content-base src/ --inline --hot",
+    "build:prod": "webpack -p && cp src/index.html dist/index.html"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,7 @@
     "react-dom": "^15.5.3"
   },
   "devDependencies": {
+    "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
