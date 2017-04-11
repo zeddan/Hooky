@@ -35,6 +35,12 @@ And open ```localhost:5000``` in browser
 ##### Install packages
 If npm is not installed, install it from: https://nodejs.org/en/
 
+or with homebrew:
+
+```bash
+brew install node
+```
+
 To install all packages simply run:
 ```bash
 npm install
