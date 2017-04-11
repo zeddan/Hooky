@@ -31,17 +31,9 @@ And open ```localhost:5000``` in browser
 
 #### Frontend
 
-##### Init the npm package manager
-
-If npm is not installed, install it from: https://nodejs.org/en/
-
-Init npm:
-```bash
-npm init
-```
-Press enter on all questions
 
 ##### Install packages
+If npm is not installed, install it from: https://nodejs.org/en/
 To install all packages simply run:
 ```bash
 npm install
