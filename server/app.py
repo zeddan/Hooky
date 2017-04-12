@@ -20,18 +20,18 @@ def load_user(id):
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    social_id = db.Column(db.String(64), unique=True, default=None)
+    social_id = db.Column(db.String(64), unique=True)
     name = db.Column(db.String(64))
     email = db.Column(db.String(80))
     admin = db.Column(db.Boolean)
     pw_hash = db.Column(db.String(200))
 
-    def __init__(self, name, email, password, social_id=None, admin=False):
+    def __init__(self, name, email, social_id=None, admin=False):
         self.social_id = social_id
         self.name = name
         self.email = email
         self.admin = admin
-	self.set_password(password)
+	#self.set_password(password)
 
     def set_password(self, password):
         self.pw_hash = generate_password_hash(password)
@@ -151,7 +151,8 @@ def register():
         abort(400)
     if User.query.filter_by(email = email).first() is not None:
         abort(400)
-    user = User(request.json.get('name',''), request.json.get('email',''), request.json.get('password',''), request.json.get('admin',''))
+    user = User(request.json.get('name'), request.json.get('email'), request.json.get('admin'))
+    user.set_password(request.json.get('password'))
     db.session.add(user)
     db.session.commit()
     return redirect(url_for('login'))
