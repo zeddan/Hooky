@@ -31,7 +31,6 @@ class User(UserMixin, db.Model):
         self.name = name
         self.email = email
         self.admin = admin
-	#self.set_password(password)
 
     def set_password(self, password):
         self.pw_hash = generate_password_hash(password)
@@ -63,12 +62,15 @@ class User(UserMixin, db.Model):
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer(), db.ForeignKey('users.id'))
     name = db.Column(db.String(30))
     image = db.Column(db.String(80))
     description = db.Column(db.String(200))
     published = db.Column(db.Boolean)
 
-    def __init__(self, name, image, description, published):
+
+    def __init__(self, user_id, name, image, description, published):
+        self.user_id = user_id
         self.name = name
         self.image = image
         self.description = description
@@ -77,6 +79,7 @@ class Product(db.Model):
     def serialize(self):
         return {
             'id': self.id,
+            'user_id':self.user_id,
             'name': self.name,
             'image': self.image,
             'description': self.description,
@@ -107,7 +110,7 @@ def products():
             pb.append(p.serialize())
         return jsonify({'products': pb})
     if request.method == 'POST':
-        prod = Product(request.json.get('name',''), request.json.get('image',''), request.json.get('description',''), request.json.get('published',''))
+        prod = Product(request.json.get('user_id'),request.json.get('name'), request.json.get('image'), request.json.get('description'), request.json.get('published'))
         db.session.add(prod)
         db.session.commit()
         return jsonify({'product': prod.serialize()}), 201
@@ -167,7 +170,8 @@ def login():
         return redirect(url_for('index'))
     if user.check_password(password):
         login_user(user, True)
-        return redirect(url_for('index'))
+        next = request.args.get('next')
+        return redirect(next or url_for('index'))
     flash('Bad password')
     return redirect(url_for('index'))
         
