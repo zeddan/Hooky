@@ -1,7 +1,7 @@
 {
   "name": "Hooky",
   "version": "1.0.0",
-  "description": "",
+  "description": "A React project setup",
   "main": "index.js",
   "scripts": {
     "dev": "webpack -d --watch",
@@ -23,5 +23,13 @@
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
     "react-router": "^4.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lhadalo/projekt2-p16.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Lhadalo/projekt2-p16/issues"
+  },
+  "homepage": "https://github.com/Lhadalo/projekt2-p16#readme"
 }

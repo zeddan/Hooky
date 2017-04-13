@@ -41,15 +41,19 @@ or with homebrew:
 brew install node
 ```
 
-To install all packages simply run:
+To set-up project run:
 ```bash
-npm install
+npm init -y
+npm i react react-dom -S
+npm i webpack -S
+npm i babel-loader babel-preset-es2015 babel-preset-react -S
+npm i babel-core -D
 ```
 
 ##### Build and start dev server
 To build the project run:
 ```bash
-npm start
+npm run dev
 ```
 This will build the project and start a dev server on localhost:8080 with the application.
 The page is reloaded automagically on any change.
