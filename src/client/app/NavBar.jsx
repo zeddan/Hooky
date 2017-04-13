@@ -6,6 +6,13 @@ var {
 } = ReactRouter;
 
 class NavBar extends React.Component {
+	login(){
+		return $.getJSON('https://randomuser.me/api/')
+      			.then((data) => {
+        		this.setState({ person: data.results });
+      		});	
+	}
+
     render() {
         return (
             <div id="header">
@@ -17,7 +24,7 @@ class NavBar extends React.Component {
                         <li><Link to="/about-us" activeClassName="active">About Us</Link></li>
                     </ul>
                     <div id="button-holder">
-                        <button type="button" className="nav-btn button secondary" id="log-in-btn">Log In</button>
+                        <button type="button" onClick={this.login} className="nav-btn button secondary" id="log-in-btn">Log In</button>
                         <button type="button" className="nav-btn button" id="register-btn">Register</button>
                     </div>
                 </div>
