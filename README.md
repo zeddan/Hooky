@@ -43,7 +43,9 @@ brew install node
 
 To set-up project run:
 ```bash
-npm init
+npm init -y
+npm i react react-dom -S
+npm i webpack -S
 npm i babel-loader babel-preset-es2015 babel-preset-react -S
 npm i babel-core -D
 ```
