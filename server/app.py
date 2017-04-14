@@ -170,8 +170,7 @@ def login():
         return redirect(url_for('index'))
     if user.check_password(password):
         login_user(user, True)
-        next = request.args.get('next')
-        return redirect(next or url_for('index'))
+        return jsonify({'user':user.serialize()})
     flash('Bad password')
     return redirect(url_for('index'))
         
