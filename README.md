@@ -44,7 +44,8 @@ brew install node
 To set-up project go to the application folder
 ```bash
 cd application
-``
+```
+
 Now you can install all the required components by running
 ```bash
 npm install
