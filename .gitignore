@@ -7,9 +7,12 @@
 *.map
 *.sqlite
 server/config.py
+*.swo
+*.swp
 
 
 node_modules/
+dist/
 npm-debug.log
 bower_components/
 .module-cache

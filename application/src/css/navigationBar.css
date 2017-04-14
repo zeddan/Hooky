@@ -1,0 +1,49 @@
+#header{
+    margin: 0;
+    background-color: #232323;
+}
+
+#header h1{
+    color: #FFFFFF;
+    margin: 0px;
+}
+
+#navigation{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+}
+
+#button-holder{
+
+}
+
+ul.header li {
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+}
+
+ul.header {
+    background-color: #232323;
+    padding: 0;
+}
+
+
+ul.header li a {
+    color: #FFF;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 20px;
+    display: inline-block;
+}
+
+.active {
+    background-color: #2fff3d;
+}
+
+.nav-btn{
+    width: 100px;
+    margin-left: 5px !important;
+}
+
