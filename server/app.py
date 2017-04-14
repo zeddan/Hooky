@@ -17,12 +17,10 @@ lm.login_view = 'index'
 def load_user(id):
     return User.query.get(int(id))
 
-
 likes = db.Table('likes',
     db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
     db.Column('product_id', db.Integer, db.ForeignKey('product.id'))
 )
-
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -37,7 +35,7 @@ class User(UserMixin, db.Model):
                 secondary=likes,
                 lazy='joined',
                 back_populates="users")
-    
+
 
     def __init__(self, name, email, admin=False, social_id=None):
         self.social_id = social_id
@@ -104,8 +102,6 @@ def like():
     product_id = request.json['product_id']
     user = User.query.filter_by(id=user_id).first()
     product = Product.query.filter_by(id=product_id).first()
-    print user
-    print product
     if not (user or product):
         flash('User or product could not be found')
         abort(401)
@@ -118,10 +114,10 @@ def like():
 @app.route('/users/', methods=['GET', 'POST'])
 def users():
     if request.method == 'GET':
-        pb = []
+        users = []
         for p in User.query.all():
-            pb.append(p.serialize())
-        return jsonify({'users': pb})
+            users.append(p.serialize())
+        return jsonify({'users': users})
 
 
 @app.route('/users/<int:id>/')
@@ -213,7 +209,7 @@ def login():
         return jsonify({'user':user.serialize()})
     flash('Bad password')
     return redirect(url_for('index'))
-        
+
 @app.route('/authorize/<provider>')
 def oauth_authorize(provider):
     if not current_user.is_anonymous:
