@@ -66,7 +66,7 @@ class Product(db.Model):
     name = db.Column(db.String(30))
     image = db.Column(db.String(80))
     description = db.Column(db.String(200))
-    published = db.Column(db.Boolean)
+    published = db.Column(db.Boolean, default=False)
 
 
     def __init__(self, user_id, name, image, description, published):
@@ -158,7 +158,7 @@ def register():
     user.set_password(request.json.get('password'))
     db.session.add(user)
     db.session.commit()
-    return redirect(url_for('login'))
+    return redirect(url_for('index'))
 
 @app.route('/login', methods=['POST'])
 def login():
