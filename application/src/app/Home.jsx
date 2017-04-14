@@ -2,7 +2,7 @@
  * Created by kristoffer on 4/12/17.
  */
 import React from "react";
-
+import {Button} from "react-bootstrap";
 class Home extends React.Component {
     clicker() {
         $.ajax({
@@ -16,11 +16,10 @@ class Home extends React.Component {
     render() {
         return (
             <div className="center-text" id="intro-holder">
-
                 <div className="intro" id="intro-1">
                     <h2>Hooky!</h2>
                     <h3>Inköpskollektiv för företag</h3>
-
+                    <Button>Button!!!!</Button>
                     <p>Gör dina företagsinköp tillsammans med andra.</p>
                     <p>Spara upp till 40% och hitta nya spännande produkter</p>
                 </div>
@@ -39,7 +38,6 @@ class Home extends React.Component {
             </div>
         );
     };
-}
-;
+};
 
 export default Home;
