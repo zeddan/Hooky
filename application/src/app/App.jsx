@@ -1,14 +1,18 @@
 import React from "react";
-import { render } from "react-dom";
+import NavBar from './NavBar.jsx';
 
-class App extends React.Component {
-	render() {
-		return (
+class App extends React.Component{
+
+    render() {
+        return (
             <div>
-            	<p>Hello, World!</p>
-			</div>
-        );
-	}
-}
+                <NavBar/>
+                <div className="content">
+                    {this.props.children}
+                </div>
+            </div>
+        )
+    }
+};
 
-render(<App/>, window.document.getElementById("app"));
+export default App;
