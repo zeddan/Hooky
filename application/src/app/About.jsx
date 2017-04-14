@@ -7,7 +7,7 @@ class About extends React.Component {
     render() {
         return (
             <div className="center-text">
-                <h1>Vi är HOOKY</h1>
+                <h1>Vi är Heeky!</h1>
                 <div id="about-us-holder">
                     <p>Letar du efter nya spännande produkter till din butik, hotell eller restaurang har du kommit
                         rätt!
