@@ -26,7 +26,7 @@ class User(UserMixin, db.Model):
     admin = db.Column(db.Boolean)
     pw_hash = db.Column(db.String(200))
 
-    def __init__(self, name, email, social_id=None, admin=False):
+    def __init__(self, name, email, admin=False, social_id=None):
         self.social_id = social_id
         self.name = name
         self.email = email
@@ -127,13 +127,17 @@ def product(id):
         return jsonify({'result': True})
 
     if request.method == 'PUT':
-        prod = Product.query.get(id)
-        prod.name = request.json.get('name', prod.name)
-        prod.image = request.json.get('image', prod.image)
-        prod.description = request.json.get('description', prod.description)
-        prod.published = request.json.get('published', prod.published)
-        db.session.commit()
-        return jsonify({'product': prod.serialize()})
+        user = User.query.get(request.json.get('user_id'))
+        if user.admin == True:
+            prod = Product.query.get(id)
+            prod.name = request.json.get('name', prod.name)
+            prod.image = request.json.get('image', prod.image)
+            prod.description = request.json.get('description', prod.description)
+            prod.published = request.json.get('published', prod.published)
+            db.session.commit()
+            return jsonify({'product': prod.serialize()})
+        flash("NOt allowed")
+        return redirect(url_for('index'))
 
 
 @app.route('/')
@@ -153,7 +157,7 @@ def register():
     if email is None or password is None:
         abort(400)
     if User.query.filter_by(email = email).first() is not None:
-        abort(400)
+        abort(403)
     user = User(request.json.get('name'), request.json.get('email'), request.json.get('admin'))
     user.set_password(request.json.get('password'))
     db.session.add(user)
