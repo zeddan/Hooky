@@ -1,6 +1,3 @@
-/**
- * Created by kristoffer on 4/12/17.
- */
 import React from "react";
 import {Button} from "react-bootstrap";
 
@@ -28,4 +25,10 @@ export class Home extends React.Component {
             </div>
         );
     };
+<<<<<<< HEAD:application/src/app/components/Home.jsx
 }
+=======
+}
+
+export default Home;
+>>>>>>> ee7cf225e7d2207e74f17d0c48af0734669cb305:application/src/app/Home.jsx

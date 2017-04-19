@@ -1,6 +1,3 @@
-/**
- * Created by kristoffer on 4/12/17.
- */
 import React from 'react';
 
 export class About extends React.Component {
@@ -24,4 +21,10 @@ export class About extends React.Component {
             </div>
         );
     }
+<<<<<<< HEAD:application/src/app/components/About.jsx
 }
+=======
+}
+
+export default About;
+>>>>>>> ee7cf225e7d2207e74f17d0c48af0734669cb305:application/src/app/About.jsx
