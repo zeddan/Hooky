@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, redirect, url_for, flash
+from flask import Flask, jsonify, json, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from oauth import OAuthSignIn
 from flask_login import LoginManager, UserMixin, login_user, logout_user,\
@@ -154,29 +154,33 @@ def logout():
 
 @app.route('/register', methods=['POST'])
 def register():
-    email = request.json.get('email')
-    password = request.json.get('password')
+    data = json.loads(request.data)
+    email = data['email']
+    password = data['password']
+    name = data['name']
     if email is None or password is None:
         abort(400)
     if User.query.filter_by(email = email).first() is not None:
         abort(403)
-    user = User(request.json.get('name'), request.json.get('email'), request.json.get('admin'))
-    user.set_password(request.json.get('password'))
+    user = User(name, email)
+    user.set_password(password)
     db.session.add(user)
     db.session.commit()
     return redirect(url_for('index'))
 
 @app.route('/login', methods=['POST'])
 def login():
-    mail = request.json.get('email','')
-    password = request.json.get('password','')
+    data = json.loads(request.data)
+    mail = data['email']
+    password = data['password']
     user = User.query.filter_by(email=mail).first()
     if user is None:
-        flash('Authentication failed')
+        print('Authentication failed')
         return redirect(url_for('index'))
     if user.check_password(password):
         login_user(user, True)
-        return jsonify({'user':user.serialize()})
+        print("Logged in: " + user.name)
+        return redirect('http://localhost:8080')
     flash('Bad password')
     return redirect(url_for('index'))
 
@@ -203,7 +207,7 @@ def oauth_callback(provider):
         db.session.add(user)
         db.session.commit()
     login_user(user, True)
-    return jsonify({'user': user.serialize()})
+    return redirect('http://localhost:8080')
 
 
 if __name__ == '__main__':
