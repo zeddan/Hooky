@@ -3,22 +3,16 @@
  */
 import React from "react";
 import {Button} from "react-bootstrap";
+import LoginForm from './LoginForm.jsx';
+import RegisterButton from './RegisterButton.jsx';
 
 class Home extends React.Component {
-    clicker() {
-        $.ajax({
-            url: "http://www.omdbapi.com/?s=matrix",
-            dataType: "JSON"
-        }).done(function (data) {
-            alert(data.Search);
-        });
-    };
-
     render() {
         return (
             <div className="center-text" id="intro-holder">
                 <div className="intro" id="intro-1">
                     <h2>Hooker!!!</h2>
+                    <LoginForm/>
                     <Button bsStyle="primary">Test</Button>
                     <h3>Inköpskollektiv för företag</h3>
                     <Button>Button!!!!</Button>
@@ -32,7 +26,7 @@ class Home extends React.Component {
                 <div className="intro" id="intro-3">
                     <h3>Registrera dig gratis och bli en del av vår inköpscommunity</h3>
                     <div id="register-option">
-                        <button className="button">Email</button>
+                        <RegisterButton/>
                         <button className="button">LinkedIn</button>
                         <button className="button">Google</button>
                     </div>
