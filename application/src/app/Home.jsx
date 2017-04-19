@@ -1,6 +1,3 @@
-/**
- * Created by kristoffer on 4/12/17.
- */
 import React from "react";
 import {Button} from "react-bootstrap";
 
