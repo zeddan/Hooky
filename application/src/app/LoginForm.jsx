@@ -35,6 +35,10 @@ class LoginForm extends React.Component {
 		alert('Email: ' + this.state.email +'\nPassword: ' + this.state.password);
 		fetch('http://localhost:5000/login', {
 			method: 'POST',
+			headers: {
+				        'Accept': 'application/json',
+				        'Content-Type': 'application/json'
+				    },
 			mode: 'no-cors',
 			body: JSON.stringify({
 				email: this.state.email,
