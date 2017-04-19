@@ -25,10 +25,7 @@ export class Home extends React.Component {
             </div>
         );
     };
-<<<<<<< HEAD:application/src/app/components/Home.jsx
-}
-=======
+
 }
 
-export default Home;
->>>>>>> ee7cf225e7d2207e74f17d0c48af0734669cb305:application/src/app/Home.jsx
+
