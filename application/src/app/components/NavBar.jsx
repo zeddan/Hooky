@@ -1,11 +1,8 @@
 import React from 'react';
 
-var {
-    IndexLink,
-    Link
-} = ReactRouter;
+import {Link, IndexLink} from "react-router";
 
-class NavBar extends React.Component {
+export class NavBar extends React.Component {
 	login(){
 		return $.getJSON('https://randomuser.me/api/')
       			.then((data) => {
@@ -32,5 +29,3 @@ class NavBar extends React.Component {
         );
     };
 }
-
-export default NavBar

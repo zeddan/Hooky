@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, json, request, redirect, url_for, flash
+from flask import Flask, jsonify, request, redirect, url_for, flash, abort
 from flask_sqlalchemy import SQLAlchemy
 from oauth import OAuthSignIn
 from flask_login import LoginManager, UserMixin, login_user, logout_user,\
@@ -6,6 +7,7 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user,\
 from werkzeug.security import generate_password_hash, \
      check_password_hash
 from flask_cors import CORS, cross_origin
+
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
@@ -18,6 +20,10 @@ CORS(app)
 def load_user(id):
     return User.query.get(int(id))
 
+likes = db.Table('likes',
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
+    db.Column('product_id', db.Integer, db.ForeignKey('product.id'))
+)
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -27,12 +33,21 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(80))
     admin = db.Column(db.Boolean)
     pw_hash = db.Column(db.String(200))
+    products = db.relationship(
+                'Product',
+                secondary=likes,
+                lazy='joined',
+                back_populates="users")
+
 
     def __init__(self, name, email, admin=False, social_id=None):
         self.social_id = social_id
         self.name = name
         self.email = email
         self.admin = admin
+
+    def __repr__(self):
+        return str(self.serialize())
 
     def set_password(self, password):
         self.pw_hash = generate_password_hash(password)
@@ -53,13 +68,7 @@ class User(UserMixin, db.Model):
         return unicode(self.id)
 
     def serialize(self):
-        return {
-            'id': self.id,
-            'social_id': self.social_id,
-            'name': self.name,
-            'email': self.email,
-            'admin': self.admin
-        }
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
 class Product(db.Model):
@@ -69,6 +78,11 @@ class Product(db.Model):
     image = db.Column(db.String(80))
     description = db.Column(db.String(200))
     published = db.Column(db.Boolean, default=False)
+    users = db.relationship(
+                'User',
+                secondary=likes,
+                lazy='joined',
+                back_populates="products")
 
 
     def __init__(self, user_id, name, image, description, published=False):
@@ -78,24 +92,35 @@ class Product(db.Model):
         self.description = description
         self.published = published
 
+    def __repr__(self):
+        return str(self.serialize())
+
     def serialize(self):
-        return {
-            'id': self.id,
-            'user_id':self.user_id,
-            'name': self.name,
-            'image': self.image,
-            'description': self.description,
-            'published': self.published,
-        }
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+
+@app.route('/like/', methods=['POST'])
+def like():
+    user_id = request.json['user_id']
+    product_id = request.json['product_id']
+    user = User.query.filter_by(id=user_id).first()
+    product = Product.query.filter_by(id=product_id).first()
+    if not (user or product):
+        flash('User or product could not be found')
+        abort(401)
+    product.users.append(user)
+    db.session.add(product)
+    db.session.commit()
+    return jsonify({'user': user.serialize()}), 201
 
 
 @app.route('/users/', methods=['GET', 'POST'])
 def users():
     if request.method == 'GET':
-        pb = []
+        users = []
         for p in User.query.all():
-            pb.append(p.serialize())
-        return jsonify({'users': pb})
+            users.append(p.serialize())
+        return jsonify({'users': users})
 
 
 @app.route('/users/<int:id>/')
@@ -106,11 +131,14 @@ def get_user(id):
 @app.route('/products/', methods=['GET', 'POST'])
 def products():
     if request.method == 'GET':
-        pb = []
-        print(Product.query.all())
+        products = []
         for p in Product.query.all():
-            pb.append(p.serialize())
-        return jsonify({'products': pb})
+            likes = []
+            [likes.append(u.id) for u in p.users]
+            product = p.serialize()
+            product['likes'] = likes
+            products.append(product)
+        return jsonify({'products': products})
     if request.method == 'POST':
         data = json.loads(request.data)
         prod = Product(data['user_id'],data['name'], data['image'],
@@ -123,7 +151,12 @@ def products():
 @app.route('/products/<int:id>/', methods=['GET', 'DELETE', 'PUT'])
 def product(id):
     if request.method == 'GET':
-        return jsonify({'product': Product.query.get(id).serialize()})
+        product = Product.query.get(id)
+        likes = []
+        [likes.append(u.id) for u in product.users]
+        product = product.serialize()
+        product['likes'] = likes
+        return jsonify({'product': product})
 
     if request.method == 'DELETE':
         db.session.delete(Product.query.get(id))

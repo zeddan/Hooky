@@ -3,7 +3,7 @@
  */
 import React from 'react';
 
-class About extends React.Component {
+export class About extends React.Component {
     render() {
         return (
             <div className="center-text">
@@ -25,5 +25,3 @@ class About extends React.Component {
         );
     }
 }
-
-export default About;

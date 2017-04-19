@@ -9,6 +9,7 @@
 server/config.py
 *.swo
 *.swp
+.idea
 
 
 node_modules/
