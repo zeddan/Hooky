@@ -71,7 +71,7 @@ class Product(db.Model):
     published = db.Column(db.Boolean, default=False)
 
 
-    def __init__(self, user_id, name, image, description, published):
+    def __init__(self, user_id, name, image, description, published=False):
         self.user_id = user_id
         self.name = name
         self.image = image
@@ -112,7 +112,9 @@ def products():
             pb.append(p.serialize())
         return jsonify({'products': pb})
     if request.method == 'POST':
-        prod = Product(request.json.get('user_id'),request.json.get('name'), request.json.get('image'), request.json.get('description'), request.json.get('published'))
+        data = json.loads(request.data)
+        prod = Product(data['user_id'],data['name'], data['image'],
+                       data['description'])
         db.session.add(prod)
         db.session.commit()
         return jsonify({'product': prod.serialize()}), 201
@@ -129,13 +131,14 @@ def product(id):
         return jsonify({'result': True})
 
     if request.method == 'PUT':
-        user = User.query.get(request.json.get('user_id'))
+        data = json.loads(request.data)
+        user = User.query.get(data['user_id'])
         if user.admin == True:
             prod = Product.query.get(id)
-            prod.name = request.json.get('name', prod.name)
-            prod.image = request.json.get('image', prod.image)
-            prod.description = request.json.get('description', prod.description)
-            prod.published = request.json.get('published', prod.published)
+            prod.name = data['name']
+            prod.image = data['image']
+            prod.description = data['description']
+            prod.published = data['published']
             db.session.commit()
             return jsonify({'product': prod.serialize()})
         flash("NOt allowed")
