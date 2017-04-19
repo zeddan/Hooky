@@ -12,7 +12,6 @@ export class Home extends React.Component {
            <div className="center-text" id="intro-holder">
                 <div className="intro" id="intro-1">
                     <h2>Hooker!!!</h2>
-                    <LoginForm/>
                     <Button bsStyle="primary">Test</Button>
                     <h3>Inköpskollektiv för företag</h3>
                     <p>Gör dina företagsinköp tillsammans med andra.</p>
