@@ -4,24 +4,12 @@
 import React from "react";
 import {Button} from "react-bootstrap";
 
-class Home extends React.Component {
-    clicker() {
-        $.ajax({
-            url: "http://www.omdbapi.com/?s=matrix",
-            dataType: "JSON"
-        }).done(function (data) {
-            alert(data.Search);
-        });
-    };
-
+export class Home extends React.Component {
     render() {
         return (
-            <div className="center-text" id="intro-holder">
+           <div className="center-text" id="intro-holder">
                 <div className="intro" id="intro-1">
-                    <h2>Hooker!!!</h2>
-                    <Button bsStyle="primary">Test</Button>
                     <h3>Inköpskollektiv för företag</h3>
-                    <Button>Button!!!!</Button>
                     <p>Gör dina företagsinköp tillsammans med andra.</p>
                     <p>Spara upp till 40% och hitta nya spännande produkter</p>
                 </div>
@@ -41,5 +29,3 @@ class Home extends React.Component {
         );
     };
 }
-
-export default Home;
