@@ -5,12 +5,14 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user,\
      current_user
 from werkzeug.security import generate_password_hash, \
      check_password_hash
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
 lm = LoginManager(app)
 lm.login_view = 'index'
+CORS(app)
 
 @lm.user_loader
 def load_user(id):
@@ -177,7 +179,7 @@ def login():
         return jsonify({'user':user.serialize()})
     flash('Bad password')
     return redirect(url_for('index'))
-        
+
 @app.route('/authorize/<provider>')
 def oauth_authorize(provider):
     if not current_user.is_anonymous:
@@ -201,7 +203,7 @@ def oauth_callback(provider):
         db.session.add(user)
         db.session.commit()
     login_user(user, True)
-    return redirect(url_for('index'))
+    return jsonify({'user': user.serialize()})
 
 
 if __name__ == '__main__':
