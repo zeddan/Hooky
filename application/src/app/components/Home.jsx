@@ -1,5 +1,6 @@
 import React from "react";
 import {Button} from "react-bootstrap";
+import "../css/startPage.css";
 
 export class Home extends React.Component {
     render() {

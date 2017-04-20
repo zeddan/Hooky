@@ -1,13 +1,13 @@
 import React from 'react';
-
 import {Link, IndexLink} from "react-router";
+import css from "../css/navigationBar.css";
 
 export class NavBar extends React.Component {
 	login(){
 		return $.getJSON('https://randomuser.me/api/')
       			.then((data) => {
         		this.setState({ person: data.results });
-      		});	
+      		});
 	}
 
     render() {
