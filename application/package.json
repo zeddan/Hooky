@@ -2,7 +2,7 @@
   "name": "Collective-Order",
   "version": "1.0.0",
   "description": "Web application for inspiring people of different products",
-  "main": "index.js",
+  "main": "App.jsx",
   "scripts": {
     "start": "npm run build",
     "build": "webpack -d && cp src/index.html dist/index.html && webpack-dev-server --content-base src/ --inline --hot --history-api-fallback",
