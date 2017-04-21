@@ -1,7 +1,11 @@
 import React from 'react';
+
+//Components
 import RegisterButton from '../../buttons/RegisterButton.jsx';
-import '../../../css/startHeader.scss';
 import LinkedInBtn from "../../buttons/LinkedInButton.jsx";
+
+//Stylesheets
+import '../../../css/startHeader.scss';
 
 var bannerSrc = "http://www.visitwaterfalls.com/wp-content/uploads/2012/09/fine-dining-header.jpg";
 class Header extends React.Component {

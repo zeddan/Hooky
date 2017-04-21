@@ -1,7 +1,9 @@
 import React from 'react';
 
+//Components
 import NavBar from './NavBar.jsx';
 
+//Stylesheets
 import '../../css/style.scss';
 
 class Root extends React.Component{

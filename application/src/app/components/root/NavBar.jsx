@@ -1,6 +1,10 @@
 import React from 'react';
+
+//Components
 import LoginButton from '../buttons/LoginButton.jsx';
 import {Link, IndexLink} from "react-router";
+
+//Stylesheets
 import "../../css/navigationBar.scss";
 
 class NavBar extends React.Component {

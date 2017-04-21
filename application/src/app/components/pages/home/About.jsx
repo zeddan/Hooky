@@ -1,4 +1,6 @@
 import React from 'react';
+
+//Stylesheets
 import "../../../css/aboutUs.scss";
 
 class About extends React.Component {

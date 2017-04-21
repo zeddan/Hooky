@@ -1,9 +1,10 @@
 import React from "react";
 import {render} from "react-dom";
-import {Router, Route, browserHistory, IndexRoute} from "react-router";
 
+//Components
 import Root from "./components/root/Root.jsx";
 import Home from "./components/pages/home/Home.jsx";
+import {Router, Route, browserHistory, IndexRoute} from "react-router";
 
 class App extends React.Component {
 	render() {

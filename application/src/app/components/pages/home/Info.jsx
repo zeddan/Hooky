@@ -1,5 +1,9 @@
 import React from 'react';
+
+//Components
 import {Button} from 'react-bootstrap';
+
+//Stylesheets
 import '../../../css/style.scss';
 
 class Info extends React.Component {
