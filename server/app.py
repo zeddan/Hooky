@@ -1,3 +1,4 @@
+from flask import Flask, jsonify, json, request, redirect, url_for, flash
 from flask import Flask, jsonify, request, redirect, url_for, flash, abort
 from flask_sqlalchemy import SQLAlchemy
 from oauth import OAuthSignIn
@@ -5,6 +6,7 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user,\
      current_user
 from werkzeug.security import generate_password_hash, \
      check_password_hash
+from flask_cors import CORS, cross_origin
 
 
 app = Flask(__name__)
@@ -12,6 +14,7 @@ app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
 lm = LoginManager(app)
 lm.login_view = 'index'
+CORS(app)
 
 @lm.user_loader
 def load_user(id):
@@ -82,7 +85,7 @@ class Product(db.Model):
                 back_populates="products")
 
 
-    def __init__(self, user_id, name, image, description, published):
+    def __init__(self, user_id, name, image, description, published=False):
         self.user_id = user_id
         self.name = name
         self.image = image
@@ -137,7 +140,9 @@ def products():
             products.append(product)
         return jsonify({'products': products})
     if request.method == 'POST':
-        prod = Product(request.json.get('user_id'),request.json.get('name'), request.json.get('image'), request.json.get('description'), request.json.get('published'))
+        data = json.loads(request.data)
+        prod = Product(data['user_id'],data['name'], data['image'],
+                       data['description'])
         db.session.add(prod)
         db.session.commit()
         return jsonify({'product': prod.serialize()}), 201
@@ -159,13 +164,14 @@ def product(id):
         return jsonify({'result': True})
 
     if request.method == 'PUT':
-        user = User.query.get(request.json.get('user_id'))
+        data = json.loads(request.data)
+        user = User.query.get(data['user_id'])
         if user.admin == True:
             prod = Product.query.get(id)
-            prod.name = request.json.get('name', prod.name)
-            prod.image = request.json.get('image', prod.image)
-            prod.description = request.json.get('description', prod.description)
-            prod.published = request.json.get('published', prod.published)
+            prod.name = data['name']
+            prod.image = data['image']
+            prod.description = data['description']
+            prod.published = data['published']
             db.session.commit()
             return jsonify({'product': prod.serialize()})
         flash("NOt allowed")
@@ -184,29 +190,33 @@ def logout():
 
 @app.route('/register', methods=['POST'])
 def register():
-    email = request.json.get('email')
-    password = request.json.get('password')
+    data = json.loads(request.data)
+    email = data['email']
+    password = data['password']
+    name = data['name']
     if email is None or password is None:
         abort(400)
     if User.query.filter_by(email = email).first() is not None:
         abort(403)
-    user = User(request.json.get('name'), request.json.get('email'), request.json.get('admin'))
-    user.set_password(request.json.get('password'))
+    user = User(name, email)
+    user.set_password(password)
     db.session.add(user)
     db.session.commit()
     return redirect(url_for('index'))
 
 @app.route('/login', methods=['POST'])
 def login():
-    mail = request.json.get('email','')
-    password = request.json.get('password','')
+    data = json.loads(request.data)
+    mail = data['email']
+    password = data['password']
     user = User.query.filter_by(email=mail).first()
     if user is None:
-        flash('Authentication failed')
+        print('Authentication failed')
         return redirect(url_for('index'))
     if user.check_password(password):
         login_user(user, True)
-        return jsonify({'user':user.serialize()})
+        print("Logged in: " + user.name)
+        return redirect('http://localhost:8080')
     flash('Bad password')
     return redirect(url_for('index'))
 
@@ -233,7 +243,7 @@ def oauth_callback(provider):
         db.session.add(user)
         db.session.commit()
     login_user(user, True)
-    return redirect(url_for('index'))
+    return redirect('http://localhost:8080')
 
 
 if __name__ == '__main__':

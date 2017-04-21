@@ -1,4 +1,6 @@
 import React from 'react';
+import LoginButton from './LoginButton.jsx';
+import RegisterButton from './RegisterButton.jsx';
 import {Link, IndexLink} from "react-router";
 import css from "../css/navigationBar.css";
 
@@ -21,8 +23,8 @@ export class NavBar extends React.Component {
                         <li><Link to="/about-us" activeClassName="active">About Us</Link></li>
                     </ul>
                     <div id="button-holder">
-                        <button type="button" onClick={this.login} className="nav-btn button secondary" id="log-in-btn">Log In</button>
-                        <button type="button" className="nav-btn button" id="register-btn">Register</button>
+			<LoginButton/>
+			<RegisterButton/>
                     </div>
                 </div>
             </div>
