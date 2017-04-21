@@ -1,6 +1,6 @@
 import React from 'react';
 import RegisterButton from '../../buttons/RegisterButton.jsx';
-import '../../../css/test.scss';
+import '../../../css/startHeader.scss';
 import LinkedInBtn from "../../buttons/LinkedInButton.jsx";
 
 var bannerSrc = "http://www.visitwaterfalls.com/wp-content/uploads/2012/09/fine-dining-header.jpg";
@@ -22,7 +22,6 @@ class Header extends React.Component {
             </div>
         );
     }
-
 }
 
 export default Header;
