@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginButton from '../buttons/LoginButton.jsx';
 import {Link, IndexLink} from "react-router";
-import "../../css/navigationBar.css";
+import "../../css/navigationBar.scss";
 
 export class NavBar extends React.Component {
 	login(){

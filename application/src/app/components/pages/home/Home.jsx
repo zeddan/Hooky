@@ -1,6 +1,6 @@
 import React from "react";
 import {Button} from "react-bootstrap";
-import "../../../css/startPage.css";
+import "../../../css/startPage.scss";
 import RegisterButton from '../../buttons/RegisterButton.jsx';
 import LinkedinBtn from '../../buttons/LinkedInButton.jsx';
 import StartHeader from './HomeBanner.jsx';
