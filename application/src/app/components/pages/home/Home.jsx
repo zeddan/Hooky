@@ -1,13 +1,13 @@
-import React from "react";
-import {Button} from "react-bootstrap";
-import "../../../css/startPage.scss";
+import React from 'react';
+import {Button} from 'react-bootstrap';
+import '../../../css/startPage.scss';
 import RegisterButton from '../../buttons/RegisterButton.jsx';
 import LinkedinBtn from '../../buttons/LinkedInButton.jsx';
 import StartHeader from './HomeBanner.jsx';
 import Info from './Info.jsx';
 import About from './About.jsx';
 
-export class Home extends React.Component {
+class Home extends React.Component {
     render() {
         return (
            <div className="center-text" id="intro-holder">
@@ -35,7 +35,6 @@ export class Home extends React.Component {
             </div>
         );
     };
-
 }
 
-
+export default Home;

@@ -48,7 +48,6 @@ class LoginButton extends React.Component {
             </ButtonToolbar>
         );
     }
-
 }
 
 export default LoginButton;

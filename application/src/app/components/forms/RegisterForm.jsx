@@ -1,7 +1,8 @@
-import React from "react";
-import {Button, ControlLabel, Form, Col, Checkbox, FormControl, FormGroup, HelpBlock} from "react-bootstrap";
+import React from 'react';
+import {Button, ControlLabel, Form, Col, Checkbox, FormControl, FormGroup, HelpBlock} from 'react-bootstrap';
 
 class RegisterForm extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -83,6 +84,5 @@ class RegisterForm extends React.Component {
         )
     }
 }
-
 
 export default RegisterForm;

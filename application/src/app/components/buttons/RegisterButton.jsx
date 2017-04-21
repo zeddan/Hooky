@@ -47,7 +47,6 @@ class RegisterButton extends React.Component {
             </ButtonToolbar>
         );
     }
-
 }
 
 export default RegisterButton;

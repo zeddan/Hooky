@@ -3,7 +3,7 @@ import LoginButton from '../buttons/LoginButton.jsx';
 import {Link, IndexLink} from "react-router";
 import "../../css/navigationBar.scss";
 
-export class NavBar extends React.Component {
+class NavBar extends React.Component {
 	login(){
 		return $.getJSON('https://randomuser.me/api/')
       			.then((data) => {
@@ -29,3 +29,5 @@ export class NavBar extends React.Component {
         );
     };
 }
+
+export default NavBar;

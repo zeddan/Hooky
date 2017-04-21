@@ -1,8 +1,8 @@
-import React from "react";
-import {Button} from "react-bootstrap";
-import "../../../css/style.scss";
+import React from 'react';
+import {Button} from 'react-bootstrap';
+import '../../../css/style.scss';
 
-export class Info extends React.Component {
+class Info extends React.Component {
 	constructor() {
 		super()
 		this.state = {
