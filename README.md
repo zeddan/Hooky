@@ -59,3 +59,47 @@ npm start
 
 This will build the project and start a dev server on localhost:8080 with the application.
 The page is reloaded automagically on any change.
+
+#### Code Conventions
+##### Frontend
+###### Imports
+Import of dependencies are done with ```import``` statement
+
+Do:
+```javascript
+import React from 'react';
+```
+Not:
+```javascript
+require('react');
+```
+
+###### Quotation marks
+Use single quotation marks 
+
+Do:
+```javascript
+import React from 'react';
+```
+Not:
+```javascript
+import React from "react";
+```
+
+###### Class exports
+Export your class after implementation
+
+Do:
+```javascript
+class MyClass extends React.Component {
+  //...
+}
+
+export default MyClass;
+```
+Not:
+```javascript
+export default class MyClass extends React.Component {
+  //...
+}
+```
