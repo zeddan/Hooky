@@ -24,7 +24,6 @@ export class NavBar extends React.Component {
                     </ul>
                     <div id="button-holder">
 			<LoginButton/>
-			<RegisterButton/>
                     </div>
                 </div>
             </div>

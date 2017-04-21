@@ -3,13 +3,16 @@ import {Button} from "react-bootstrap";
 import "../css/startPage.css";
 import LoginForm from './LoginForm.jsx';
 import RegisterButton from './RegisterButton.jsx';
-import LinkedinBtn from './Buttons.jsx';
+import LinkedinBtn from './LinkedInButton.jsx';
+import StartHeader from './HomeBanner.jsx';
 
 export class Home extends React.Component {
     render() {
         return (
            <div className="center-text" id="intro-holder">
+
                 <div className="intro" id="intro-1">
+                    <StartHeader/>
                     <h2>Hooker!!!</h2>
                     <Button bsStyle="primary">Test</Button>
                     <h3>Inköpskollektiv för företag</h3>

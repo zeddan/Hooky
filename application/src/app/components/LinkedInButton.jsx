@@ -12,6 +12,4 @@ class LinkedinBtn extends React.Component {
 	}
 }
 
-
-
 export default LinkedinBtn;

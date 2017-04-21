@@ -12,7 +12,6 @@ class RegisterButton extends React.Component {
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
     };
-
     showModal() {
         console.log(this);
         this.setState({show: true});
@@ -24,9 +23,9 @@ class RegisterButton extends React.Component {
 
     render() {
         return (
-            <ButtonToolbar>
-                <Button bsStyle="primary" onClick={this.showModal}>
-                    Register
+            <ButtonToolbar id ="registerButton">
+                <Button bsStyle="primary" onClick={this.showModal} >
+                    Continue with Email
                 </Button>
 
                 <Modal
@@ -36,7 +35,7 @@ class RegisterButton extends React.Component {
                     dialogClassName="custom-modal"
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title-lg">Modal heading</Modal.Title>
+                        <Modal.Title id="contained-modal-title-lg">Hooky - Register</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                        <RegisterForm/>
