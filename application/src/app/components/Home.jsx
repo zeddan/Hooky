@@ -3,6 +3,7 @@ import {Button} from "react-bootstrap";
 import "../css/startPage.css";
 import LoginForm from './LoginForm.jsx';
 import RegisterButton from './RegisterButton.jsx';
+import LinkedinBtn from './Buttons.jsx';
 
 export class Home extends React.Component {
     render() {
@@ -23,8 +24,8 @@ export class Home extends React.Component {
                     <h3>Registrera dig gratis och bli en del av vår inköpscommunity</h3>
                     <div id="register-option">
                         <RegisterButton/>
-                        <button className="button">LinkedIn</button>
-                        <button className="button">Google</button>
+                        <LinkedinBtn/>
+			<button className="button">Google</button>
                     </div>
                 </div>
             </div>
