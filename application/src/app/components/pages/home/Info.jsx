@@ -1,6 +1,6 @@
 import React from "react";
 import {Button} from "react-bootstrap";
-import "../css/style.css";
+import "../../../css/style.css";
 
 export class Info extends React.Component {
 	constructor() {

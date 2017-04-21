@@ -1,10 +1,10 @@
 import React from 'react';
-import {Button,ButtonToolbar,Modal} from 'react-bootstrap';
-import RegisterForm from './RegisterForm.jsx';
+import {Button, ButtonToolbar, Modal} from 'react-bootstrap';
+import LoginForm from '../forms/LoginForm.jsx';
 
-class RegisterButton extends React.Component {
+class LoginButton extends React.Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
             show: false
@@ -12,6 +12,7 @@ class RegisterButton extends React.Component {
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
     };
+
     showModal() {
         console.log(this);
         this.setState({show: true});
@@ -23,9 +24,9 @@ class RegisterButton extends React.Component {
 
     render() {
         return (
-            <ButtonToolbar id ="registerButton">
-                <Button bsStyle="primary" onClick={this.showModal} >
-                    Continue with Email
+            <ButtonToolbar>
+                <Button bsStyle="primary" onClick={this.showModal}>
+                    Log in
                 </Button>
 
                 <Modal
@@ -35,10 +36,10 @@ class RegisterButton extends React.Component {
                     dialogClassName="custom-modal"
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title-lg">Hooky - Register</Modal.Title>
+                        <Modal.Title id="contained-modal-title-lg">Log in</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                       <RegisterForm/>
+                        <LoginForm/>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.hideModal}>Close</Button>
@@ -50,4 +51,4 @@ class RegisterButton extends React.Component {
 
 }
 
-export default RegisterButton;
+export default LoginButton;

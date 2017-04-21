@@ -2,9 +2,8 @@ import React from "react";
 import {render} from "react-dom";
 import {Router, Route, browserHistory, IndexRoute} from "react-router";
 
-import {Root} from "./components/Root.jsx";
-import {Home} from "./components/Home.jsx";
-import {About} from "./components/About.jsx";
+import {Root} from "./components/root/Root.jsx";
+import {Home} from "./components/pages/home/Home.jsx";
 
 class App extends React.Component {
 	render() {
@@ -12,7 +11,6 @@ class App extends React.Component {
           <Router history={browserHistory}>
                 <Route path="/" component={Root}>
                     <IndexRoute component={Home}/>
-                    <Route path="about-us" component={About} />
                 </Route>
            </Router>
         );
