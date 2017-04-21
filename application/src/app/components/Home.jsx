@@ -5,6 +5,8 @@ import LoginForm from './LoginForm.jsx';
 import RegisterButton from './RegisterButton.jsx';
 import LinkedinBtn from './LinkedInButton.jsx';
 import StartHeader from './HomeBanner.jsx';
+import Info from './Info.jsx';
+import About from './About.jsx';
 
 export class Home extends React.Component {
     render() {
@@ -14,14 +16,14 @@ export class Home extends React.Component {
                 <div className="intro" id="intro-1">
                     <StartHeader/>
                     <h2>Hooker!!!</h2>
-                    <Button bsStyle="primary">Test</Button>
                     <h3>Inköpskollektiv för företag</h3>
-                    <p>Gör dina företagsinköp tillsammans med andra.</p>
-                    <p>Spara upp till 40% och hitta nya spännande produkter</p>
                 </div>
+		<div className="intro">
+		<h3>Gör era företagsköp tillsammans med andra och spara upp till 40%</h3>
+		<Info/>
+		</div>
                 <div className="intro" id="intro-2">
-                    <p>Större order = Bättre förhandlingsläge = Lägre priser!</p>
-                    <p>Vi gör jobbet åt dig!</p>
+		<About/>
                 </div>
                 <div className="intro" id="intro-3">
                     <h3>Registrera dig gratis och bli en del av vår inköpscommunity</h3>

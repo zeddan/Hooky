@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9fdd761-4936-409a-bd9e-a76612b91526" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/src/app/components/HomeBanner.jsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/src/app/css/startHeader.css" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/src/app/components/Login.jsx" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/src/app/components/Buttons.jsx" afterPath="$PROJECT_DIR$/application/src/app/components/LinkedInButton.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/src/app/components/Info.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/app/components/About.jsx" afterPath="$PROJECT_DIR$/application/src/app/components/About.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/app/components/Home.jsx" afterPath="$PROJECT_DIR$/application/src/app/components/Home.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/app/components/LoginButton.jsx" afterPath="$PROJECT_DIR$/application/src/app/components/LoginButton.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/app/components/NavBar.jsx" afterPath="$PROJECT_DIR$/application/src/app/components/NavBar.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/app/components/RegisterButton.jsx" afterPath="$PROJECT_DIR$/application/src/app/components/RegisterButton.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/app/css/aboutUs.css" afterPath="$PROJECT_DIR$/application/src/app/css/aboutUs.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/app/css/style.css" afterPath="$PROJECT_DIR$/application/src/app/css/style.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -50,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LinkedInButton.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LinkedInButton.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/src/app/components/LinkedInButton.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
-              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -86,11 +82,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Home.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Home.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/src/app/components/Home.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+            <state relative-caret-position="150">
+              <caret line="10" column="43" lean-forward="true" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -154,12 +150,12 @@
         <option value="$PROJECT_DIR$/application/src/app/RegisterButton.jsx" />
         <option value="$PROJECT_DIR$/application/src/app/Contact.jsx" />
         <option value="$PROJECT_DIR$/application/src/app/components/NavBar.jsx" />
-        <option value="$PROJECT_DIR$/application/src/app/components/Home.jsx" />
         <option value="$PROJECT_DIR$/application/src/app/components/StartHeader.jsx" />
         <option value="$PROJECT_DIR$/application/src/app/css/startHeader.css" />
         <option value="$PROJECT_DIR$/application/src/app/components/RegisterButton.jsx" />
         <option value="$PROJECT_DIR$/application/src/app/components/LoginButton.jsx" />
         <option value="$PROJECT_DIR$/application/src/app/components/LinkedInButton.jsx" />
+        <option value="$PROJECT_DIR$/application/src/app/components/Home.jsx" />
       </list>
     </option>
   </component>
@@ -443,10 +439,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23685000" />
+    <option name="totallyTimeSpent" value="23853000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1680" height="1024" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18927065" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -455,7 +452,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37017167" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37017167" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -710,16 +707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/src/app/components/Home.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/src/app/css/startHeader.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -761,7 +748,17 @@
     <entry file="file://$PROJECT_DIR$/application/src/app/components/LinkedInButton.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/src/app/components/Home.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="43" lean-forward="true" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
