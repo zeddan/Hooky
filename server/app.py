@@ -185,6 +185,7 @@ def index():
 
 @app.route('/logout')
 def logout():
+    print(current_user)
     logout_user()
     return redirect(url_for('index'))
 
@@ -216,6 +217,7 @@ def login():
     if user.check_password(password):
         login_user(user, True)
         print("Logged in: " + user.name)
+        print(current_user)
         return redirect('http://localhost:8080')
     flash('Bad password')
     return redirect(url_for('index'))
