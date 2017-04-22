@@ -1,12 +1,9 @@
 import React from 'react';
 import Gallery from './Gallery.jsx';
-
 import "../../../css/inspiration.scss";
 
-// Cache gallery container
 const galleryContainer = document.querySelector('.react-gallery');
 
-// Create new array with URLs for images
 let imgUrls = [
  'https://source.unsplash.com/3Z70SDuYs5g/800x600',
  'https://source.unsplash.com/01vFmYAOqQ0/800x600',

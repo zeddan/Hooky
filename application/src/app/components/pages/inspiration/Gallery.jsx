@@ -2,7 +2,7 @@ import React from 'react';
 import GalleryImage from './GalleryImage.jsx';
 import GalleryModal from './GalleryModal.jsx';
 
-class Gallery extends React.Component{
+class Gallery extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,7 +28,7 @@ class Gallery extends React.Component{
                                                 <i className="heart fa fa-heart-o" aria-hidden="true"></i>
                                             </div>
                                             <GalleryImage className='gallery-thumbnail' src={url} alt={'Image number ' + (index + 1)} />
-                                            <span className='card-icon-open fa fa-expand' value={url} onClick={(e) => this.openModal(url, e)}></span>
+                                            <span className='card-icon-open' value={url} onClick={(e) => this.openModal(url, e)}></span>
                                         </div>
                                     </div>
                                 )
@@ -43,7 +43,7 @@ class Gallery extends React.Component{
     openModal(url, e) {
         this.setState({
             showModal: true,
-        url: url
+            url: url
         })
     };
 
