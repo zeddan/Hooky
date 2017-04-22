@@ -1,11 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 class GalleryModal extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         if (this.props.isOpen === false) {
             return null;
