@@ -1,29 +1,40 @@
-#intro-holder {
 
+#home-content {
+  padding: 5px;
 }
 
 .intro {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    min-height: 400px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  min-height: 400px;
+}
+
+hr {
+  width: 30%;
+  height: 2px;
+  border-top-color: black;
 }
 
 #intro-1 {
-    background-color: #cacaca;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    padding-top: 10px;
+    line-height: 50px;
+    margin: auto;
+  }
+  .btn {
+    width: 200px !important;
+    margin: 0;
+    margin-bottom: 20px;
+  }
 }
 
-#intro-2 {
-    background-color: #dbdbdb;
-}
-
-#intro-3 {
-    background-color: #cacaca;
-}
-
-#register-option{
-    display: flex;
-    justify-content:space-around;
-    width: 50%;
-    margin:auto;
+#register-option {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  margin: auto;
 }

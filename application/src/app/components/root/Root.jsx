@@ -10,7 +10,7 @@ class Root extends React.Component{
     render() {
         return (
            <div>
-                <NavBar/>
+                {/*<NavBar/>*/}
                 <div className="content">
                     {this.props.children}
                 </div>

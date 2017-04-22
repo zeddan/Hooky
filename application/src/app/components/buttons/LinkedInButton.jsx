@@ -7,7 +7,7 @@ class LinkedinBtn extends React.Component {
 	render () {
 		return (
 			<a href="http://localhost:5000/authorize/linkedin">
-			<Button>Continue with LinkedIn</Button>
+			<Button bsStyle="primary">Continue with LinkedIn</Button>
 			</a>
 		)
 	}

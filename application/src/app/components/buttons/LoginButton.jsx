@@ -27,8 +27,8 @@ class LoginButton extends React.Component {
     render() {
         return (
             <ButtonToolbar>
-                <Button bsStyle="primary" onClick={this.showModal}>
-                    Log in
+                <Button bsStyle="link" onClick={this.showModal}>
+                    Logga in
                 </Button>
 
                 <Modal
