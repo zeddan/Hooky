@@ -26,7 +26,7 @@ class Inspiration extends React.Component {
                 <Gallery imgUrls={imgUrls} />
             </section>
         );
-    }
+    };
 }
 
-export default Inspiration
+export default Inspiration;

@@ -13,8 +13,8 @@ class GalleryModal extends React.Component {
                     <img src={this.props.src} />
                 </div>
             </div>
-        )
-    }
+        );
+    };
 }
 
 export default GalleryModal;

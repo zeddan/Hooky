@@ -8,10 +8,10 @@ class Gallery extends React.Component {
         this.state = {
             showModal: false,
             url: ''
-        }
+        };
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-    }
+    };
 
     render() {
         const imgUrls = this.props.imgUrls;
@@ -31,28 +31,28 @@ class Gallery extends React.Component {
                                             <span className='card-icon-open' value={url} onClick={(e) => this.openModal(url, e)}></span>
                                         </div>
                                     </div>
-                                )
+                                );
                             })
                         }
                     </div>
                     <GalleryModal isOpen={this.state.showModal} onClick={this.closeModal} src={this.state.url} /> 
                 </div>
-        )
-    }
+        );
+    };
 
     openModal(url, e) {
         this.setState({
             showModal: true,
             url: url
-        })
+        });
     };
 
     closeModal() {
         this.setState({
             showModal: false,
             url: ''
-        })
-    }
+        });
+    };
 }
 
 export default Gallery;
