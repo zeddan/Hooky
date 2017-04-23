@@ -1,6 +1,11 @@
 import React from 'react';
 
 class GalleryModal extends React.Component {
+    constructor(props) {
+        super(props);
+        this.preventClick= this.preventClick.bind(this);
+    };
+
     render() {
         if (this.props.isOpen === false) {
             return null;
@@ -8,7 +13,7 @@ class GalleryModal extends React.Component {
 
         return (
             <div className='modal-overlay' onClick={this.props.onClick} name={this.props.name}>
-                <div className='modal-body'>
+                <div className='modal-body' onClick={this.preventClick}>
                     <div className='modal-body-head'>
                         <div className='description row'>
                             <div className="col-xs-6 col-xs-offset-3">
@@ -29,6 +34,11 @@ class GalleryModal extends React.Component {
                 </div>
             </div>
         );
+    };
+
+    preventClick(e) {
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
     };
 }
 
