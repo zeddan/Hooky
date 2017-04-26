@@ -31,14 +31,11 @@ class Gallery extends React.Component {
                         this.state.products.map((product, index) => {
                             return (
                                 <div key={index + 1} className='col-sm-6 col-md-3 col-xl-2'>
-                                    <div className='gallery-card'>
-                                        <div className='like-heart'>
-                                            <div className='likes'>{product.likes.length}</div>
-                                            <i className="heart fa fa-heart-o" aria-hidden="true"></i>
-                                        </div>
-                                        <GalleryImage className='gallery-thumbnail' src={product.image} alt={'Image number ' + (index + 1)} />
-                                        <span className='card-icon-open' value={product.image} onClick={(e) => this.openModal(product.image, e)}></span>
-                                    </div>
+                                    <GalleryImage className='gallery-thumbnail'
+                                                  likes={product.likes}
+                                                  src={product.image}
+                                                  handleClick={(e) => this.openModal(product.image, e)}
+                                                  alt={'Image number ' + (index + 1)} />
                                 </div>
                             );
                         })
