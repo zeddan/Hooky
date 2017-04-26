@@ -1,12 +1,13 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
 
+//Components
+import {Button} from 'react-bootstrap';
 
 class LinkedinBtn extends React.Component {
 	render () {
 		return (
 			<a href="http://localhost:5000/authorize/linkedin">
-			<Button>Continue with LinkedIn</Button>
+			<Button bsStyle="primary">Continue with LinkedIn</Button>
 			</a>
 		)
 	}

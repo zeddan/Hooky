@@ -1,4 +1,6 @@
 import React from 'react';
+
+//Components
 import {Button,ButtonToolbar,Modal} from 'react-bootstrap';
 import RegisterForm from '../forms/RegisterForm.jsx';
 
@@ -47,7 +49,6 @@ class RegisterButton extends React.Component {
             </ButtonToolbar>
         );
     }
-
 }
 
 export default RegisterButton;

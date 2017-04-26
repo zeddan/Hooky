@@ -1,4 +1,6 @@
 import React from 'react';
+
+//Components
 import {
 	Button,
 	Form,
@@ -103,4 +105,4 @@ class ProductForm extends React.Component {
 	}}
 
 
-export default ProductForm 
+export default ProductForm

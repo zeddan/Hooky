@@ -1,7 +1,9 @@
 import React from 'react';
+
+//Stylesheets
 import "../../../css/aboutUs.scss";
 
-export class About extends React.Component {
+class About extends React.Component {
     render() {
         return (
             <div className="center-text">
@@ -24,5 +26,5 @@ export class About extends React.Component {
     }
 }
 
-export default About;
 
+export default About;

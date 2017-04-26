@@ -1,4 +1,6 @@
 import React from 'react';
+
+//Components
 import {Button, ButtonToolbar, Modal} from 'react-bootstrap';
 import LoginForm from '../forms/LoginForm.jsx';
 
@@ -25,8 +27,8 @@ class LoginButton extends React.Component {
     render() {
         return (
             <ButtonToolbar>
-                <Button bsStyle="primary" onClick={this.showModal}>
-                    Log in
+                <Button bsStyle="link" onClick={this.showModal}>
+                    Logga in
                 </Button>
 
                 <Modal
@@ -48,7 +50,6 @@ class LoginButton extends React.Component {
             </ButtonToolbar>
         );
     }
-
 }
 
 export default LoginButton;

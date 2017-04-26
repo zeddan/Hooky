@@ -1,14 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import {NavBar} from "./NavBar.jsx";
+//Components
+import NavBar from './NavBar.jsx';
 
-import "../../css/style.scss";
+//Stylesheets
+import '../../css/style.scss';
 
-export class Root extends React.Component{
+class Root extends React.Component{
     render() {
         return (
            <div>
-                <NavBar/>
+                {/*<NavBar/>*/}
                 <div className="content">
                     {this.props.children}
                 </div>
@@ -16,3 +18,5 @@ export class Root extends React.Component{
         );
     }
 }
+
+export default Root;

@@ -1,0 +1,29 @@
+$font-color: #eeeeee;
+
+#home-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 0 20px;
+  position: absolute;
+  width: 100%;
+
+  h1 {
+    font-size: 40px !important;
+    color: $font-color !important;
+  }
+}
+
+.btn-link {
+  color: $font-color !important;
+  font-size: 20px !important;
+}
+
+#home-login-btn-holder {
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}

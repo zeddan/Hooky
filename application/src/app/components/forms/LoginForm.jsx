@@ -1,4 +1,6 @@
 import React from 'react';
+
+//Components
 import {
 	Button,
 	Form,
@@ -10,6 +12,7 @@ import {
 } from 'react-bootstrap';
 
 class LoginForm extends React.Component {
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -36,16 +39,16 @@ class LoginForm extends React.Component {
 		fetch('http://localhost:5000/login', {
 			method: 'POST',
 			headers: {
-				        'Accept': 'application/json',
-				        'Content-Type': 'application/json'
-				    },
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
 			mode: 'no-cors',
 			body: JSON.stringify({
 				email: this.state.email,
 				password: this.state.password
 			})
 		})
-		
+
 		event.preventDefault();
 	}
 	render() {
@@ -84,8 +87,8 @@ class LoginForm extends React.Component {
 			</FormGroup>
 			</Form>
 
-		)
-	}}
+			)
+	}
+}
 
-
-export default LoginForm 
+export default LoginForm;
