@@ -10,6 +10,7 @@ server/config.py
 *.swo
 *.swp
 
+.idea/
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
