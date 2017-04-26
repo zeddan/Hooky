@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, json, request, redirect, url_for, flash
+from flask import Flask, jsonify, json, request, redirect, url_for, flash, send_from_directory
 from flask import Flask, jsonify, request, redirect, url_for, flash, abort
 from flask_sqlalchemy import SQLAlchemy
 from oauth import OAuthSignIn
@@ -8,7 +8,7 @@ from werkzeug.security import generate_password_hash, \
         check_password_hash
 from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
-import os
+import os, time
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
@@ -16,6 +16,8 @@ db = SQLAlchemy(app)
 lm = LoginManager(app)
 lm.login_view = 'index'
 CORS(app)
+
+url = 'http://localhost:5000'
 
 @lm.user_loader
 def load_user(id):
@@ -128,30 +130,35 @@ def users():
 def get_user(id):
     return jsonify({'user': User.query.get(id)})
 
-@app.route('/images/', methods=['POST'])
-def images():
-    if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        file = request.files['file']
-        # if user does not select file, browser also
-        # submit a empty part without filename
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            print(filename)
-            return redirect(url_for('index'))
-    return 'no'
+def append_time(filename):
+    name, ext = os.path.splitext(filename)
+    return "{name}_{time}{ext}".format(name=name, time=time.strftime("%Y%m%d-%H%M%S"), ext=ext)
 
+def get_image_url(files):
+    # check if the post request has the file part
+    if 'file' not in files:
+        flash('No file part')
+        return ''
+    file = files['file']
+    # if user does not select file, browser also
+    # submit a empty part without filename
+    if file.filename == '':
+        flash('No selected file')
+        return ''
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        filename = append_time(filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        print(filename)
+        return url + url_for('uploaded_file',filename=filename)
 
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+            filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+
+@app.route('/images/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
 
 @app.route('/products/', methods=['GET', 'POST'])
 def products():
@@ -163,12 +170,11 @@ def products():
             product = p.serialize()
             product['likes'] = likes
             products.append(product)
-            return jsonify({'products': products})
+        return jsonify({'products': products})
     if request.method == 'POST':
-        print(current_user)
-        data = json.loads(request.data)
-        prod = Product(1,data['name'], data['image'],
-                       data['description'])
+        image = get_image_url(request.files)
+        prod = Product(1,request.form['name'], image,
+                       request.form['description'])
         db.session.add(prod)
         db.session.commit()
         return jsonify({'product': prod.serialize()}), 201
