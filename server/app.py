@@ -9,6 +9,7 @@ from werkzeug.security import generate_password_hash, \
 from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
 import os, time
+import requests
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
@@ -114,7 +115,12 @@ def like():
     product.users.append(user)
     db.session.add(product)
     db.session.commit()
-    return jsonify({'user': user.serialize()}), 201
+    product = Product.query.get(product_id)
+    likes = []
+    [likes.append(u.id) for u in product.users]
+    product = product.serialize()
+    product['likes'] = likes
+    return jsonify({'product': product}), 201
 
 
 @app.route('/users/', methods=['GET', 'POST'])
@@ -280,4 +286,4 @@ def oauth_callback(provider):
 
 if __name__ == '__main__':
     db.create_all()
-    app.run(debug=True)
+    app.run(debug=True, threaded=True)
