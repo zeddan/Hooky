@@ -7,14 +7,14 @@ import '../../../css/banner.scss';
 
 import '../../../css/banner.scss';
 
-var bannerSrc = "https://www.svtstatic.se/image-cms/svtse/1484746920/gokvall/recept/article9550302.svt/alternates/extralarge/dsc7751-jpg";
+var bannerSrc = "app/components/pages/home/veggie.jpg";
 
 class HomeBanner extends React.Component {
 
     render() {
         return (
             <div>
-                <img src={bannerSrc} alt="happy-eating"/>
+                <img src={bannerSrc} alt="happy-eating" id="home-banner-img"/>
                 <div className="bannerContentHolder">
                     {/*Använda & istället för och?*/}
                     <h2>Passion för god <br/>kvalitét & bra priser</h2>

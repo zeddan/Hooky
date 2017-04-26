@@ -4,6 +4,7 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 import RegisterButton from '../../buttons/RegisterButton.jsx';
 import LinkedinBtn from '../../buttons/LinkedInButton.jsx';
+import ProductButton from '../../buttons/ProductButton.jsx';
 import Info from './Info.jsx';
 import About from './About.jsx';
 import HomeBanner from "./HomeBanner.jsx";
@@ -26,7 +27,9 @@ class Home extends React.Component {
                     <hr/>
                     <h3>Bli medlem gratis</h3>
                     <LinkedinBtn/>
-                    <RegisterButton/>
+                    
+		<RegisterButton/>
+		<ProductButton/>
                     <hr/>
                     <Info/>
                     <About/>
