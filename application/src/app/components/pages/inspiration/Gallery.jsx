@@ -31,8 +31,8 @@ class Gallery extends React.Component {
                         this.state.products.map((product, index) => {
                             return (
                                 <div key={index + 1} className='col-sm-6 col-md-3 col-xl-2'>
-                                    <GalleryImage className='gallery-thumbnail'
-                                                  likes={product.likes}
+                                    <GalleryImage likes={product.likes}
+                                                  p_id={product.id}
                                                   src={product.image}
                                                   handleClick={(e) => this.openModal(product.image, e)}
                                                   alt={'Image number ' + (index + 1)} />
