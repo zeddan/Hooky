@@ -109,10 +109,10 @@ def like():
     if not (user or product):
         flash('User or product could not be found')
         abort(401)
-        product.users.append(user)
-        db.session.add(product)
-        db.session.commit()
-        return jsonify({'user': user.serialize()}), 201
+    product.users.append(user)
+    db.session.add(product)
+    db.session.commit()
+    return jsonify({'user': user.serialize()}), 201
 
 
 @app.route('/users/', methods=['GET', 'POST'])
@@ -121,7 +121,7 @@ def users():
         users = []
         for p in User.query.all():
             users.append(p.serialize())
-            return jsonify({'users': users})
+        return jsonify({'users': users})
 
 
 @app.route('/users/<int:id>/')
@@ -163,7 +163,7 @@ def products():
             product = p.serialize()
             product['likes'] = likes
             products.append(product)
-            return jsonify({'products': products})
+        return jsonify({'products': products})
     if request.method == 'POST':
         print(current_user)
         data = json.loads(request.data)
@@ -222,13 +222,13 @@ def register():
     name = data['name']
     if email is None or password is None:
         abort(400)
-        if User.query.filter_by(email = email).first() is not None:
-            abort(403)
-            user = User(name, email)
-            user.set_password(password)
-            db.session.add(user)
-            db.session.commit()
-            return redirect(url_for('index'))
+    if User.query.filter_by(email = email).first() is not None:
+        abort(403)
+    user = User(name, email)
+    user.set_password(password)
+    db.session.add(user)
+    db.session.commit()
+    return redirect(url_for('index'))
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -268,8 +268,8 @@ def oauth_callback(provider):
         user = User(social_id=social_id, name=name, email=email)
         db.session.add(user)
         db.session.commit()
-        login_user(user, True)
-        return redirect('http://localhost:8080')
+    login_user(user, True)
+    return redirect('http://localhost:8080')
 
 
 if __name__ == '__main__':
