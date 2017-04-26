@@ -27,14 +27,14 @@ class GalleryImage extends React.Component {
     like() {
         fetch('http://localhost:5000/like/', {
             method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
                 user_id: 2,
-				product_id: this.props.p_id
-			})
+                product_id: this.props.p_id
+            })
         }).then((res) => { return res.json();
         }).then((json) => { this.setState({ likes: json.product.likes });
         });
