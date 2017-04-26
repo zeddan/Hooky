@@ -1,6 +1,4 @@
 import React from 'react';
-
-//Components
 import {
 	Button,
 	Form,
@@ -54,8 +52,10 @@ class ProductForm extends React.Component {
 	handleSubmit(event) {
 		var data = new FormData()
 		data.append('file', this.state.file)
+		data.append('name', this.state.name)
+		data.append('description', this.state.description)
 		alert('Namn: ' + this.state.name +'\nBeskrivning: ' + this.state.description);
-		fetch('http://localhost:5000/images/', {
+		fetch('http://localhost:5000/products/', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
@@ -66,10 +66,12 @@ class ProductForm extends React.Component {
 		})
 
 		event.preventDefault();
+		this.state.file = '';
 	}
 	render() {
 		return (
 			<Form horizontal onSubmit={this.handleSubmit}>
+
 			<FormGroup controlId="formHorizontalEmail">
 			<Col componentClass={ControlLabel} sm={2}>
 			Name
@@ -79,17 +81,19 @@ class ProductForm extends React.Component {
 			</Col>
 			</FormGroup>
 
+			<FormGroup controlId="formControlsTextarea">
 			<Col componentClass={ControlLabel} sm={2}>
 			Description
 			</Col>
 			<Col sm={10}>
-			<FormGroup controlId="formControlsTextarea">
 			<FormControl name='description' componentClass="textarea" placeholder="description" value={this.state.description} onChange={this.handleChange} />
-			</FormGroup>
 			</Col>
+			</FormGroup>
 
 			<FormGroup controlId="formControlsFile">
+			<Col sm={12}>
 			<FormControl name="image" type="file" label="image" onChange={(e)=>this._handleImageChange(e)}/>
+			</Col>
 			</FormGroup>
 
 			<FormGroup>
@@ -105,4 +109,4 @@ class ProductForm extends React.Component {
 	}}
 
 
-export default ProductForm
+export default ProductForm 
