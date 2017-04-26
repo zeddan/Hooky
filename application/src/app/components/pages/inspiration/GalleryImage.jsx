@@ -11,10 +11,15 @@ class GalleryImage extends React.Component {
     render() {
         return(
             <div className='gallery-card'>
-                <div className='like-heart'
-                     onClick={() => this.like()}>
-                    <div className='likes'>{this.state.likes.length}</div>
-                    <i className="heart fa fa-heart-o" aria-hidden="true"></i>
+                <div className='bg'></div>
+                <div className='info'>
+                    <div className='name'>LÖK</div>
+                    <div className='provider'>Bosses gård</div>
+                    <div className='like-heart'
+                         onClick={() => this.like()}>
+                        <div className='likes'>{this.state.likes.length}</div>
+                        <i className="heart fa fa-heart-o" aria-hidden="true"></i>
+                    </div>
                 </div>
                 <img className='gallery-thumbnail'
                      src={this.props.src}
