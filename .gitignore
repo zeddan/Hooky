@@ -9,8 +9,31 @@
 server/config.py
 *.swo
 *.swp
-.idea
 
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/dictionaries
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.xml
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+.idea/sonarlint
+.idea_modules/
+.idea/replstate.xml
+cmake-build-debug/
+.idea/**/mongoSettings.xml
+*.iws
+/out/
+atlassian-ide-plugin.xml
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
 
 node_modules/
 dist/
