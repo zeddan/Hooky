@@ -23,7 +23,6 @@ class Gallery extends React.Component {
     };
 
     render() {
-        const imgUrls = this.props.imgUrls;
         return(
             <div className='container-fluid gallery-container'>
                 <div className='row'>
