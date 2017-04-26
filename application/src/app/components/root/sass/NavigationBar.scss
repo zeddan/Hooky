@@ -1,0 +1,29 @@
+@import '../../../css/_screens.scss';
+
+.navbar-collapse.collapse {
+  display: block!important;
+}
+
+.navbar-nav {
+  float: left !important;
+  display:table;
+  width:100%;
+  margin: 0;
+}
+
+.navbar-nav > li {
+  float:none;
+  display:table-cell;
+  text-align:center;
+}
+
+.navbar-nav > li > a {
+  line-height: 50px;
+}
+
+@include desktop {
+  .navbar-nav {
+    display: flex;
+  }
+}
+
