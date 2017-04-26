@@ -22,22 +22,18 @@ class Home extends React.Component {
                 </div>
                 <div id="home-content">
                     {/*Måste nog skriva upp till 40%*/}
-                    <div id="intro-1">
-                        <h2>Gör era företagsköp tillsammans & spara 40%</h2>
-                        <hr/>
-                        <h3>Bli medlem gratis</h3>
-                        <LinkedinBtn/>
-                        <RegisterButton/>
-                        <hr/>
-                    </div>
+                    <h2>Gör era företagsköp tillsammans & spara 40%</h2>
+                    <hr/>
+                    <h3>Bli medlem gratis</h3>
+                    <LinkedinBtn/>
+                    <RegisterButton/>
+                    <hr/>
                     <Info/>
                     <About/>
                     <h3>Registrera dig gratis och bli en del av vår inköpscommunity</h3>
-                    <div id="register-option">
-                        <RegisterButton/>
-                        <LinkedinBtn/>
-                        <button className="button">Google</button>
-                    </div>
+                    <h3>Bli medlem gratis</h3>
+                    <LinkedinBtn/>
+                    <RegisterButton/>
                 </div>
             </div>
         );

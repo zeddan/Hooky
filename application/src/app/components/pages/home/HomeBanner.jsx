@@ -5,7 +5,6 @@ import React from 'react';
 //Stylesheets
 import '../../../css/banner.scss';
 
-var bannerSrc = "http://www.visitwaterfalls.com/wp-content/uploads/2012/09/fine-dining-header.jpg";
 import '../../../css/banner.scss';
 
 var bannerSrc = "https://www.svtstatic.se/image-cms/svtse/1484746920/gokvall/recept/article9550302.svt/alternates/extralarge/dsc7751-jpg";

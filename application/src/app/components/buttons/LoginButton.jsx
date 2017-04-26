@@ -43,9 +43,6 @@ class LoginButton extends React.Component {
                     <Modal.Body>
                         <LoginForm/>
                     </Modal.Body>
-                    <Modal.Footer>
-                        <Button onClick={this.hideModal}>Close</Button>
-                    </Modal.Footer>
                 </Modal>
             </ButtonToolbar>
         );

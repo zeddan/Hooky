@@ -56,10 +56,10 @@ class RegisterForm extends React.Component {
             <Form horizontal onSubmit={this.handleSubmit}>
                 <FormGroup controlId="formHorizontalPassword">
                     <Col componentClass={ControlLabel} sm={2}>
-                        Username
+                        Företag
                     </Col>
                     <Col sm={10}>
-                        <FormControl name='name' type="text" placeholder="Username" value={this.state.name}
+                        <FormControl name='name' type="text" placeholder="Företag" value={this.state.name}
                                      onChange={this.handleChange}/>
                     </Col>
                 </FormGroup>
@@ -76,10 +76,10 @@ class RegisterForm extends React.Component {
 
                 <FormGroup controlId="formHorizontalPassword">
                     <Col componentClass={ControlLabel} sm={2}>
-                        Password
+                        Lösenord
                     </Col>
                     <Col sm={10}>
-                        <FormControl name='password' type="password" placeholder="Password" value={this.state.password}
+                        <FormControl name='password' type="password" placeholder="Lösenord" value={this.state.password}
                                      onChange={this.handleChange}/>
                     </Col>
                 </FormGroup>
@@ -87,7 +87,7 @@ class RegisterForm extends React.Component {
                 <FormGroup>
                     <Col smOffset={2} sm={10}>
                         <Button type="submit">
-                            Register
+                            Registrera
                         </Button>
                     </Col>
                 </FormGroup>
