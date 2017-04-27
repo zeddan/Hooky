@@ -12,11 +12,11 @@ class Root extends React.Component{
     render() {
         return (
            <div>
-                <Row>
-                    <Col xs={10} xsOffset={1}>
+
+
                         <NavigationBar />
-                    </Col>
-                </Row>
+
+
                 <div className="content">
                     {this.props.children}
                 </div>
