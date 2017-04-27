@@ -17,47 +17,38 @@ class NavigationBar extends React.Component {
             <Navbar fixedTop={true} >
                 <Nav>
                     <NavItem >
-                        <span className="hidden-md hidden-lg">
-                            <Link to={"/inspiration"} >
-                                <i className="fa fa-home fa-lg icon-active icon"/>
-                            </Link>
-                        </span>
-                        <span className="hidden-sm hidden-xs">
-                            <Link id="nav-item-home" to={"/inspiration"}>Hooky</Link>
-                        </span>
+                        <Link to={"/inspiration"} className="hidden-md hidden-lg">
+                            <i className="fa fa-home fa-lg icon-"/>
+                        </Link>
+
+                        <Link id="nav-item-home" to={"/inspiration"} className="hidden-sm hidden-xs">
+                            Hooky
+                        </Link>
+
                     </NavItem>
 
                     <NavItem>
-                        <span className="hidden-md hidden-lg">
-                            <Link to={"#"}>
-                                <i className="fa fa-plus fa-lg
-                                icon"/>
-                            </Link>
-                        </span>
+                        <Link to={"#"} className="hidden-md hidden-lg">
+                            <i className="fa fa-plus fa-lg"/>
+                        </Link>
                     </NavItem>
 
                     <NavItem>
-                        <span className="hidden-md hidden-lg">
-                            <Link to={"#"} >
-                                <i className="fa fa-user-circle fa-lg icon" />
-                            </Link>
-                        </span>
+                        <Link to={"#"} className="hidden-md hidden-lg">
+                            <i className="fa fa-user-circle fa-lg "/>
+                        </Link>
                     </NavItem>
                 </Nav>
                 <Nav className="hidden-sm hidden-xs" pullRight>
                     <NavItem>
-                        <span >
-                            <Link id="nav-item-tip" to={"#"}>
-                                Tipsa!
-                            </Link>
-                        </span>
+                        <Link id="nav-item-tip" to={"#"}>
+                            Tipsa!
+                        </Link>
                     </NavItem>
                     <NavItem>
-                        <span>
-                            <Link id="nav-item-profile" to={"#"}>
-                                Företaget AB
-                            </Link>
-                        </span>
+                        <Link id="nav-item-profile" to={"#"}>
+                            Företaget AB
+                        </Link>
                     </NavItem>
                 </Nav>
             </Navbar>
