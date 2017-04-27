@@ -134,7 +134,7 @@ def users():
 
 @app.route('/users/<int:id>/')
 def get_user(id):
-    return jsonify({'user': User.query.get(id)})
+    return jsonify({'user': User.query.get(id).serialize()})
 
 def append_time(filename):
     name, ext = os.path.splitext(filename)
