@@ -4,7 +4,7 @@ import {render} from "react-dom";
 //Components
 import Root from "./components/root/Root.jsx";
 import Home from "./components/pages/home/Home.jsx";
-import About from "./components/pages/home/About.jsx";
+import Account from './components/pages/account/Account.jsx'
 import Inspiration from "./components/pages/inspiration/Inspiration.jsx";
 import {Router, Route, browserHistory, IndexRoute} from "react-router";
 
@@ -15,6 +15,7 @@ class App extends React.Component {
                 <Route path="/" component={Root}>
                     <IndexRoute component={Home}/>
                     <Route path="inspiration" component={Inspiration}/>
+                    <Route path="account" component={Account}/>
                 </Route>
            </Router>
         );

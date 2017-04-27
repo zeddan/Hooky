@@ -8,13 +8,13 @@ import {Row, Col} from 'react-bootstrap';
 //Stylesheets
 import '../../css/style.scss';
 
-class Root extends React.Component{
+class Root extends React.Component {
     render() {
         return (
-           <div>
+            <div>
 
 
-                        <NavigationBar />
+                <NavigationBar />
 
 
                 <div className="content">

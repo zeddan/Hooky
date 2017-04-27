@@ -25,7 +25,7 @@ class NavigationBar extends React.Component {
 		<ProductButton hidden="hidden-md hidden-lg"/>
                     <NavItem>
                         <span className="hidden-md hidden-lg">
-                            <Link to={"#"} >
+                            <Link to={"/account"} >
                                 <i className="fa fa-user-circle fa-lg" />
                             </Link>
                         </span>
@@ -35,7 +35,7 @@ class NavigationBar extends React.Component {
 	    	    <ProductButton hidden="hidden-sm hidden-xs"/>
                     <NavItem>
                         <span>
-                            <Link id="nav-item-profile" to={"#"}>
+                            <Link id="nav-item-profile" to={"/account"}>
                                 Företaget AB
                             </Link>
                         </span>

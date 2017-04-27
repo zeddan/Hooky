@@ -1,0 +1,26 @@
+@import "_screens";
+
+
+#account-info {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  h1, h2 {
+    margin: 10px auto 10px auto;
+  }
+}
+
+#account-button-panel {
+  display: flex;
+  flex-direction: column;
+  bottom: 0;
+  position: fixed;
+  margin: auto;
+  width: 100%;
+  button {
+    margin: 0 auto 20px auto;
+    height: 50px;
+    width: 80%;
+  }
+}
+

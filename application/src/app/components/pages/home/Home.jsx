@@ -27,8 +27,8 @@ class Home extends React.Component {
                     <hr/>
                     <h3>Bli medlem gratis</h3>
                     <LinkedinBtn/>
-                    
-		<RegisterButton/>
+
+                    <RegisterButton/>
                     <hr/>
                     <Info/>
                     <About/>
