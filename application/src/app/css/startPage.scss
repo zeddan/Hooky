@@ -1,7 +1,10 @@
+@import "screens";
+
 #home-content {
   padding: 5px;
   display: flex;
   flex-direction: column;
+
   .btn {
     width: 200px !important;
     margin: 0;

@@ -1,10 +1,10 @@
 import React from 'react';
 
 //Components
-import {Button} from 'react-bootstrap';
+import {Button, Col, Grid, Row} from 'react-bootstrap';
 
 //Stylesheets
-import '../../../css/style.scss';
+import '../../../css/info.scss';
 
 class Info extends React.Component {
 	constructor() {
@@ -18,11 +18,11 @@ class Info extends React.Component {
 
 	render() {
 		return (
-			<div>
-			<InfoText text={this.state.text1}/>
-			<InfoText text={this.state.text2}/>
-			<InfoText text={this.state.text3}/>
-			</div>
+			<Grid>
+			<InfoText text={this.state.text1} nbr={1}/>
+			<InfoText text={this.state.text2} nbr={2}/>
+			<InfoText text={this.state.text3} nbr={3}/>
+			</Grid>
 		);
 	};
 }
@@ -30,9 +30,14 @@ class Info extends React.Component {
 class InfoText extends React.Component {
 	render () {
 		return (
-			<div>
-			<p>{this.props.text}</p>
-			</div>
+			<Row className="info">
+			<Col xs={2} xsOffset={1}>
+				<h1 className="info-nbr">{this.props.nbr}</h1>
+			</Col>
+			<Col xs={8}>
+				<p className="left-align">{this.props.text}</p>
+			</Col>
+			</Row>
 		);
 	};
 }
