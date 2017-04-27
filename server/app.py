@@ -224,6 +224,19 @@ def index():
     return "it worksss"
 
 
+@app.route('/me')
+def me():
+    if not current_user.is_authenticated:
+        return jsonify({'user': {}})
+    user = {
+        'name': current_user.__getattr__('name'),
+        'social_id': current_user.__getattr__('social_id'),
+        'id': current_user.__getattr__('id'),
+        'email': current_user.__getattr__('email')
+    }
+    return jsonify({'user': user})
+
+
 @app.route('/logout')
 def logout():
     logout_user()
