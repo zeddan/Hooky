@@ -1,11 +1,7 @@
 @import '../../../css/_screens.scss';
-
-.navbar-collapse.collapse {
-  display: block!important;
-}
+@import url('https://fonts.googleapis.com/css?family=Ranga');
 
 .navbar-nav {
-  float: left !important;
   display:table;
   width:100%;
   margin: 0;
@@ -18,12 +14,34 @@
 }
 
 .navbar-nav > li > a {
-  line-height: 50px;
+  line-height: 40px;
 }
 
 @include desktop {
   .navbar-nav {
-    display: flex;
+    width: auto;
+  }
+
+  .navbar-nav > li > a {
+    line-height: 30px;
+    padding-bottom: 5px;
+  }
+
+  #nav-item-home {
+    color: black;
+    font-size: 35px;
+
+    font-family: 'Ranga', sans-serif;
+  }
+
+  #nav-item-tip {
+    color: black;
+    font-size: 20px;
+  }
+
+  #nav-item-profile {
+    color: black;
+    font-size: 20px;
   }
 }
 

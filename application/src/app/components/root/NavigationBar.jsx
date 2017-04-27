@@ -12,36 +12,46 @@ class NavigationBar extends React.Component {
     return(
             <Navbar fixedTop={true}>
                 <Nav>
-                    <NavItem className="icon">
-                        <span className="hidden-md">
+                    <NavItem>
+                        <span className="hidden-md hidden-lg">
                             <Link to={"/inspiration"} >
                                 <i className="fa fa-home fa-lg"/>
                             </Link>
                         </span>
                         <span className="hidden-sm hidden-xs">
-                            <Link to={"/inspiration"}>Hooky</Link>
+                            <Link id="nav-item-home" to={"/inspiration"}>Hooky</Link>
                         </span>
                     </NavItem>
 
-                    <NavItem className="icon">
-                        <span className="hidden-md">
+                    <NavItem>
+                        <span className="hidden-md hidden-lg">
                             <Link to={"#"}>
                                 <i className="fa fa-plus fa-lg" />
                             </Link>
                         </span>
-                        <span className="hidden-sm hidden-xs">
-                            <Link to={"#"}>Tipsa!</Link>
-                        </span>
                     </NavItem>
 
-                    <NavItem className="icon">
-                        <span className="hidden-md">
-                            <Link to={"/user/10"} >
+                    <NavItem>
+                        <span className="hidden-md hidden-lg">
+                            <Link to={"#"} >
                                 <i className="fa fa-user-circle fa-lg" />
                             </Link>
                         </span>
-                        <span className="hidden-sm hidden-xs">
-                            <Link to={"#"} >Företaget AB</Link>
+                    </NavItem>
+                </Nav>
+                <Nav className="hidden-sm hidden-xs" pullRight>
+                    <NavItem>
+                        <span >
+                            <Link id="nav-item-tip" to={"#"}>
+                                Tipsa!
+                            </Link>
+                        </span>
+                    </NavItem>
+                    <NavItem>
+                        <span>
+                            <Link id="nav-item-profile" to={"#"}>
+                                Företaget AB
+                            </Link>
                         </span>
                     </NavItem>
                 </Nav>
