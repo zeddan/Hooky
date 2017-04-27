@@ -8,14 +8,18 @@ import './sass/NavigationBar.scss';
 
 class NavigationBar extends React.Component {
 
+    onItemClick() {
+
+    }
+
   render() {
     return(
-            <Navbar fixedTop={true}>
+            <Navbar fixedTop={true} >
                 <Nav>
-                    <NavItem>
+                    <NavItem >
                         <span className="hidden-md hidden-lg">
                             <Link to={"/inspiration"} >
-                                <i className="fa fa-home fa-lg"/>
+                                <i className="fa fa-home fa-lg icon-active icon"/>
                             </Link>
                         </span>
                         <span className="hidden-sm hidden-xs">
@@ -26,7 +30,8 @@ class NavigationBar extends React.Component {
                     <NavItem>
                         <span className="hidden-md hidden-lg">
                             <Link to={"#"}>
-                                <i className="fa fa-plus fa-lg" />
+                                <i className="fa fa-plus fa-lg
+                                icon"/>
                             </Link>
                         </span>
                     </NavItem>
@@ -34,7 +39,7 @@ class NavigationBar extends React.Component {
                     <NavItem>
                         <span className="hidden-md hidden-lg">
                             <Link to={"#"} >
-                                <i className="fa fa-user-circle fa-lg" />
+                                <i className="fa fa-user-circle fa-lg icon" />
                             </Link>
                         </span>
                     </NavItem>

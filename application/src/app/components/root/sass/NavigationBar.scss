@@ -1,5 +1,7 @@
 @import '../../../css/_screens.scss';
+@import '../../../css/_colors.scss';
 @import url('https://fonts.googleapis.com/css?family=Ranga');
+
 
 .navbar-nav {
   display:table;
@@ -15,6 +17,15 @@
 
 .navbar-nav > li > a {
   line-height: 40px;
+}
+
+.icon {
+  color: $navitem-noactive-color;
+}
+
+.icon-active {
+  color: $navitem-active-color;
+  background-color: none;
 }
 
 @include desktop {
