@@ -18,7 +18,7 @@ class NavigationBar extends React.Component {
                 <Nav>
                     <NavItem >
                         <Link to={"/inspiration"} className="hidden-md hidden-lg">
-                            <i className="fa fa-home fa-lg icon-"/>
+                            <i className="fa fa-home fa-lg icon-noactive"/>
                         </Link>
 
                         <Link id="nav-item-home" to={"/inspiration"} className="hidden-sm hidden-xs">
@@ -29,13 +29,13 @@ class NavigationBar extends React.Component {
 
                     <NavItem>
                         <Link to={"#"} className="hidden-md hidden-lg">
-                            <i className="fa fa-plus fa-lg"/>
+                            <i className="fa fa-plus fa-lg icon-noactive"/>
                         </Link>
                     </NavItem>
 
                     <NavItem>
                         <Link to={"#"} className="hidden-md hidden-lg">
-                            <i className="fa fa-user-circle fa-lg "/>
+                            <i className="fa fa-user-circle fa-lg icon-noactive"/>
                         </Link>
                     </NavItem>
                 </Nav>
