@@ -5,7 +5,7 @@ import {Link} from "react-router";
 import {Navbar, NavDropdown, Nav, NavItem, MenuItem, NavLink} from 'react-bootstrap';
 
 import './sass/NavigationBar.scss';
-
+import ProductButton from '../buttons/ProductButton.jsx'
 class NavigationBar extends React.Component {
 
   render() {
@@ -22,15 +22,7 @@ class NavigationBar extends React.Component {
                             <Link id="nav-item-home" to={"/inspiration"}>Hooky</Link>
                         </span>
                     </NavItem>
-
-                    <NavItem>
-                        <span className="hidden-md hidden-lg">
-                            <Link to={"#"}>
-                                <i className="fa fa-plus fa-lg" />
-                            </Link>
-                        </span>
-                    </NavItem>
-
+		<ProductButton hidden="hidden-md hidden-lg"/>
                     <NavItem>
                         <span className="hidden-md hidden-lg">
                             <Link to={"#"} >
@@ -40,13 +32,7 @@ class NavigationBar extends React.Component {
                     </NavItem>
                 </Nav>
                 <Nav className="hidden-sm hidden-xs" pullRight>
-                    <NavItem>
-                        <span >
-                            <Link id="nav-item-tip" to={"#"}>
-                                Tipsa!
-                            </Link>
-                        </span>
-                    </NavItem>
+	    	    <ProductButton hidden="hidden-sm hidden-xs"/>
                     <NavItem>
                         <span>
                             <Link id="nav-item-profile" to={"#"}>

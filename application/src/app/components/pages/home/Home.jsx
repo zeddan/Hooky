@@ -29,7 +29,6 @@ class Home extends React.Component {
                     <LinkedinBtn/>
                     
 		<RegisterButton/>
-		<ProductButton/>
                     <hr/>
                     <Info/>
                     <About/>
