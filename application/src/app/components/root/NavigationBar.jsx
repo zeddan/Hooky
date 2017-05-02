@@ -2,43 +2,68 @@ import React from 'react';
 
 import {Link} from "react-router";
 
-import {Navbar, NavDropdown, Nav, NavItem, MenuItem, NavLink} from 'react-bootstrap';
+import {Navbar, NavDropdown, Nav, NavItem, MenuItem} from 'react-bootstrap';
+
+import { LinkContainer } from 'react-router-bootstrap';
 
 import './sass/NavigationBar.scss';
 import ProductButton from '../buttons/ProductButton.jsx'
 class NavigationBar extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            selected: 0
+        };
+    }
 
-  render() {
+    setActive(value) {
+        this.setState({
+            selected: value
+        });
+    }
+
+    isActive(value) {
+        return ((value === this.state.selected) ? 'icon-active' : 'icon-noactive');
+    }
+
+    render() {
     return(
-            <Navbar fixedTop={true}>
+            <Navbar fixedTop={true} >
                 <Nav>
-                    <NavItem>
-                        <span className="hidden-md hidden-lg">
-                            <Link to={"/inspiration"} >
-                                <i className="fa fa-home fa-lg"/>
-                            </Link>
-                        </span>
-                        <span className="hidden-sm hidden-xs">
-                            <Link id="nav-item-home" to={"/inspiration"}>Hooky</Link>
-                        </span>
+                    <NavItem className="hidden-md hidden-lg" onClick={() => this.setActive(0)}>
+                        <Link to={"/inspiration"} className={this.isActive(0)} >
+                            <i className="fa fa-home fa-lg"/>
+                        </Link>
                     </NavItem>
-		<ProductButton hidden="hidden-md hidden-lg"/>
-                    <NavItem>
-                        <span className="hidden-md hidden-lg">
-                            <Link to={"/account"} >
-                                <i className="fa fa-user-circle fa-lg" />
-                            </Link>
-                        </span>
+
+                    <NavItem className="hidden-sm hidden-xs" onClick={() => this.setActive(0)}>
+                        <Link id="nav-item-home" to={"/inspiration"}  className={this.isActive(1)}>
+                                Hooky
+                        </Link>
+                    </NavItem>
+
+                    <NavItem className="hidden-md hidden-lg" onClick={() => this.setActive(1)}>
+                        <Link to={"#"} className={this.isActive(1)}>
+                            <i className="fa fa-plus fa-lg"/>
+                        </Link>
+                    </NavItem>
+
+                    <NavItem className="hidden-md hidden-lg" onClick={() => this.setActive(2)}>
+                        <Link to={"#"} className={this.isActive(2)}>
+                            <i className="fa fa-user-circle fa-lg"/>
+                        </Link>
                     </NavItem>
                 </Nav>
                 <Nav className="hidden-sm hidden-xs" pullRight>
-	    	    <ProductButton hidden="hidden-sm hidden-xs"/>
                     <NavItem>
-                        <span>
-                            <Link id="nav-item-profile" to={"/account"}>
-                                Företaget AB
-                            </Link>
-                        </span>
+                        <Link id="nav-item-tip" to={"#"} >
+                            Tipsa!
+                        </Link>
+                    </NavItem>
+                    <NavItem>
+                        <Link id="nav-item-profile" to={"#"} >
+                            Företaget AB
+                        </Link>
                     </NavItem>
                 </Nav>
             </Navbar>
