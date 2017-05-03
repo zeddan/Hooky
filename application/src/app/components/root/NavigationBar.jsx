@@ -44,7 +44,7 @@ class NavigationBar extends React.Component {
 		  <span className="hidden-md hidden-lg">
 		  <ProductButton/>
 	          </span>
-                  <LinkContainer to={"/#"} className="hidden-md hidden-lg">
+                  <LinkContainer to={"/account"} className="hidden-md hidden-lg">
                     <NavItem>
                       <i className="fa fa-user-circle fa-lg"/>
                     </NavItem>
@@ -53,7 +53,7 @@ class NavigationBar extends React.Component {
                 </Nav>
                 <Nav className="hidden-sm hidden-xs" pullRight>
 		  <ProductButton/>
-                  <LinkContainer to={"/#"}>
+                  <LinkContainer to={"/account"}>
                     <NavItem id="nav-item-profile">
                         Företaget
                     </NavItem>
