@@ -4,7 +4,7 @@ import {Link} from "react-router";
 
 import {Navbar, NavDropdown, Nav, NavItem, MenuItem} from 'react-bootstrap';
 
-import { LinkContainer } from 'react-router-bootstrap';
+
 
 import './sass/NavigationBar.scss';
 import ProductButton from '../buttons/ProductButton.jsx'
