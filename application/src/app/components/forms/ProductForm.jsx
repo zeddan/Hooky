@@ -65,7 +65,6 @@ class ProductForm extends React.Component {
 			body: data
 		})
 
-		event.preventDefault();
 		this.state.file = '';
 	}
 	render() {
