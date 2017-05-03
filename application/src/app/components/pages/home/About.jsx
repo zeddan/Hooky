@@ -10,7 +10,7 @@ class About extends React.Component {
             <div className="center-text">
                <hr/>             
 
-                <h1>Vi är Hooky!</h1>
+                <h2>Vi är Hooky!</h2>
                 <div id="about-us-holder">
                     <p>Letar du efter nya spännande produkter till din butik, hotell eller restaurang har du kommit
                         rätt!

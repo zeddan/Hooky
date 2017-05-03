@@ -25,7 +25,7 @@ class RegisterButton extends React.Component {
 
     render() {
         return (
-            <ButtonToolbar id ="registerButton">
+            <div>
                 <Button bsStyle="primary" onClick={this.showModal} >
                     Registrera med Email
                 </Button>
@@ -44,7 +44,7 @@ class RegisterButton extends React.Component {
                     </Modal.Body>
 
                 </Modal>
-            </ButtonToolbar>
+            </div>
         );
     }
 }

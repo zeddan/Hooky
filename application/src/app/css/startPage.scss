@@ -10,16 +10,34 @@
   flex-direction: column;
 
   .btn {
-    width: 200px !important;
-    margin: 0;
+    width: 80%;
+    margin-left: auto;
+      margin-right: auto;
     margin-bottom: 20px;
-  }
+  
+        @include tablet {
+            width: 40%;
+        }
+        @include desktop {
+            width: 20%;
+        }
+    }
+    
   h2 {
     padding-top: 10px;
     line-height: 110%;
     margin: auto;
-      font-weight: bold;
-      width: 350px;
+    font-weight: bold;
+    width: 350px;
+      
+        @include tablet {
+            width: 400px;
+            font-size: 40px;
+        }
+        @include desktop {
+            font-size: 60px;
+            width: 600px;
+      } 
   }
 
   h3 {

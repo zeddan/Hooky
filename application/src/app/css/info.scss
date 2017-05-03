@@ -1,19 +1,44 @@
 .info-nbr {
+    float: left;
 	font-size: 5em;
-    padding: 0px;
+    padding-left: 40px;
     margin: 0px;
+    
 }
 
 .left-align {
 	text-align: left;
     padding-bottom: 30px;
+    margin-top: -80px !important;
+    margin-left: 80px;
+    width: 100%;
+    
+    p {
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+    
+
+        
+        
+    }
+    
 }
 
 .info {
-	height: 7em;
-	vertical-align: middle;
+	height: auto;
+    float: left;
+    width: 100%;
 }
 
 h2 {
-	margin-bottom: 10px;
+	margin-bottom: 40px;
 }
+
+.col-xs-offset-1 {
+    padding: 0px !important;
+    margin: 0px !important;
+    width: 100%;
+}
+
+
