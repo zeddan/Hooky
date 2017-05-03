@@ -2,44 +2,71 @@ import React from 'react';
 
 import {Link} from "react-router";
 
-import {Navbar, NavDropdown, Nav, NavItem, MenuItem, NavLink} from 'react-bootstrap';
+import {Navbar, NavDropdown, Nav, NavItem, MenuItem} from 'react-bootstrap';
+
+import {LinkContainer} from "react-router-bootstrap";
 
 import './sass/NavigationBar.scss';
 import ProductButton from '../buttons/ProductButton.jsx'
 class NavigationBar extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            selected: 0
+        };
+    }
 
-  render() {
+    setActive(value) {
+        this.setState({
+            selected: value
+        });
+    }
+
+    isActive(value) {
+        return ((value === this.state.selected) ? 'icon-active' : 'icon-noactive');
+    }
+
+    render() {
     return(
-            <Navbar fixedTop={true}>
+            <Navbar fixedTop={true} >
                 <Nav>
+                  <LinkContainer to={"/inspiration"} className="hidden-md hidden-lg">
                     <NavItem>
-                        <span className="hidden-md hidden-lg">
-                            <Link to={"/inspiration"} >
-                                <i className="fa fa-home fa-lg"/>
-                            </Link>
-                        </span>
-                        <span className="hidden-sm hidden-xs">
-                            <Link id="nav-item-home" to={"/inspiration"}>Hooky</Link>
-                        </span>
+                      <i className="fa fa-home fa-lg"/>
                     </NavItem>
-		<ProductButton hidden="hidden-md hidden-lg"/>
+                  </LinkContainer>
+
+                  <LinkContainer to={"/inspiration"} className="hidden-sm hidden-xs">
+                    <NavItem id="nav-item-home">
+                      Hooky
+                    </NavItem>
+                  </LinkContainer>
+
+                  <LinkContainer to={"/#"} className="hidden-md hidden-lg">
                     <NavItem>
-                        <span className="hidden-md hidden-lg">
-                            <Link to={"/account"} >
-                                <i className="fa fa-user-circle fa-lg" />
-                            </Link>
-                        </span>
+                        <i className="fa fa-plus fa-lg"/>
                     </NavItem>
+                  </LinkContainer>
+
+                  <LinkContainer to={"/#"} className="hidden-md hidden-lg">
+                    <NavItem>
+                      <i className="fa fa-user-circle fa-lg"/>
+                    </NavItem>
+                  </LinkContainer>
+
                 </Nav>
                 <Nav className="hidden-sm hidden-xs" pullRight>
-	    	    <ProductButton hidden="hidden-sm hidden-xs"/>
-                    <NavItem>
-                        <span>
-                            <Link id="nav-item-profile" to={"/account"}>
-                                Företaget AB
-                            </Link>
-                        </span>
+                  <LinkContainer to={"/#"}>
+                    <NavItem id="nav-item-tip">
+                        Tipsa!
                     </NavItem>
+                  </LinkContainer>
+
+                  <LinkContainer to={"/#"}>
+                    <NavItem id="nav-item-profile">
+                        Företaget
+                    </NavItem>
+                  </LinkContainer>
                 </Nav>
             </Navbar>
         );

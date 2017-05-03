@@ -49,8 +49,7 @@ class ProductForm extends React.Component {
 		reader.readAsDataURL(file)
 	}
 
-
-	handleSubmit() {
+	handleSubmit(event) {
 		var data = new FormData()
 		data.append('file', this.state.file)
 		data.append('name', this.state.name)
@@ -65,6 +64,8 @@ class ProductForm extends React.Component {
 			mode: 'no-cors',
 			body: data
 		})
+
+		event.preventDefault();
 		this.state.file = '';
 	}
 	render() {
