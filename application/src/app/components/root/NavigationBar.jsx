@@ -4,7 +4,7 @@ import {Link} from "react-router";
 
 import {Navbar, NavDropdown, Nav, NavItem, MenuItem} from 'react-bootstrap';
 
-import { LinkContainer } from 'react-router-bootstrap';
+import {LinkContainer} from "react-router-bootstrap";
 
 import './sass/NavigationBar.scss';
 import ProductButton from '../buttons/ProductButton.jsx'
@@ -30,41 +30,43 @@ class NavigationBar extends React.Component {
     return(
             <Navbar fixedTop={true} >
                 <Nav>
-                    <NavItem className="hidden-md hidden-lg" onClick={() => this.setActive(0)}>
-                        <Link to={"/inspiration"} className={this.isActive(0)} >
-                            <i className="fa fa-home fa-lg"/>
-                        </Link>
+                  <LinkContainer to={"/inspiration"} className="hidden-md hidden-lg">
+                    <NavItem>
+                      <i className="fa fa-home fa-lg"/>
                     </NavItem>
+                  </LinkContainer>
 
-                    <NavItem className="hidden-sm hidden-xs" onClick={() => this.setActive(0)}>
-                        <Link id="nav-item-home" to={"/inspiration"}  className={this.isActive(1)}>
-                                Hooky
-                        </Link>
+                  <LinkContainer to={"/inspiration"} className="hidden-sm hidden-xs">
+                    <NavItem id="nav-item-home">
+                      Hooky
                     </NavItem>
+                  </LinkContainer>
 
-                    <NavItem className="hidden-md hidden-lg" onClick={() => this.setActive(1)}>
-                        <Link to={"#"} className={this.isActive(1)}>
-                            <i className="fa fa-plus fa-lg"/>
-                        </Link>
+                  <LinkContainer to={"/#"} className="hidden-md hidden-lg">
+                    <NavItem>
+                        <i className="fa fa-plus fa-lg"/>
                     </NavItem>
+                  </LinkContainer>
 
-                    <NavItem className="hidden-md hidden-lg" onClick={() => this.setActive(2)}>
-                        <Link to={"#"} className={this.isActive(2)}>
-                            <i className="fa fa-user-circle fa-lg"/>
-                        </Link>
+                  <LinkContainer to={"/#"} className="hidden-md hidden-lg">
+                    <NavItem>
+                      <i className="fa fa-user-circle fa-lg"/>
                     </NavItem>
+                  </LinkContainer>
+
                 </Nav>
                 <Nav className="hidden-sm hidden-xs" pullRight>
-                    <NavItem>
-                        <Link id="nav-item-tip" to={"#"} >
-                            Tipsa!
-                        </Link>
+                  <LinkContainer to={"/#"}>
+                    <NavItem id="nav-item-tip">
+                        Tipsa!
                     </NavItem>
-                    <NavItem>
-                        <Link id="nav-item-profile" to={"#"} >
-                            Företaget AB
-                        </Link>
+                  </LinkContainer>
+
+                  <LinkContainer to={"/#"}>
+                    <NavItem id="nav-item-profile">
+                        Företaget
                     </NavItem>
+                  </LinkContainer>
                 </Nav>
             </Navbar>
         );
