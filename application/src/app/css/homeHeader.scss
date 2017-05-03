@@ -5,14 +5,17 @@ $font-color: #eeeeee;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px 0 20px;
   position: absolute;
+  top: -40px;
+  padding-left: 10px;
   width: 100%;
+  z-index: 1;
 
   h1 {
     font-size: 40px !important;
     color: $font-color !important;
   }
+
 }
 
 .btn-link {
@@ -26,4 +29,9 @@ $font-color: #eeeeee;
 h1 {
   margin: 0;
   padding: 0;
+}
+h3 {
+    text-transform: uppercase !important; 
+    font-weight: bold;
+    font-size: 20px;
 }

@@ -23,6 +23,7 @@ class Info extends React.Component {
 			<InfoText text={this.state.text2} nbr={2}/>
 			<InfoText text={this.state.text3} nbr={3}/>
 			</Grid>
+
 		);
 	};
 }
@@ -36,8 +37,9 @@ class InfoText extends React.Component {
 			</Col>
 			<Col xs={8}>
 				<p className="left-align">{this.props.text}</p>
-			</Col>
+                </Col>
 			</Row>
+            
 		);
 	};
 }

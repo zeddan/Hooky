@@ -6,7 +6,10 @@ import "../../../css/aboutUs.scss";
 class About extends React.Component {
     render() {
         return (
+            
             <div className="center-text">
+               <hr/>             
+
                 <h1>Vi är Hooky!</h1>
                 <div id="about-us-holder">
                     <p>Letar du efter nya spännande produkter till din butik, hotell eller restaurang har du kommit
@@ -20,8 +23,12 @@ class About extends React.Component {
                     <p> Vi lever för produkter av hög kvalitet.
                         Såväl svenska som utländska leverantörer finns representerade på HOOKY.com men vi lägger stor
                         fokus på lokal odlade och närproducerade varor.</p>
+
                 </div>
+                <hr/>
             </div>
+                        
+
         );
     }
 }

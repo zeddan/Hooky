@@ -1,5 +1,8 @@
 @import "screens";
 
+.navbar {
+    display: none;
+}
 
 #home-content {
   padding: 5px;
@@ -15,12 +18,14 @@
     padding-top: 10px;
     line-height: 50px;
     margin: auto;
+      font-weight: bold;
+      width: 350px;
   }
 }
 
 hr {
-  width: 30%;
+  width: 10%;
   height: 2px;
-  border-top-color: black;
+  border-top-color: lightpink;
 }
 
