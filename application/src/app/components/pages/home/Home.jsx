@@ -23,21 +23,21 @@ class Home extends React.Component {
                 </div>
                 <div id="home-content">
                     {/*Måste nog skriva upp till 40%*/}
-	 	    <Col sm={10} smOffset={1}>
+	 	    
                     <h2>Gör era företagsköp tillsammans & spara 40%</h2>
                     <hr/>
                     <h3>Bli medlem gratis</h3>
-		    </Col>
+		    
                     <LinkedinBtn/>
 
                     <RegisterButton/>
                     <hr/>
-		    <Col xs={10} xsOffset={1} md={8} mdOffset={2}>
+		    
                     <Info/>
                     <About/>
                     <h2>Tillsammans kan vi spara pengar utan att kompromissa på kvalitét</h2>
                     <h3>Bli medlem gratis</h3>
-		    </Col>
+		   
                     <LinkedinBtn/>
                     <RegisterButton/>
                 </div>

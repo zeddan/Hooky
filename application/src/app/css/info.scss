@@ -1,44 +1,68 @@
-.info-nbr {
-    float: left;
-	font-size: 5em;
-    padding-left: 40px;
-    margin: 0px;
-    
-}
+@import "screens";
 
-.left-align {
-	text-align: left;
-    padding-bottom: 30px;
-    margin-top: -80px !important;
-    margin-left: 80px;
-    width: 100%;
+#number{
     
-    p {
-    margin-left: auto;
-    margin-right: auto;
-    width: 95%;
-    
+    .info-nbr {
+        float: left;
+        font-size: 5em;
+        padding-left: 20px;
+        margin: 0px;
+        
 
-        
-        
+        @include tablet {
+            font-size: 200px;
+            margin-left: 40px;
+        }
+        @include desktop {
+            font-size: 200px;
+        }
     }
     
 }
 
-.info {
+
+#infotext {    
 	height: auto;
     float: left;
     width: 100%;
+
+    .left-align {
+        text-align: left;
+        padding-bottom: 30px;
+        margin-top: 10px;
+        margin-left: 70px;
+        width: 75%;
+
+    }
+    p {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 200px;
+        width: 50%;   
+        
+        
+        @include tablet {
+            margin-left: 100px;
+        }
+        @include desktop {
+            margin-left: 100px;
+
+        }
+    }
+
 }
+
 
 h2 {
-	margin-bottom: 40px;
+	margin-bottom: 300px;
+    clear: both;
+    overflow: hidden;
 }
 
-.col-xs-offset-1 {
-    padding: 0px !important;
-    margin: 0px !important;
-    width: 100%;
+#center-div {
+    p {
+        padding: 0px;
+    }
+    
 }
-
 
