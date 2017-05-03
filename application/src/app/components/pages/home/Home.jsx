@@ -32,7 +32,7 @@ class Home extends React.Component {
 
                     <RegisterButton/>
                     <hr/>
-		    <Col xs={10} xsOffset={1}>
+		    <Col xs={10} xsOffset={1} md={8} mdOffset={2}>
                     <Info/>
                     <About/>
                     <h2>Tillsammans kan vi spara pengar utan att kompromissa på kvalitét</h2>
