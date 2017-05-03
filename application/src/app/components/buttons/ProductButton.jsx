@@ -14,7 +14,6 @@ class ProductButton extends React.Component {
 		this.showModal = this.showModal.bind(this);
 		this.hideModal = this.hideModal.bind(this);
 	};
-
 	showModal() {
 		console.log(this);
 		this.setState({show: true});

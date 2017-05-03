@@ -41,14 +41,10 @@ class NavigationBar extends React.Component {
                       Hooky
                     </NavItem>
                   </LinkContainer>
-
-                  <LinkContainer to={"/#"} className="hidden-md hidden-lg">
-                    <NavItem>
-                        <i className="fa fa-plus fa-lg"/>
-                    </NavItem>
-                  </LinkContainer>
-
-                  <LinkContainer to={"/#"} className="hidden-md hidden-lg">
+		  <span className="hidden-md hidden-lg">
+		  <ProductButton/>
+	          </span>
+                  <LinkContainer to={"/account"} className="hidden-md hidden-lg">
                     <NavItem>
                       <i className="fa fa-user-circle fa-lg"/>
                     </NavItem>
@@ -56,13 +52,8 @@ class NavigationBar extends React.Component {
 
                 </Nav>
                 <Nav className="hidden-sm hidden-xs" pullRight>
-                  <LinkContainer to={"/#"}>
-                    <NavItem id="nav-item-tip">
-                        Tipsa!
-                    </NavItem>
-                  </LinkContainer>
-
-                  <LinkContainer to={"/#"}>
+		  <ProductButton/>
+                  <LinkContainer to={"/account"}>
                     <NavItem id="nav-item-profile">
                         Företaget
                     </NavItem>
