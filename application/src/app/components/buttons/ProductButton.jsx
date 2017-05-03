@@ -27,15 +27,13 @@ class ProductButton extends React.Component {
 		return (
 			<NavItem onClick={this.showModal} className={this.props.hidden}>
 			<span className="hidden-md hidden-lg">
-			<Link>
 			<i className="fa fa-plus fa-lg" />
-			</Link>
 			</span>
 
 			<span className="hidden-sm hidden-xs">
-			<Link id="nav-item-tip">
+			<span id="nav-item-tip">
 			Tipsa!
-			</Link>
+			</span>
 			</span>
 			<Modal
 			{...this.props}
