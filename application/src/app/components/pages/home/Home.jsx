@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Components
-import {Button} from 'react-bootstrap';
+import {Button, Col} from 'react-bootstrap';
 import RegisterButton from '../../buttons/RegisterButton.jsx';
 import LinkedinBtn from '../../buttons/LinkedInButton.jsx';
 import ProductButton from '../../buttons/ProductButton.jsx';
@@ -23,17 +23,21 @@ class Home extends React.Component {
                 </div>
                 <div id="home-content">
                     {/*Måste nog skriva upp till 40%*/}
+	 	    <Col sm={10} smOffset={1}>
                     <h2>Gör era företagsköp tillsammans & spara 40%</h2>
                     <hr/>
                     <h3>Bli medlem gratis</h3>
+		    </Col>
                     <LinkedinBtn/>
 
                     <RegisterButton/>
                     <hr/>
+		    <Col xs={10} xsOffset={1}>
                     <Info/>
                     <About/>
-                    <h3>Registrera dig gratis och bli en del av vår inköpscommunity</h3>
+                    <h2>Tillsammans kan vi spara pengar utan att kompromissa på kvalitét</h2>
                     <h3>Bli medlem gratis</h3>
+		    </Col>
                     <LinkedinBtn/>
                     <RegisterButton/>
                 </div>
