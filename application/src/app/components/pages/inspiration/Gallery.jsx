@@ -1,62 +1,60 @@
 import React from 'react';
 import GalleryImage from './GalleryImage.jsx';
-import GalleryModal from './GalleryModal.jsx';
+import {browserHistory} from "react-router";
+import {Button} from 'react-bootstrap';
 
 class Gallery extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: [],
-            showModal: false,
-            url: ''
+            products: []
         };
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
+        this.openDetail = this.openDetail.bind(this);
     };
 
     componentDidMount() {
         fetch('http://localhost:5000/products/').then((res) => {
             return res.json();
         }).then((json) => {
-            this.setState({ products: json.products });
+            console.log(json.products);
+            this.setState({products: json.products});
         });
     };
 
     render() {
-        return(
-            <div className='container-fluid gallery-container'>
-                <div className='row'>
-                    {
-                        this.state.products.map((product, index) => {
-                            return (
-                                <div key={index + 1} className='col-sm-6 col-md-3 col-xl-2'>
-                                    <GalleryImage likes={product.likes}
-                                                  p_id={product.id}
-                                                  src={product.image}
-                                                  handleClick={(e) => this.openModal(product.image, e)}
-                                                  alt={'Image number ' + (index + 1)} />
-                                </div>
-                            );
-                        })
-                    }
+        return (
+            <div>
+                <div className="gallery-sorting-container">
+                    <Button bsStyle="link">Senast Tillagda</Button>
+                    <Button bsStyle="link">Flest Likes</Button>
+                    <Button bsStyle="link">Mina Likes</Button>
                 </div>
-                <GalleryModal isOpen={this.state.showModal} onClick={this.closeModal} src={this.state.url} /> 
+                <div className='container-fluid gallery-container'>
+                    <div className='row'>
+                        {
+                            this.state.products.map((product, index) => {
+                                return (
+                                    <div key={index + 1} className='col-sm-6 col-md-3 col-xl-2'>
+                                        <GalleryImage likes={product.likes}
+                                                      name={product.name}
+                                                      provider="Jeff"
+                                                      p_id={product.id}
+                                                      src={product.image}
+                                                      handleClick={(e) => this.openDetail(product, e)}
+                                                      alt={'Image number ' + (index + 1)}/>
+                                    </div>
+                                );
+                            })
+                        }
+                    </div>
+                </div>
             </div>
         );
     };
 
-    openModal(url, e) {
-        this.setState({
-            showModal: true,
-            url: url
-        });
-    };
-
-    closeModal() {
-        this.setState({
-            showModal: false,
-            url: ''
-        });
+    openDetail(product, e) {
+        const path = `/inspiration/detail/${product.id}`;
+        browserHistory.push(path);
     };
 }
 

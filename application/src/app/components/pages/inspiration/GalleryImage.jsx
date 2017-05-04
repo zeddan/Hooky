@@ -4,17 +4,22 @@ class GalleryImage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            likes: this.props.likes
+            likes: this.props.likes,
+            name: this.props.name,
+            provider: this.props.provider
+
         };
+        console.log("Gallery Image likes: " + this.state.likes);
+        this.like = this.like.bind(this);
     };
 
     render() {
-        return(
+        return (
             <div className='gallery-card'>
                 <div className='bg'></div>
                 <div className='info'>
-                    <div className='name'>LÖK</div>
-                    <div className='provider'>Bosses gård</div>
+                    <div className='name'>{this.state.name}</div>
+                    <div className='provider'>{this.state.provider}</div>
                     <div className='like-heart'
                          onClick={() => this.like()}>
                         <div className='likes'>{this.state.likes.length}</div>
@@ -24,7 +29,7 @@ class GalleryImage extends React.Component {
                 <img className='gallery-thumbnail'
                      src={this.props.src}
                      onClick={this.props.handleClick}
-                     alt={this.props.alt} />
+                     alt={this.props.alt}/>
             </div>
         );
     };
@@ -40,8 +45,10 @@ class GalleryImage extends React.Component {
                 user_id: 2,
                 product_id: this.props.p_id
             })
-        }).then((res) => { return res.json();
-        }).then((json) => { this.setState({ likes: json.product.likes });
+        }).then((res) => {
+            return res.json();
+        }).then((json) => {
+            this.setState({likes: json.product.likes});
         });
     };
 

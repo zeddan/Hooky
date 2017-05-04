@@ -56,10 +56,10 @@ class RegisterForm extends React.Component {
             <Form horizontal onSubmit={this.handleSubmit}>
                 <FormGroup controlId="formHorizontalPassword">
                     <Col componentClass={ControlLabel} sm={2}>
-                        Företag
+                        Namn
                     </Col>
                     <Col sm={10}>
-                        <FormControl name='name' type="text" placeholder="Företag" value={this.state.name}
+                        <FormControl name='name' type="text" placeholder="Namn" value={this.state.name}
                                      onChange={this.handleChange}/>
                     </Col>
                 </FormGroup>

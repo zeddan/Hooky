@@ -1,0 +1,16 @@
+#!/bin/bash
+echo Creating Virtual enviroment
+echo
+virtualenv --no-site-packages --distribute .env
+echo
+echo Activating the virtual environment
+echo
+source .env/bin/activate
+echo
+echo Installing requirements
+echo
+pip install -r requirements.txt
+echo
+echo Running server
+echo
+python server/app.py

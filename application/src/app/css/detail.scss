@@ -1,0 +1,29 @@
+@import "_screens.scss";
+
+.detail-container {
+
+  @include desktop {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+    .detail-info-container {
+      display: flex;
+      flex-direction: row;
+    }
+    .detail-info-description {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      width: 60%;
+    }
+    .gallery-card {
+      width: 40%;
+      .name, .provider {
+        visibility: hidden;
+      }
+    }
+    .detail-comments {
+    }
+  }
+}
