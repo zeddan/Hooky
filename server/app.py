@@ -120,7 +120,6 @@ def like():
 	product.users.append(user)
 	db.session.add(product)
 	db.session.commit()
-	product = Product.query.get(product_id)
 	likes = []
 	[likes.append(u.id) for u in product.users]
 	product = product.serialize()
