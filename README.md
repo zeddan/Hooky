@@ -4,6 +4,12 @@ A React project setup
 
 #### Backend
 
+#### For Mac/Linux just run the serverScript
+Make sure that you are in the same folder as the serverScript (root)
+```bash
+./serverScript
+```
+
 ##### Create a virtual environment
 
 ```bash
