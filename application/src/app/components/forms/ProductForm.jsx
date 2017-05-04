@@ -66,14 +66,13 @@ class ProductForm extends React.Component {
 			mode: 'no-cors',
 			body: data
 		})
-
 		this.state.file = '';
 	}
 	render() {
 		return (
 			<Form horizontal onSubmit={this.handleSubmit}>
 
-			<FormGroup controlId="formHorizontalEmail">
+			<FormGroup>
 			<Col componentClass={ControlLabel} sm={2}>
 			Name
 			</Col>
@@ -96,7 +95,7 @@ class ProductForm extends React.Component {
 			Description
 			</Col>
 			<Col sm={10}>
-			<FormControl name='description' componentClass="textarea" placeholder="description" value={this.state.description} onChange={this.handleChange} />
+			<FormControl name='description' componentClass="textarea" placeholder="Describe the product" value={this.state.description} onChange={this.handleChange} />
 			</Col>
 			</FormGroup>
 

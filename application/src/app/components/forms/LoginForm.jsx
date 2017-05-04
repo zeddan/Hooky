@@ -47,7 +47,9 @@ class LoginForm extends React.Component {
                 email: this.state.email,
                 password: this.state.password
             })
-        })
+        }).then((response) => {
+		        alert(response.name);
+		      })
 
         event.preventDefault();
     }
