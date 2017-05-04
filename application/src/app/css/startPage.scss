@@ -1,7 +1,7 @@
 @import "screens";
 
 .navbar {
-    display: none;
+    //display: none;
 }
 
 #home-content {
@@ -14,23 +14,23 @@
     margin-left: auto;
       margin-right: auto;
     margin-bottom: 20px;
-  
+
         @include tablet {
             width: 40%;
         }
         @include desktop {
             width: 20%;
         }
-      
+
     }
-    
+
   h2 {
     padding-top: 10px;
     line-height: 110%;
     margin: auto;
     font-weight: bold;
     width: 240px;
-      
+
         @include tablet {
             width: 400px;
             font-size: 40px;
@@ -38,24 +38,24 @@
         @include desktop {
             font-size: 50px;
             width: 600px;
-      } 
+      }
   }
 
   h3 {
     margin: 20px 0 20px 0;
     text-transform: uppercase;
-      
+
         @include tablet {
             font-size: 25px;
         }
         @include desktop {
-            font-size: 30px;        
+            font-size: 30px;
         }
-      
+
     }
     p {
         font-size: 15px;
-        
+
         @include tablet {
             margin-left: auto;
             margin-right: auto;
@@ -69,7 +69,7 @@
             width: 60%;
         }
     }
-    
+
 }
 
 hr {
@@ -77,4 +77,3 @@ hr {
   height: 2px;
   border-top-color: lightpink;
 }
-
