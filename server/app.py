@@ -27,10 +27,7 @@ def load_user(u_id):
 	return User.query.get(int(u_id))
 
 
-users_products = db.Table('likes',
-						  db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
-						  db.Column('product_id', db.Integer, db.ForeignKey('product.id'))
-						 )
+users_products = db.Table('likes', db.Column('user_id', db.Integer, db.ForeignKey('users.id')), db.Column('product_id', db.Integer, db.ForeignKey('product.id')))
 
 
 class User(UserMixin, db.Model):
@@ -120,15 +117,15 @@ def like():
 	if not (user or product):
 		flash('User or product could not be found')
 		abort(401)
-		product.users.append(user)
-		db.session.add(product)
-		db.session.commit()
-		product = Product.query.get(product_id)
-		likes = []
-		[likes.append(u.id) for u in product.users]
-		product = product.serialize()
-		product['likes'] = likes
-		return jsonify({'product': product}), 201
+	product.users.append(user)
+	db.session.add(product)
+	db.session.commit()
+	product = Product.query.get(product_id)
+	likes = []
+	[likes.append(u.id) for u in product.users]
+	product = product.serialize()
+	product['likes'] = likes
+	return jsonify({'product': product}), 201
 
 
 @app.route('/users/', methods=['GET'])
@@ -136,7 +133,7 @@ def get_users():
 	users = []
 	for p in User.query.all():
 		users.append(p.serialize())
-		return jsonify({'users': users})
+	return jsonify({'users': users})
 
 @app.route('/users/<int:id>/')
 def get_user(id):
@@ -186,11 +183,10 @@ def get_post_products():
 			product = p.serialize()
 			product['likes'] = likes
 			products.append(product)
-			return jsonify({'products': products})
+		return jsonify({'products': products})
 	if request.method == 'POST':
 		image = get_image_url(request.files)
-		prod = Product(1, request.form['name'], image,
-				 request.form['description'], request.form['supplier'])
+		prod = Product(1, request.form['name'], image, request.form['description'], request.form['supplier'])
 		db.session.add(prod)
 		db.session.commit()
 		return jsonify({'product': prod.serialize()}), 201
@@ -199,13 +195,14 @@ def get_post_products():
 @app.route('/products/<p_id>/', methods=['GET', 'DELETE', 'PUT'])
 def get_del_put_product(p_id):
 	if request.method == 'GET':
-		product = Product.query.get(p_id)
-		likes = []
-		[likes.append(u.id) for u in product.users]
-		product = product.serialize()
-		product['likes'] = likes
-		return jsonify({'product': product})
-
+		products = []
+        for p in Product.query.all():
+            likes = []
+            [likes.append(u.id) for u in p.users]
+            product = p.serialize()
+            product['likes'] = likes
+            products.append(product)
+        return jsonify({'products': products})
 	if request.method == 'DELETE':
 		db.session.delete(Product.query.get(p_id))
 		db.session.commit()
@@ -258,13 +255,13 @@ def register():
 	name = data['name']
 	if email is None or password is None:
 		abort(400)
-		if User.query.filter_by(email=email).first() is not None:
-			abort(403)
-			user = User(name, email)
-			user.set_password(password)
-			db.session.add(user)
-			db.session.commit()
-			return redirect(url_for('index'))
+	if User.query.filter_by(email=email).first() is not None:
+		abort(403)
+	user = User(name, email)
+	user.set_password(password)
+	db.session.add(user)
+	db.session.commit()
+	return redirect(url_for('index'))
 
 
 @app.route('/login', methods=['POST'])
