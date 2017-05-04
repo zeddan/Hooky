@@ -39,7 +39,9 @@ body {
 .gallery-card {
   position: relative;
   overflow: hidden;
+  height: 230px;
   margin-bottom: 1rem;
+
 
   @include desktop {
     margin-bottom: 1.875rem;
@@ -80,6 +82,7 @@ body {
   max-width: 100%;
   min-height: 100%;
   height: auto;
+
 }
 
 .card-icon-open {

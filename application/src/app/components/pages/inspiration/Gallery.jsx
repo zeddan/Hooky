@@ -37,7 +37,7 @@ class Gallery extends React.Component {
                                     <div key={index + 1} className='col-sm-6 col-md-3 col-xl-2'>
                                         <GalleryImage likes={product.likes}
                                                       name={product.name}
-                                                      provider="Jeff"
+                                                      provider={product.supplier}
                                                       p_id={product.id}
                                                       src={product.image}
                                                       handleClick={(e) => this.openDetail(product, e)}
