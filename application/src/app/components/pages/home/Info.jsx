@@ -19,14 +19,15 @@ class Info extends React.Component {
 	render() {
 		return (
 			<div id="number">
-
-			<h2>Så här går det till...</h2>
-
+            <div id="move">
+			<h2 id="howItWorks">Så här går det till...</h2>
+            </div>
+            <div id="move2">
 			<InfoText text={this.state.text1} nbr={1}/>
 			<InfoText text={this.state.text2} nbr={2}/>
 			<InfoText text={this.state.text3} nbr={3}/>
 			</div>
-
+            </div>
 		);
 	};
 }

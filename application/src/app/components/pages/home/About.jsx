@@ -8,7 +8,7 @@ class About extends React.Component {
         return (
             
             <div className="center-text">
-               <hr/>             
+               <hr id="moveLine"/>             
 
                 <h2>Vi är Hooky!</h2>
                 <div id="about-us-holder">
