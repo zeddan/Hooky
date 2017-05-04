@@ -84,18 +84,20 @@ class Product(db.Model):
     image = db.Column(db.String(80))
     description = db.Column(db.String(200))
     published = db.Column(db.Boolean, default=False)
+    supplier = db.Column(db.String(30))
     users = db.relationship(
         'User',
         secondary=users_products,
         lazy='joined',
         back_populates="products")
 
-    def __init__(self, user_id, name, image, description, published=False):
+    def __init__(self, user_id, name, image, description, supplier, published=False):
         self.user_id = user_id
         self.name = name
         self.image = image
         self.description = description
         self.published = published
+        self.supplier = supplier
 
     def __repr__(self):
         return str(self.serialize())
@@ -183,7 +185,7 @@ def get_post_products():
     if request.method == 'POST':
         image = get_image_url(request.files)
         prod = Product(1, request.form['name'], image,
-                       request.form['description'])
+                       request.form['description'], request.form['supplier'])
         db.session.add(prod)
         db.session.commit()
         return jsonify({'product': prod.serialize()}), 201
@@ -272,7 +274,7 @@ def login():
     if user.check_password(password):
         login_user(user, True)
         print("Logged in: " + user.name)
-        return redirect('http://localhost:8080')
+        return jsonify({'user':user.serialize()})
     flash('Bad password')
     return redirect(url_for('index'))
 
