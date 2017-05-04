@@ -17,7 +17,7 @@ class HomeBanner extends React.Component {
                 <img src={bannerSrc} alt="happy-eating" id="home-banner-img"/>
                 <div className="bannerContentHolder">
                     {/*Använda & istället för och?*/}
-                    <h2>Passion för god <br/>kvalitét & bra priser</h2>
+                    <h2>Passion för god <br/>kvalitet & bra priser</h2>
                     <p>Tillsammans kan vi inspireras <br/> av bra produkter</p>
 
                 </div>
