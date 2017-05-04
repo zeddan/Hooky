@@ -16,6 +16,7 @@ class ProductForm extends React.Component {
 			name: '',
 			description: '',
 			file: '',
+			supplier: '',
 			imageURL: ''
 		};
 
@@ -54,6 +55,7 @@ class ProductForm extends React.Component {
 		data.append('file', this.state.file)
 		data.append('name', this.state.name)
 		data.append('description', this.state.description)
+		data.append('supplier', this.state.supplier)
 		alert('Namn: ' + this.state.name +'\nBeskrivning: ' + this.state.description);
 		fetch('http://localhost:5000/products/', {
 			method: 'POST',
@@ -79,6 +81,15 @@ class ProductForm extends React.Component {
 			<FormControl name='name' type="text" placeholder="Name" value={this.state.name} onChange={this.handleChange} />
 			</Col>
 			</FormGroup>
+
+			<FormGroup controlId="formHorizontalText">
+                        <Col componentClass={ControlLabel} sm={2}>
+                        Supplier
+                        </Col>
+                        <Col sm={10}>
+                        <FormControl name='supplier' type="text" placeholder="Supplier" value={this.state.supplier} onChange={this.handleChange} />
+                        </Col>
+                        </FormGroup>
 
 			<FormGroup controlId="formControlsTextarea">
 			<Col componentClass={ControlLabel} sm={2}>
