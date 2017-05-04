@@ -39,7 +39,7 @@ class NavigationBar extends React.Component {
         </Nav>
         <Nav className="hidden-sm hidden-xs" pullRight>
           <LinkContainer to={"/#"}>
-            <NavItem>
+            <NavItem id="nav-item-tip">
               Tipsa!
             </NavItem>
           </LinkContainer>
