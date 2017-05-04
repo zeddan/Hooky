@@ -17,13 +17,21 @@ body {
 }
 
 .gallery-container {
-  padding: 20px 50px 50px 50px;
+  padding: 0;
+
+  @include desktop {
+    padding: 20px 50px 50px 50px;
+  }
+  @include tablet{
+    padding: 20px 5px 5px 5px;
+  }
 }
-.gallery-sorting-container{
+
+.gallery-sorting-container {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  button{
+  button {
     color: #333 !important;
   }
 }
