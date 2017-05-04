@@ -18,7 +18,7 @@ class App extends React.Component {
                     <IndexRoute component={Home}/>
                     <Route path="inspiration" component={Inspiration} ignoreScrollBehavior/>
                     <Route path="inspiration/detail/:productId" component={Detail}/>
-		    <Route path="suggestion" component={Tips}/>
+		                <Route path="suggestion" component={Tips}/>
                     <Route path="account" component={Account}/>
                 </Route>
             </Router>
@@ -27,4 +27,3 @@ class App extends React.Component {
 }
 
 render(<App/>, window.document.getElementById("app"));
-

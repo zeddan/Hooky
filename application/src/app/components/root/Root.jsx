@@ -9,16 +9,17 @@ import {Row, Col} from 'react-bootstrap';
 import '../../css/style.scss';
 
 class Root extends React.Component {
-    render() {
-        return (
-          <div>
-            <NavigationBar />
-            <div className="content">
-              {this.props.children}
-            </div>
-          </div>
-        );
-    }
+  render() {
+    var showNav = this.props.location.pathname !== '/';
+    return (
+      <div>
+        {showNav && <NavigationBar />}
+        <div className="content">
+          {this.props.children}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Root;

@@ -24,7 +24,7 @@ class NavigationBar extends React.Component {
             </NavItem>
           </LinkContainer>
 
-          <LinkContainer to={"/#"} className="hidden-md hidden-lg">
+          <LinkContainer to={"/suggestion"} className="hidden-md hidden-lg">
             <NavItem>
               <i className="fa fa-plus fa-lg" />
             </NavItem>
@@ -38,7 +38,7 @@ class NavigationBar extends React.Component {
 
         </Nav>
         <Nav className="hidden-sm hidden-xs" pullRight>
-          <LinkContainer to={"/#"}>
+          <LinkContainer to={"/suggestion"}>
             <NavItem id="nav-item-tip">
               Tipsa!
             </NavItem>
