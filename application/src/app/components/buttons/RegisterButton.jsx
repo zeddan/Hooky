@@ -4,6 +4,8 @@ import React from 'react';
 import {Button,ButtonToolbar,Modal} from 'react-bootstrap';
 import RegisterForm from '../forms/RegisterForm.jsx';
 
+var emailSrc = "app/components/buttons/email.png";
+
 class RegisterButton extends React.Component {
 
     constructor(){
@@ -26,9 +28,7 @@ class RegisterButton extends React.Component {
     render() {
         return (
             <div>
-                <Button bsStyle="primary" onClick={this.showModal} >
-                    Registrera med Email
-                </Button>
+                <img className="btn" onClick={this.showModal}  src={emailSrc}/>
 
                 <Modal
                     {...this.props}
