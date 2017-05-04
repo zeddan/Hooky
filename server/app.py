@@ -302,7 +302,7 @@ def oauth_callback(provider):
 		db.session.add(user)
 		db.session.commit()
 		login_user(user, True)
-		return redirect('http://localhost:8080')
+	return redirect('http://localhost:8080')
 
 
 if __name__ == '__main__':
