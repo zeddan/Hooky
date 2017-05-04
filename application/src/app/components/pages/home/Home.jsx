@@ -36,6 +36,7 @@ class Home extends React.Component {
                     <Info/>
                     <About/>
                     <h2>Tillsammans kan vi spara pengar utan att kompromissa på kvalitét</h2>
+                    <hr/>
                     <h3>Bli medlem gratis</h3>
 		   
                     <LinkedinBtn/>

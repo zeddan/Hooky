@@ -8,14 +8,58 @@
         padding-left: 20px;
         margin: 0px;
         
-
         @include tablet {
-            font-size: 200px;
-            margin-left: 40px;
+            font-size: 150px;
+            float: left;
+            padding-left: 0px !important;
         }
         @include desktop {
+            float: left;
             font-size: 200px;
         }
+    }
+    
+    #move {
+        
+        @include tablet {
+            float: left;
+            width: 45%;
+        }
+        @include desktop {
+            float: left;
+            width: 45%;
+        }
+    }
+    
+    #move2 {
+        
+
+        @include tablet {
+            float: left;
+            width: 55%;
+        }
+        @include desktop {
+            float: left;
+            width: 55%;
+        }  
+    }
+    
+    #howItWorks {
+          
+        @include tablet {
+            text-align: right;
+            width: 85%;
+            font-size: 30px;
+            padding-top: 50px;
+        }
+        @include desktop {
+            text-align: right;
+            width: 85%;
+            font-size: 40px;
+            padding-top: 50px;
+        }
+    
+      
     }
     
 }
@@ -32,7 +76,20 @@
         margin-top: 10px;
         margin-left: 70px;
         width: 75%;
-
+        
+        @include tablet {
+            width: 60%;
+            font-size: 14px;
+            margin-top: 40px;
+            margin-left: 20%;
+        }
+        @include desktop {
+            width: 45%;
+            font-size: 18px;
+            margin-top: 50px;
+            margin-left: 20%;
+        }
+        
     }
     p {
         margin-left: auto;
@@ -53,15 +110,25 @@
 }
 
 
+
+
 h2 {
 	margin-bottom: 300px;
     clear: both;
     overflow: hidden;
 }
 
-#center-div {
+div#about-us-holder {
     p {
-        padding: 0px;
+        
+        
+        @include tablet {
+            margin-left: 100px;
+        }
+        @include desktop {
+            font-size: 18px;
+        }
+        
     }
     
 }
