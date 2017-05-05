@@ -9,6 +9,10 @@
 	z-index: -1;
 }
 
+#left-col {
+  margin-top: 25px;
+}
+
 #submit-btn {
   margin-top: 40px;
 }
@@ -30,7 +34,7 @@ textarea.form-control {
 .items-container {
   display: flex;
   justify-content: center;
-  width: 100%;
+  //align-items: center;
 
 }
 
