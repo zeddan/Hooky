@@ -1,0 +1,54 @@
+@import '../../../../css/_screens.scss';
+
+#content-container {
+  @include mobile-l, mobile-s {
+      padding-top: 10px;
+  }
+
+  @include tablet {
+    padding-top: 20px;
+  }
+}
+
+textarea.form-control {
+  height: 65px;
+}
+.items-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+}
+
+.image-container {
+  width: 90%;
+}
+
+#image-text-title {
+  height: 100%;
+  vertical-align: middle;
+  line-height: 50px;
+  margin-right: 10px;
+}
+
+.image-text {
+  position: absolute;
+  color: white;
+  height: 50px;
+  width: 100%;
+  text-align: right;
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0.7);
+  bottom: 0;
+
+}
+
+
+#myContainer {
+  @include desktop {
+    padding: 20px 50px 50px 50px;
+  }
+  @include tablet{
+    padding: 20px 5px 5px 5px;
+  }
+}
