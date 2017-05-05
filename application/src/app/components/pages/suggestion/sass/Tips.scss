@@ -1,5 +1,18 @@
 @import '../../../../css/_screens.scss';
 
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+#submit-btn {
+  margin-top: 40px;
+}
+
 #content-container {
   @include mobile-l, mobile-s {
       padding-top: 10px;
@@ -13,6 +26,7 @@
 textarea.form-control {
   height: 65px;
 }
+
 .items-container {
   display: flex;
   justify-content: center;
