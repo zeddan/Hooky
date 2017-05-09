@@ -29,10 +29,7 @@ import {
 			this.handleSubmit = this.handleSubmit.bind(this);
 		}
 
-		handleSubmit(event) {
-			alert("Hej!");
-		}
-
+	
 		handleChange(event) {
 			const target = event.target;
 			const value = target.value;
@@ -58,6 +55,26 @@ import {
 			}
 
 			reader.readAsDataURL(file)
+		}
+
+		handleSubmit(event) {
+			var data = new FormData()
+			data.append('file', this.state.file)
+			data.append('name', this.state.name)
+			data.append('description', this.state.description)
+			data.append('supplier', this.state.supplier)
+			alert('Namn: ' + this.state.name +'\nBeskrivning: ' + this.state.description);
+			fetch('http://localhost:5000/products/', {
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				mode: 'no-cors',
+				body: data
+			});
+
+			this.state.file = '';
 		}
 
 		render() {
