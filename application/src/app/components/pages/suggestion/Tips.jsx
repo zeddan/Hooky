@@ -66,21 +66,32 @@ import {
 				<Grid id="content-container" className="show-grid">
 					<Form onSubmit={this.handleSubmit}>
 						<Row className="top-row">
-							<Col lg={5} md={4} sm={6} xs={6} id="left-col">
+							<Col lg={5} md={4} sm={6} xs={12} id="left-col">
 								<div className="items-container" >
 									<div className="image-container">
-										<Thumbnail src={this.state.imageURL}>
-											<h3>Produktbild</h3>
-											<p>Lägg till en bild på produkten som fångar intresse.</p>
+										<div className="visible-xs">
+											<Image id="product-image" src={this.state.imageURL}/>
+											<div className="text-container">
+												<h3>Produktbild</h3>
+												<p>Lägg till en bild på produkten som fångar intresse.</p>
 
-											<input type="file" name="file" id="file" className="inputfile" onChange={(e)=>this._handleImageChange(e)}/>
-											<label htmlFor="file" className="btn btn-default">Lägg till bild</label>
-										</Thumbnail>
+												<input type="file" name="file" id="file" className="inputfile" onChange={(e)=>this._handleImageChange(e)}/>
+												<label htmlFor="file" className="btn btn-default">Lägg till bild</label>
+											</div>
+										</div>
+
+									<Thumbnail src={this.state.imageURL} className="hidden-xs">
+										<h3>Produktbild</h3>
+										<p>Lägg till en bild på produkten som fångar intresse.</p>
+
+										<input type="file" name="file" id="file" className="inputfile" onChange={(e)=>this._handleImageChange(e)}/>
+										<label htmlFor="file" className="btn btn-default">Lägg till bild</label>
+									</Thumbnail>
 									</div>
 								</div>
 							</Col>
 
-							<Col lg={7} md={7} sm={6} xs={6} id="right-col">
+							<Col lg={7} md={7} sm={6} xs={12} id="right-col">
 								<h3>Produkt</h3>
 
 								<FormGroup>
