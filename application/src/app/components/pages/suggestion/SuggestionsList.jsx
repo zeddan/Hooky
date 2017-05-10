@@ -1,9 +1,12 @@
 import React from 'react';
+import {browserHistory} from "react-router";
+
+
+//Components
 import {
   Grid, Row, Col,
   ListGroup, ListGroupItem
 } from 'react-bootstrap';
-
 import Table from './Table.jsx';
 //Stylesheets
 import '../../../css/SuggestionsList.scss';
@@ -17,16 +20,17 @@ class SuggestionsList extends React.Component{
   }
 
   componentDidMount() {
-      fetch('http://localhost:5000/products/').then((res) => {
+      fetch('http://localhost:5000/products').then((res) => {
           return res.json();
       }).then((json) => {
-          console.log(json.products);
+          console.log(json);
           this.setState({products: json.products});
       });
   };
 
-  onListItemClick(e) {
-    console.log(e);
+  onListItemClick(productId) {
+    const path = `/admin/suggestion/${productId}`;
+    browserHistory.push(path);
   }
 
   render() {
@@ -36,7 +40,7 @@ class SuggestionsList extends React.Component{
           <Col>
             <Table
               entries={this.state.products}
-              handleClick={(e) => this.onListItemClick(e)}
+              handleClick={(prod) => this.onListItemClick(prod)}
               />
           </Col>
         </Row>
