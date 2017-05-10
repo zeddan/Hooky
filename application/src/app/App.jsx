@@ -8,6 +8,7 @@ import Tips from './components/pages/suggestion/Tips.jsx';
 import Account from './components/pages/account/Account.jsx';
 import Inspiration from "./components/pages/inspiration/Inspiration.jsx";
 import Detail from './components/pages/detail/Detail.jsx';
+import SuggestionsList from './components/pages/suggestion/SuggestionsList.jsx';
 import {Router, Route, browserHistory, IndexRoute} from "react-router";
 
 class App extends React.Component {
@@ -20,6 +21,7 @@ class App extends React.Component {
                     <Route path="inspiration/detail/:productId" component={Detail}/>
 		                <Route path="suggestion" component={Tips}/>
                     <Route path="account" component={Account}/>
+                    <Route path="suggestion-list" component={SuggestionsList}/>
                 </Route>
             </Router>
         );

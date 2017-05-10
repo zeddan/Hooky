@@ -1,0 +1,18 @@
+.suggestion-listitem {
+  display: flex;
+
+  padding: 10px;
+  #title {
+    margin-bottom: 0px;
+    color: red;
+    flex-grow: 1;
+    vertical-align: middle;
+  }
+
+  #user {
+    color: green;
+    margin-bottom: 0px;
+
+  }
+
+}
