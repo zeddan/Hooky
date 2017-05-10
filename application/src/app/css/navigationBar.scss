@@ -1,3 +1,5 @@
+@import "_screens.scss";
+
 #header{
     margin: 0;
     background-color: #232323;
@@ -41,4 +43,30 @@ ul.header li a {
 .nav-btn{
     width: 100px;
     margin-left: 5px !important;
+}
+
+.navbar-nav > li > a {
+    margin-top: -4px;
+ 
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    background-color: #777;
+    color: #eee;
+    
+    @include tablet {
+        background-color: #777;
+        color: #eee;
+    }
+    @include desktop{
+        background-color: #f8f8f8;
+        font-size: 1.5em !important;
+        font-weight: 900;
+        color: black;
+  } 
+}
+
+
+.navbar-default .navbar-nav>.active>a#nav-item-home, .navbar-default .navbar-nav>.active>a#nav-item-home:focus, .navbar-default .navbar-nav>.active>a#nav-item-home:hover  {
+    font-size: 2.5em !important;
 }
