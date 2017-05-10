@@ -21,10 +21,8 @@ class Home extends React.Component {
                     <HomeHeader/>
                     <HomeBanner/>
                 </div>
-                <div id="home-content">
-                    {/*Måste nog skriva upp till 40%*/}
-	 	    
-                    <h2>Gör era företagsköp tillsammans & spara 40%</h2>
+                <div id="home-content">	 	    
+                    <h2>Gör era företagsköp tillsammans & spara upp till 40%</h2>
                     <hr/>
                     <h3>Bli medlem gratis</h3>
 		    
