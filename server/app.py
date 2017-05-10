@@ -20,6 +20,7 @@ lm.login_view = 'index'
 CORS(app)
 
 url = 'http://localhost:5000'
+hooky_url = 'http://localhost:8080'
 
 
 @lm.user_loader
@@ -269,11 +270,11 @@ def login():
     user = User.query.filter_by(email=mail).first()
     if user is None:
         print('Authentication failed')
-        return redirect(url_for('index'))
+        return jsonify({'url':'http://localhost/inspiration'})
     if user.check_password(password):
         login_user(user, True)
         print("Logged in: " + user.name)
-        return jsonify({'user':user.serialize()})
+        return jsonify({'name':user.name})
     flash('Bad password')
     return redirect(url_for('index'))
 
@@ -281,7 +282,7 @@ def login():
 @app.route('/authorize/<provider>')
 def oauth_authorize(provider):
     if not current_user.is_anonymous:
-        return redirect(url_for('index'))
+        return redirect(hooky_url)
     oauth = OAuthSignIn.get_provider(provider)
     return oauth.authorize()
 
@@ -289,19 +290,19 @@ def oauth_authorize(provider):
 @app.route('/callback/<provider>')
 def oauth_callback(provider):
     if not current_user.is_anonymous:
-        return redirect(url_for('index'))
+        return redirect(hooky_url)
     oauth = OAuthSignIn.get_provider(provider)
     social_id, name, email = oauth.callback()
     if social_id is None:
         flash('Authentication failed.')
-        return redirect(url_for('index'))
+        return redirect(hooky_url)
     user = User.query.filter_by(social_id=social_id).first()
     if not user:
         user = User(social_id=social_id, name=name, email=email)
         db.session.add(user)
         db.session.commit()
         login_user(user, True)
-    return redirect('http://localhost:8080')
+    return redirect('http://localhost:8080/inspiration')
 
 
 if __name__ == '__main__':
