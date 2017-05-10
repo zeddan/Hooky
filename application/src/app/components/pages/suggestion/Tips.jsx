@@ -16,11 +16,11 @@ import {
 			this.state = {
 				name: '',
 				description: '',
-				supplierName: '',
-				supplierWebpage: '',
-				supplierPhone: '',
-				supplierEmail: '',
-				supplierAddress: '',
+				supplier: '',
+				webpage: '',
+				phone: '',
+				email: '',
+				address: '',
 				file: '',
 				imageURL: 'https://itavo.nl/img/placeholder.jpg',
 			};
@@ -63,6 +63,10 @@ import {
 			data.append('name', this.state.name)
 			data.append('description', this.state.description)
 			data.append('supplier', this.state.supplier)
+			data.append('webpage', this.state.webpage)
+			data.append('phone', this.state.phone)
+			data.append('address', this.state.address)
+			data.append('email', this.state.email)
 			alert('Namn: ' + this.state.name +'\nBeskrivning: ' + this.state.description);
 			fetch('http://localhost:5000/products/', {
 				method: 'POST',
@@ -139,7 +143,7 @@ import {
 									<InputGroup>
 										<InputGroup.Addon><i className='fa fa-truck'/></InputGroup.Addon>
 										<FormControl
-											name='supplierName'
+											name='supplier'
 											type='text'
 											placeholder='Leverantörens namn'
 											onChange={this.handleChange}/>
@@ -151,7 +155,7 @@ import {
 									<InputGroup>
 										<InputGroup.Addon><i className='fa fa-globe'/></InputGroup.Addon>
 										<FormControl
-											name='supplierWebpage'
+											name='webpage'
 											type='text'
 											placeholder='Hemsida'
 											onChange={this.handleChange}/>
@@ -163,7 +167,7 @@ import {
 									<InputGroup>
 										<InputGroup.Addon><i className='fa fa-phone'/></InputGroup.Addon>
 										<FormControl
-											name='supplierPhone'
+											name='phone'
 											type='text'
 											placeholder='Nummer'
 											onChange={this.handleChange}/>
@@ -175,7 +179,7 @@ import {
 									<InputGroup>
 										<InputGroup.Addon><i className='fa fa-envelope'/></InputGroup.Addon>
 										<FormControl
-											name='supplierEmail'
+											name='email'
 											type='text'
 											placeholder='Email'
 											onChange={this.handleChange}/>
@@ -187,7 +191,7 @@ import {
 									<InputGroup>
 										<InputGroup.Addon><i className='fa fa-address-card'/></InputGroup.Addon>
 										<FormControl
-											name='supplierAddress'
+											name='address'
 											type='text'
 											placeholder='Adress'
 											onChange={this.handleChange}/>

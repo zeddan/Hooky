@@ -83,6 +83,10 @@ class Product(db.Model):
     image = db.Column(db.String(80))
     description = db.Column(db.String(200))
     supplier = db.Column(db.String(30))
+    webpage = db.Column(db.String(80))
+    phone = db.Column(db.String(40))
+    email = db.Column(db.String(80))
+    address = db.Column(db.String(100))
     published = db.Column(db.Boolean, default=False)
     pub_date = db.Column(db.DateTime)
     users = db.relationship(
@@ -91,12 +95,16 @@ class Product(db.Model):
         lazy='joined',
         back_populates="products")
 
-    def __init__(self, user_id, name, image, description, supplier, published=False, pub_date=None):
+    def __init__(self, user_id, name, image, description, supplier, webpage, phone, email, address, published=False, pub_date=None):
         self.user_id = user_id
         self.name = name
         self.image = image
         self.description = description
         self.supplier = supplier
+        self.webpage = webpage
+        self.phone = phone
+        self.email = email
+        self.address = address
         self.published = published
         if pub_date is None:
             pub_date = datetime.utcnow()
@@ -186,7 +194,10 @@ def get_post_products():
         return jsonify({'products': products})
     if request.method == 'POST':
         image = get_image_url(request.files)
-        prod = Product(1, request.form['name'], image, request.form['description'], request.form['supplier'])
+        prod = Product(1, request.form['name'], image, \
+                       request.form['description'], request.form['supplier'],\
+                       request.form['webpage'], request.form['phone'],\
+                       request.form['email'], request.form['address'])
         db.session.add(prod)
         db.session.commit()
         return jsonify({'product': prod.serialize()}), 201
