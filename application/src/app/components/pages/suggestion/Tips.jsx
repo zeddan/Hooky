@@ -18,7 +18,7 @@ import {
 			this.state = {
 				name: '',
 				description: '',
-				supplierName: '',
+				supplier: '',
 				supplierWebpage: '',
 				supplierPhone: '',
 				supplierEmail: '',
@@ -141,7 +141,7 @@ import {
 									<InputGroup>
 										<InputGroup.Addon><i className='fa fa-truck'/></InputGroup.Addon>
 										<FormControl
-											name='supplierName'
+											name='supplier'
 											type='text'
 											placeholder='Leverantörens namn'
 											onChange={this.handleChange}/>
