@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Router} from 'react-router';
 //Components
 import {
     Button,
@@ -43,15 +43,14 @@ class LoginForm extends React.Component {
                 'Content-Type': 'application/json'
             },
             mode: 'no-cors',
+	    redirect: 'follow',
             body: JSON.stringify({
                 email: this.state.email,
                 password: this.state.password
             })
         }).then((response) => {
-		        alert(response.name);
-		      })
-
-        event.preventDefault();
+		window.location.replace('http://localhost:8080/inspiration');
+	});
     }
 
     render() {
