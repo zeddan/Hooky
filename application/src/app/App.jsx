@@ -5,6 +5,7 @@ import {render} from "react-dom";
 import Root from "./components/root/Root.jsx";
 import Home from "./components/pages/home/Home.jsx";
 import Suggestion from './components/pages/suggestion/Suggestion.jsx';
+import AdminSuggestion from './components/pages/suggestion/AdminSuggestion.jsx';
 import Account from './components/pages/account/Account.jsx';
 import Inspiration from "./components/pages/inspiration/Inspiration.jsx";
 import Detail from './components/pages/detail/Detail.jsx';
@@ -21,7 +22,8 @@ class App extends React.Component {
                     <Route path="inspiration/detail/:productId" component={Detail}/>
 		                <Route path="suggestion" component={Suggestion}/>
                     <Route path="account" component={Account}/>
-                    <Route path="suggestion-list" component={SuggestionsList}/>
+                    <Route path="admin" component={SuggestionsList}/>
+                    <Route path="admin/suggestion/:productId" component={AdminSuggestion}/>
                 </Route>
             </Router>
         );
