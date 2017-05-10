@@ -3,10 +3,12 @@ import {Link} from "react-router";
 
 //Components
 import {
-	Grid, Col, Row, FieldGroup, FormControl, ControlLabel, Form, FormGroup,
-	InputGroup, Image, Thumbnail, Button, Panel} from 'react-bootstrap';
+	Grid, Col, Row,
+	Form, FormGroup, FieldGroup, FormControl, ControlLabel, InputGroup,
+	Image, Thumbnail, Button, Panel} from 'react-bootstrap';
 	import ProductForm from '../../forms/ProductForm.jsx';
 
+	//Stylesheets
 	import './sass/Tips.scss';
 
 	class Tips extends React.Component {
