@@ -4,7 +4,7 @@ import {render} from "react-dom";
 //Components
 import Root from "./components/root/Root.jsx";
 import Home from "./components/pages/home/Home.jsx";
-import Tips from './components/pages/suggestion/Tips.jsx';
+import Suggestion from './components/pages/suggestion/Suggestion.jsx';
 import Account from './components/pages/account/Account.jsx';
 import Inspiration from "./components/pages/inspiration/Inspiration.jsx";
 import Detail from './components/pages/detail/Detail.jsx';
@@ -19,7 +19,7 @@ class App extends React.Component {
                     <IndexRoute component={Home}/>
                     <Route path="inspiration" component={Inspiration} ignoreScrollBehavior/>
                     <Route path="inspiration/detail/:productId" component={Detail}/>
-		                <Route path="suggestion" component={Tips}/>
+		                <Route path="suggestion" component={Suggestion}/>
                     <Route path="account" component={Account}/>
                     <Route path="suggestion-list" component={SuggestionsList}/>
                 </Route>
