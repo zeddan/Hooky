@@ -20,7 +20,9 @@
     padding-top: 20px;
   }
 }
-
+textarea.form-control {
+	height: 100px;
+}
 // Margin for text and input button in mobile
 .text-container {
 	margin: 15px;
