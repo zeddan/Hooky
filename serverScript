@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 echo Creating Virtual enviroment
 echo
-virtualenv --no-site-packages --distribute .env
+virtualenv -p $(which python2.7) --no-site-packages --distribute .env
 echo
 echo Activating the virtual environment
 echo
