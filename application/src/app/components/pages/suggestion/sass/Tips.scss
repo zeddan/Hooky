@@ -20,6 +20,24 @@
     padding-top: 20px;
   }
 }
+
+.horizontal-container {
+	display: flex;
+	flex-direction: row;
+
+	p {
+		margin-top: 15px;
+	}
+}
+
+
+
+
+
+#back {
+	height: 50px;
+	width: 50px;
+}
 textarea.form-control {
 	height: 100px;
 }
