@@ -1,13 +1,13 @@
 @import "_screens.scss";
 
-#back {
-  height: 50px;
-  width: 50px;
+.back {
+  margin-right: 10px;
 }
 
 .horizontal-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .top-row {

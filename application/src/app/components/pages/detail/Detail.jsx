@@ -34,11 +34,11 @@ class Detail extends React.Component {
               <Col lg={12}>
                 <div className="top-row">
                   <div className="back-container horizontal-container">
-                    <Image id="back" src="http://www.wrcase.com/special_programs/christmas/back.png" />
+                    <i className="material-icons back">arrow_back</i>
                     <p>Alla produkter</p>
                     </div>
 
-                    <div className="edit-btn">
+                    <div className="edit-btn horizontal-container">
                       <i className="material-icons">edit</i>
                     </div>
                 </div>
