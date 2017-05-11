@@ -20,10 +20,10 @@ body {
   padding: 0;
 
   @include desktop {
-    padding: 20px 50px 50px 50px;
+    padding: 20px 15px 20px 15px;
   }
   @include tablet{
-    padding: 20px 5px 5px 5px;
+    padding: 20px 10px 20px 10px;
   }
 }
 
@@ -36,16 +36,39 @@ body {
   }
 }
 
+.col-sm-6{
+  padding-bottom: 30px; 
+}
+
 .gallery-card {
   position: relative;
   overflow: hidden;
-  height: 230px;
-  margin-bottom: 1rem;
+  align-items: center;
+  display: flex;
+  box-shadow: 3px 3px 3px #888888;
+  border-radius: 0.2px;
+  
+    
+  //margin-bottom: 1rem;
 
 
   @include desktop {
-    margin-bottom: 1.875rem;
+    height: 210px;
+    //margin-bottom: 1.875rem;
   }
+  @include tablet{
+    height: 250px;
+  }
+  @include mobile-s{
+    height: 330px;
+  }
+  @include mobile-m{
+    height: 360px;
+  }
+  @include mobile-l{
+    height: 380px;
+  }
+
 
   .bg {
     position: absolute;
@@ -81,8 +104,7 @@ body {
 .gallery-thumbnail {
   max-width: 100%;
   min-height: 100%;
-  height: auto;
-
+  object-fit: cover;
 }
 
 .card-icon-open {

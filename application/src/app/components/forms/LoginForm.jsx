@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Router} from 'react-router';
 //Components
 import Cookies from 'js-cookie';
 import {
@@ -53,7 +53,7 @@ class LoginForm extends React.Component {
             }
             throw new Error(response.statusText);
         }).then((json) => {
-            window.location = '/inspiration';
+            window.location.replace('/inspiration');
         }).catch((reason) => {
             // error handling ...
        });

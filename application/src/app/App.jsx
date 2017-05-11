@@ -5,10 +5,12 @@ import {render} from "react-dom";
 import Root from "./components/root/Root.jsx";
 import EnsureLoggedInContainer from "./components/root/EnsureLoggedInContainer.jsx";
 import Home from "./components/pages/home/Home.jsx";
-import Tips from './components/pages/suggestion/Tips.jsx';
+import Suggestion from './components/pages/suggestion/Suggestion.jsx';
+import AdminSuggestion from './components/pages/suggestion/AdminSuggestion.jsx';
 import Account from './components/pages/account/Account.jsx';
 import Inspiration from "./components/pages/inspiration/Inspiration.jsx";
 import Detail from './components/pages/detail/Detail.jsx';
+import SuggestionsList from './components/pages/suggestion/SuggestionsList.jsx';
 import {Router, Route, browserHistory, IndexRoute} from "react-router";
 
 class App extends React.Component {
@@ -23,6 +25,8 @@ class App extends React.Component {
                         <Route path="inspiration/detail/:productId" component={Detail}/>
                         <Route path="suggestion" component={Tips}/>
                         <Route path="account" component={Account}/>
+                        <Route path="admin" component={SuggestionsList}/>
+                        <Route path="admin/suggestion/:productId" component={AdminSuggestion}/>
                     </Route>
                 </Route>
             </Router>

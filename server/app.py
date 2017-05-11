@@ -20,6 +20,7 @@ lm.login_view = 'index'
 CORS(app)
 
 url = 'http://localhost:5000'
+hooky_url = 'http://localhost:8080'
 
 
 @lm.user_loader
@@ -88,6 +89,10 @@ class Product(db.Model):
     image = db.Column(db.String(80))
     description = db.Column(db.String(200))
     supplier = db.Column(db.String(30))
+    webpage = db.Column(db.String(80))
+    phone = db.Column(db.String(40))
+    email = db.Column(db.String(80))
+    address = db.Column(db.String(100))
     published = db.Column(db.Boolean, default=False)
     pub_date = db.Column(db.DateTime)
     users = db.relationship(
@@ -96,12 +101,16 @@ class Product(db.Model):
         lazy='joined',
         back_populates="products")
 
-    def __init__(self, user_id, name, image, description, supplier, published=False, pub_date=None):
+    def __init__(self, user_id, name, image, description, supplier, webpage, phone, email, address, published=False, pub_date=None):
         self.user_id = user_id
         self.name = name
         self.image = image
         self.description = description
         self.supplier = supplier
+        self.webpage = webpage
+        self.phone = phone
+        self.email = email
+        self.address = address
         self.published = published
         if pub_date is None:
             pub_date = datetime.utcnow()
@@ -116,8 +125,9 @@ class Product(db.Model):
 
 @app.route('/like/', methods=['POST'])
 def like():
-    user_id = request.json['user_id']
-    product_id = request.json['product_id']
+    data = json.loads(request.data);
+    user_id = data['user_id']
+    product_id = data['product_id']
     user = User.query.filter_by(id=user_id).first()
     product = Product.query.filter_by(id=product_id).first()
     if not (user or product):
@@ -127,7 +137,7 @@ def like():
     db.session.add(product)
     db.session.commit()
     likes = []
-    [likes.append(u.id) for u in product.users]
+    [likes.append({'user':u.serialize()}) for u in product.users]
     product = product.serialize()
     product['likes'] = likes
     return jsonify({'product': product}), 201
@@ -184,14 +194,17 @@ def get_post_products():
         products = []
         for p in Product.query.all():
             likes = []
-            [likes.append(u.id) for u in p.users]
+            [likes.append({'user':u.serialize()}) for u in p.users]
             product = p.serialize()
             product['likes'] = likes
             products.append(product)
         return jsonify({'products': products})
     if request.method == 'POST':
         image = get_image_url(request.files)
-        prod = Product(1, request.form['name'], image, request.form['description'], request.form['supplier'])
+        prod = Product(1, request.form['name'], image, \
+                       request.form['description'], request.form['supplier'],\
+                       request.form['webpage'], request.form['phone'],\
+                       request.form['email'], request.form['address'])
         db.session.add(prod)
         db.session.commit()
         return jsonify({'product': prod.serialize()}), 201
@@ -202,7 +215,7 @@ def get_del_put_product(p_id):
     if request.method == 'GET':
         product = Product.query.get(p_id)
         likes = []
-        [likes.append(u.id) for u in product.users]
+        [likes.append({'user':u.serialize()}) for u in product.users]
         product = product.serialize()
         product['likes'] = likes
         return jsonify({'product': product})
@@ -282,7 +295,7 @@ def login():
 @app.route('/authorize/<provider>')
 def oauth_authorize(provider):
     if not current_user.is_anonymous:
-        return redirect(url_for('index'))
+        return redirect(hooky_url)
     oauth = OAuthSignIn.get_provider(provider)
     return oauth.authorize()
 
@@ -290,12 +303,12 @@ def oauth_authorize(provider):
 @app.route('/callback/<provider>')
 def oauth_callback(provider):
     if not current_user.is_anonymous:
-        return redirect(url_for('index'))
+        return redirect(hooky_url)
     oauth = OAuthSignIn.get_provider(provider)
     social_id, name, email = oauth.callback()
     if social_id is None:
         flash('Authentication failed.')
-        return redirect(url_for('index'))
+        return redirect(hooky_url)
     user = User.query.filter_by(social_id=social_id).first()
     if not user:
         user = User(social_id=social_id, name=name, email=email)

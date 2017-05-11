@@ -1,5 +1,37 @@
 @import "_screens.scss";
 
+.back {
+  margin-right: 10px;
+}
+
+.horizontal-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  align-items: center;
+  margin-right: 15px;
+}
+
+@include tablet {
+  .top-row {
+    margin-top: 10px;
+  }
+}
+
+@include desktop {
+  .content {
+    margin-top: 50px;
+  }
+}
+
+
+
 .detail-container {
 
   @include desktop {
@@ -25,5 +57,7 @@
     }
     .detail-comments {
     }
+
+
   }
 }

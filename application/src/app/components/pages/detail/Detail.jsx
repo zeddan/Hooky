@@ -3,6 +3,7 @@ import "../../../css/inspiration.scss";
 import "../../../css/detail.scss";
 import GalleryImage from "../inspiration/GalleryImage.jsx";
 
+import {Row, Col, Image} from 'react-bootstrap';
 
 class Detail extends React.Component {
     constructor(props) {
@@ -28,25 +29,39 @@ class Detail extends React.Component {
             return null;
         }
         return (
-            <div className="detail-container">
-                <div className="detail-info-container">
-                    <GalleryImage likes={this.state.product.likes}
-                                  name={this.state.product.name}
-                                  provider="Jeff"
-                                  p_id={this.state.product.id}
-                                  src={this.state.product.image}
-                                  alt={this.state.product.name}/>
+          <div className="detail-container">
+            <Row>
+              <Col lg={12}>
+                <div className="top-row">
+                  <div className="back-container horizontal-container">
+                    <i className="material-icons back">arrow_back</i>
+                    <p>Alla produkter</p>
+                    </div>
 
-                    <div className="detail-info-description">
-                        <h1 className="hidden-sm hidden-xs">{this.state.product.name}</h1>
-                        <p>{this.state.product.description}</p>
+                    <div className="edit-btn horizontal-container">
+                      <i className="material-icons">edit</i>
                     </div>
                 </div>
-                <div className="detail-comments">
+              </Col>
+            </Row>
+            <div className="detail-info-container">
+              <GalleryImage likes={this.state.product.likes}
+                name={this.state.product.name}
+                provider={this.state.product.supplier}
+                p_id={this.state.product.id}
+                src={this.state.product.image}
+                alt={this.state.product.name}/>
 
-                    <h2 className="center-text">Kommentarer</h2>
-                </div>
+              <div className="detail-info-description">
+                <h1 className="hidden-sm hidden-xs">{this.state.product.name}</h1>
+                <p>{this.state.product.description}</p>
+              </div>
             </div>
+            <div className="detail-comments">
+
+              <h2 className="center-text">Kommentarer</h2>
+            </div>
+          </div>
         );
     };
 }

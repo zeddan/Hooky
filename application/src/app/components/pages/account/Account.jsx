@@ -3,6 +3,24 @@ import '../../../css/account.scss';
 import {Button} from 'react-bootstrap';
 
 class Account extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: 'Djäkne',
+	    email: 'info@djakne.se'
+        };
+    };
+
+    componentDidMount() {
+        fetch('http://localhost:5000/me').then((res) => {
+            return res.json();
+        }).then((json) => {
+	    console.log("Me: " + JSON.stringify(json));
+	    if( json.user.email != undefined){
+            	this.setState({name: json.user.name, email: json.user.email});
+	    }
+        });
+    };
 
     render() {
         return (
@@ -10,8 +28,8 @@ class Account extends React.Component {
                 <div id="account-info">
                     <h1>Min Profil</h1>
                     <hr/>
-                    <h2>Företagsnamn: Djäkne AB</h2>
-                    <h2>Email: info@djakne.se</h2>
+                    <h2>Namn: {this.state.name}</h2>
+                    <h2>Email: {this.state.email}</h2>
                 </div>
                 <div id="account-button-panel">
                     <Button bsStyle="primary">
