@@ -10,7 +10,7 @@ class Account extends React.Component {
                 <div id="account-info">
                     <h1>Min Profil</h1>
                     <hr/>
-                    <h2>Företagsnamn: Djäkne AB</h2>
+                    <h2>Namn: Djäkne AB</h2>
                     <h2>Email: info@djakne.se</h2>
                 </div>
                 <div id="account-button-panel">
