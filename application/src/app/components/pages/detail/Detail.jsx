@@ -1,4 +1,5 @@
 import React from 'react';
+import {browserHistory} from 'react-router';
 import "../../../css/inspiration.scss";
 import "../../../css/detail.scss";
 import GalleryImage from "../inspiration/GalleryImage.jsx";
@@ -24,6 +25,10 @@ class Detail extends React.Component {
         });
     }
 
+    onClickBack() {
+      browserHistory.push('/inspiration');
+    }
+
     render() {
         if (this.state.product.likes === undefined) {
             return null;
@@ -33,7 +38,7 @@ class Detail extends React.Component {
             <Row>
               <Col lg={12}>
                 <div className="top-row">
-                  <div className="back-container horizontal-container">
+                  <div className="back-container horizontal-container" onClick={this.onClickBack}>
                     <i className="material-icons back">arrow_back</i>
                     <p>Alla produkter</p>
                     </div>
