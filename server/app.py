@@ -187,7 +187,7 @@ def get_post_products():
         products = []
         for p in Product.query.all():
             likes = []
-            [likes.append(u.id) for u in p.users]
+            [likes.append({'user':u.serialize()}) for u in p.users]
             product = p.serialize()
             product['likes'] = likes
             products.append(product)
