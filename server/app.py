@@ -119,8 +119,9 @@ class Product(db.Model):
 
 @app.route('/like/', methods=['POST'])
 def like():
-    user_id = request.json['user_id']
-    product_id = request.json['product_id']
+    data = json.loads(request.data);
+    user_id = data['user_id']
+    product_id = data['product_id']
     user = User.query.filter_by(id=user_id).first()
     product = Product.query.filter_by(id=product_id).first()
     if not (user or product):
