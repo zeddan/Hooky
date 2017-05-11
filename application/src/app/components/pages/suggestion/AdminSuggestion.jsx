@@ -127,8 +127,6 @@ import {
 											placeholder='Produktnamn'
 											value={this.state.product.name}
 											onChange={this.handleChange}/>
-
-
 									</InputGroup>
 								</FormGroup>
 

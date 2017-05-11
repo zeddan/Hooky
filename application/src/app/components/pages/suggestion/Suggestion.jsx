@@ -33,12 +33,8 @@ import {
 
 
 		handleChange(event) {
-			const target = event.target;
-			const value = target.value;
-			const name = target.name;
-
 			this.setState({
-				[name]: value,
+				[event.target.name]: event.target.value,
 			});
 		}
 
@@ -87,8 +83,13 @@ import {
 			return (
 
 				<Grid id="content-container" className="show-grid">
+					<Row>
+						<Col lg={12} className="horizontal-container">
+							<h3 className="page-title">Tipsa om en produkt</h3>
+						</Col>
+					</Row>
 					<Form onSubmit={this.handleSubmit}>
-						<Row className="top-row">
+						<Row>
 							<Col lg={5} md={4} sm={6} xs={12} id="left-col">
 								<div className="items-container" >
 									<div className="image-container">
