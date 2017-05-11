@@ -78,9 +78,9 @@ import {
 				},
 				mode: 'no-cors',
 				body: data
-			});
-
-			this.state.file = '';
+			}).then(function(res){
+        		        window.location.replace('http://localhost:8080/inspiration');
+        		});
 		}
 
 		render() {
