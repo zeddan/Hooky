@@ -1,6 +1,7 @@
 import React from 'react';
 
 //Components
+import Cookies from 'js-cookie';
 import {
     Button,
     Form,
@@ -35,21 +36,27 @@ class LoginForm extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('Email: ' + this.state.email + '\nPassword: ' + this.state.password);
         fetch('http://localhost:5000/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            mode: 'no-cors',
+            credentials: 'include',
             body: JSON.stringify({
                 email: this.state.email,
                 password: this.state.password
             })
         }).then((response) => {
-		        alert(response.name);
-		      })
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error(response.statusText);
+        }).then((json) => {
+            window.location = '/inspiration';
+        }).catch((reason) => {
+            // error handling ...
+       });
 
         event.preventDefault();
     }

@@ -1,0 +1,36 @@
+import React from 'react';
+import Cookies from 'js-cookie';
+
+class EnsureLoggedInContainer extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { isLoggedIn: false }
+    }
+
+    componentDidMount() {
+        fetch('http://localhost:5000/me', {credentials: 'include'}).then((res) => {
+            return res.json();
+        }).then((json) => {
+            const user_id = json.user.id;
+            if (user_id === undefined) {
+                window.location = '/';
+            } else {
+                Cookies.set('user_id', user_id, { expires: 365, path: '/' });
+                this.setState({ isLoggedIn: true });
+            }
+        });
+    }
+
+
+    render() {
+        if (this.state.isLoggedIn) {
+            return this.props.children;
+        } else {
+            return null;
+        }
+    }
+
+}
+
+export default EnsureLoggedInContainer;

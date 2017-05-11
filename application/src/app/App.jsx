@@ -3,6 +3,7 @@ import {render} from "react-dom";
 
 //Components
 import Root from "./components/root/Root.jsx";
+import EnsureLoggedInContainer from "./components/root/EnsureLoggedInContainer.jsx";
 import Home from "./components/pages/home/Home.jsx";
 import Tips from './components/pages/suggestion/Tips.jsx';
 import Account from './components/pages/account/Account.jsx';
@@ -16,10 +17,13 @@ class App extends React.Component {
             <Router history={browserHistory}>
                 <Route path="/" component={Root}>
                     <IndexRoute component={Home}/>
-                    <Route path="inspiration" component={Inspiration} ignoreScrollBehavior/>
-                    <Route path="inspiration/detail/:productId" component={Detail}/>
-		                <Route path="suggestion" component={Tips}/>
-                    <Route path="account" component={Account}/>
+
+                    <Route component={EnsureLoggedInContainer}>
+                        <Route path="inspiration" component={Inspiration} ignoreScrollBehavior/>
+                        <Route path="inspiration/detail/:productId" component={Detail}/>
+                        <Route path="suggestion" component={Tips}/>
+                        <Route path="account" component={Account}/>
+                    </Route>
                 </Route>
             </Router>
         );

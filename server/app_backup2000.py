@@ -8,7 +8,6 @@ from werkzeug.security import generate_password_hash, \
         check_password_hash
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
-from datetime import datetime
 import os
 import time
 
@@ -32,8 +31,7 @@ def apply_caching(response):
     response.headers['Access-Control-Allow-Credentials'] = 'true'
     return response
 
-
-users_products = db.Table('likes', db.Column('user_id', db.Integer, db.ForeignKey('users.id')), db.Column('product_id', db.Integer, db.ForeignKey('product.id')))
+users_products = db.Table('likes', db.Column('user_id', db.Integer, db.ForeignKey('users.id')), db.Column('product_id', db.Integer, db.ForeignKey('product.id')) )
 
 
 class User(UserMixin, db.Model):
@@ -87,25 +85,19 @@ class Product(db.Model):
     name = db.Column(db.String(30))
     image = db.Column(db.String(80))
     description = db.Column(db.String(200))
-    supplier = db.Column(db.String(30))
     published = db.Column(db.Boolean, default=False)
-    pub_date = db.Column(db.DateTime)
     users = db.relationship(
         'User',
         secondary=users_products,
         lazy='joined',
         back_populates="products")
 
-    def __init__(self, user_id, name, image, description, supplier, published=False, pub_date=None):
+    def __init__(self, user_id, name, image, description, published=False):
         self.user_id = user_id
         self.name = name
         self.image = image
         self.description = description
-        self.supplier = supplier
         self.published = published
-        if pub_date is None:
-            pub_date = datetime.utcnow()
-        self.pub_date = pub_date
 
     def __repr__(self):
         return str(self.serialize())
@@ -126,6 +118,7 @@ def like():
     product.users.append(user)
     db.session.add(product)
     db.session.commit()
+    product = Product.query.get(product_id)
     likes = []
     [likes.append(u.id) for u in product.users]
     product = product.serialize()
@@ -170,7 +163,7 @@ def get_image_url(files):
 
 def allowed_file(filename):
     return '.' in filename and \
-            filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+           filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 
 @app.route('/images/<filename>')
@@ -191,7 +184,8 @@ def get_post_products():
         return jsonify({'products': products})
     if request.method == 'POST':
         image = get_image_url(request.files)
-        prod = Product(1, request.form['name'], image, request.form['description'], request.form['supplier'])
+        prod = Product(1, request.form['name'], image,
+                       request.form['description'])
         db.session.add(prod)
         db.session.commit()
         return jsonify({'product': prod.serialize()}), 201
@@ -206,6 +200,7 @@ def get_del_put_product(p_id):
         product = product.serialize()
         product['likes'] = likes
         return jsonify({'product': product})
+
     if request.method == 'DELETE':
         db.session.delete(Product.query.get(p_id))
         db.session.commit()
