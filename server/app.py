@@ -209,7 +209,7 @@ def get_del_put_product(p_id):
     if request.method == 'GET':
         product = Product.query.get(p_id)
         likes = []
-        [likes.append(u.id) for u in product.users]
+        [likes.append({'user':u.serialize()}) for u in product.users]
         product = product.serialize()
         product['likes'] = likes
         return jsonify({'product': product})
