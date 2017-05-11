@@ -130,7 +130,7 @@ def like():
     db.session.add(product)
     db.session.commit()
     likes = []
-    [likes.append(u.id) for u in product.users]
+    [likes.append({'user':u.serialize()}) for u in product.users]
     product = product.serialize()
     product['likes'] = likes
     return jsonify({'product': product}), 201
