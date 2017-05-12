@@ -225,18 +225,19 @@ def get_del_put_product(p_id):
         return jsonify({'result': True})
 
     if request.method == 'PUT':
-        data = json.loads(request.data)
-        user = User.query.get(data['user_id'])
-        if user.admin:
-            prod = Product.query.get(p_id)
-            prod.name = data['name']
-            prod.image = data['image']
-            prod.description = data['description']
-            prod.published = data['published']
-            db.session.commit()
-            return jsonify({'product': prod.serialize()})
-        flash("NOt allowed")
-        return redirect(url_for('index'))
+        image = get_image_url(request.files)
+        prod = Product.query.get(p_id)
+        prod.name = request.form['name']
+        prod.image = request.form['image']
+        prod.description = request.form['description']
+        prod.supplier = request.form['supplier']
+        prod.webpage = request.form['webpage']
+        prod.phone = request.form['phone']
+        prod.email = request.form['email']
+        prod.address = request.form['address']
+        prod.published = request.form['published']
+        db.session.commit()
+        return jsonify({'product': prod.serialize()})
 
 
 @app.route('/')
