@@ -9,12 +9,12 @@ class Gallery extends React.Component {
         super(props);
         this.state = {
             products: [],
-	    dateBtn: true,
-	    likeBtn: false
+            dateBtn: true,
+            likeBtn: false
         };
         this.openDetail = this.openDetail.bind(this);
-	this.sortByDate = this.sortByDate.bind(this);
-	this.sortByLikes = this.sortByLikes.bind(this);
+        this.sortByDate = this.sortByDate.bind(this);
+        this.sortByLikes = this.sortByLikes.bind(this);
     };
 
     componentDidMount() {
@@ -28,34 +28,33 @@ class Gallery extends React.Component {
     };
 
     sortByDate() {
-	var newArr = this.state.products.sort(function(a, b) {
-		    var aa = new Date(a.pub_date);
-		    var bb = new Date(b.pub_date);
+        var newArr = this.state.products.sort(function(a, b) {
+            var aa = new Date(a.pub_date);
+            var bb = new Date(b.pub_date);
 
-		    if (aa !== bb) {
-			            if (aa > bb) { return -1; }
-			            if (aa < bb) { return 1; }
-			        }
-		    return aa - bb;
-	});
-
-	this.setState(
-		{products: newArr,
-	         dateBtn: true,
-		 likeBtn: false}
-	);
+            if (aa !== bb) {
+                if (aa > bb) { return -1; }
+                if (aa < bb) { return 1; }
+            }
+            return aa - bb;
+        });
+        this.setState({
+            products: newArr,
+            dateBtn: true,
+            likeBtn: false
+        });
     };
 
-   sortByLikes() {
-	var newArr = this.state.products.sort(function(a, b){
-  	return b.likes.length - a.likes.length;
-	});
-        this.setState(
-                {products: newArr,
-		 dateBtn: false,
-		 likeBtn: true}
-        );
-   }
+    sortByLikes() {
+        var newArr = this.state.products.sort(function(a, b){
+            return b.likes.length - a.likes.length;
+        });
+        this.setState({
+            products: newArr,
+            dateBtn: false,
+            likeBtn: true
+        });
+    }
 		   
 
     render() {
