@@ -14,7 +14,28 @@ import HomeHeader from './HomeHeader.jsx';
 import '../../../css/startPage.scss';
 
 class Home extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { isLoggedIn: true }
+    }
+
+    componentWillMount() {
+        fetch('http://localhost:5000/me', {credentials: 'include'}).then((res) => {
+            return res.json();
+        }).then((json) => {
+            if (json.user.id === undefined) {
+                this.setState({ isLoggedIn: false });
+            } else {
+                window.location = '/inspiration';
+            }
+        });
+    }
+
     render() {
+        if (this.state.isLoggedIn) {
+            return null;
+        }
         return (
             <div className="center-text" id="intro-holder">
                 <div id="home-header-holder">
