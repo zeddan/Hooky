@@ -9,7 +9,8 @@ import {
     Col,
     Checkbox,
     ControlLabel,
-    FormControl
+    FormControl,
+    HelpBlock
 } from 'react-bootstrap';
 
 class LoginForm extends React.Component {
@@ -18,7 +19,8 @@ class LoginForm extends React.Component {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+	    showError: 'hidden'
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -51,6 +53,7 @@ class LoginForm extends React.Component {
             if (response.ok) {
                 return response.json();
             }
+	    this.setState({showError: ''});
             throw new Error(response.statusText);
         }).then((json) => {
             window.location.replace('/inspiration');
@@ -84,11 +87,11 @@ class LoginForm extends React.Component {
                     </Col>
                 </FormGroup>
 
-                <FormGroup>
-                    <Col smOffset={2} sm={10}>
-                        <Checkbox>Kom ihåg mig</Checkbox>
-                    </Col>
-                </FormGroup>
+		<FormGroup controlId="formValidationWarning1" validationState="error" className={this.state.showError}>
+		<Col smOffset={2} sm={10}>	
+			<HelpBlock>Wrong email or password</HelpBlock>
+		</Col>
+		</FormGroup>
 
                 <FormGroup>
                     <Col smOffset={2} sm={10}>
