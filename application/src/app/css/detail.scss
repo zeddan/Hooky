@@ -1,11 +1,15 @@
 @import "_screens.scss";
 
 .back-container {
-  cursor: pointer; 
+  cursor: pointer;
 }
 
-.back {
+.icon {
   margin-right: 10px;
+}
+
+.title-container {
+  color: grey;
 }
 
 .horizontal-container {
@@ -14,11 +18,21 @@
   align-items: center;
 }
 
+.supplier-info {
+  background-color: #F9F9F9;
+}
+
+.detail-card {
+  height: 350px;
+}
+
 .top-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   align-items: center;
+  height: 60px;
+  margin-left: 15px;
   margin-right: 15px;
 }
 
@@ -34,7 +48,12 @@
   }
 }
 
+.detail-info-description {
+  display: flex;
+  flex-direction: column;
 
+  width: 100%;
+}
 
 .detail-container {
 
@@ -53,15 +72,15 @@
       padding: 10px;
       width: 60%;
     }
+
     .gallery-card {
-      width: 40%;
+      width: 100%;
       .name, .provider {
         visibility: hidden;
       }
     }
     .detail-comments {
     }
-
 
   }
 }
