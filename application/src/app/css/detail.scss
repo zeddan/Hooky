@@ -4,8 +4,12 @@
   cursor: pointer;
 }
 
-.back {
+.icon {
   margin-right: 10px;
+}
+
+.title-container {
+  color: grey;
 }
 
 .horizontal-container {
@@ -14,11 +18,21 @@
   align-items: center;
 }
 
+.supplier-info {
+  background-color: #F9F9F9;
+}
+
+.detail-card {
+  height: 350px;
+}
+
 .top-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   align-items: center;
+  height: 60px;
+  margin-left: 15px;
   margin-right: 15px;
 }
 
@@ -61,10 +75,18 @@
       display: flex;
       flex-direction: column;
       padding: 10px;
-      width: 60%;
+      width: 100%;
     }
+
+    .supplier-info {
+      
+      margin-top: 20px;
+
+
+   }
+
     .gallery-card {
-      width: 40%;
+      width: 100%;
       .name, .provider {
         visibility: hidden;
       }
