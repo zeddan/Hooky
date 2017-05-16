@@ -103,7 +103,7 @@ import {
 
 				<Grid id="content-container" className="show-grid">
 					<Form onSubmit={this.handleSubmit}>
-						<Row className="top-row">
+						<Row >
 							<Col lg={5} md={4} sm={6} xs={12} id="left-col">
 								<div className="items-container">
 									<div className="image-container">
