@@ -3,6 +3,7 @@ import React from 'react';
 //Components
 import {Button, ButtonToolbar, Modal} from 'react-bootstrap';
 import LoginForm from '../forms/LoginForm.jsx';
+import LinkedInButton from '../buttons/LinkedInButton.jsx';
 
 class LoginButton extends React.Component {
 
@@ -38,9 +39,11 @@ class LoginButton extends React.Component {
                     dialogClassName="custom-modal"
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title-lg">Log in</Modal.Title>
+                        <Modal.Title id="contained-modal-title-lg">Logga in</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
+                        <LinkedInButton/>
+                        <hr/>
                         <LoginForm/>
                     </Modal.Body>
                 </Modal>
