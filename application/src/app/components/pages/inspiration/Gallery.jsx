@@ -3,6 +3,7 @@ import GalleryImage from './GalleryImage.jsx';
 import {browserHistory} from "react-router";
 import {Button} from 'react-bootstrap';
 import * as _ from 'lodash';
+import Cookies from 'js-cookie';
 
 class Gallery extends React.Component {
     constructor(props) {
@@ -10,18 +11,24 @@ class Gallery extends React.Component {
         this.state = {
             products: [],
             dateBtn: true,
-            likeBtn: false
+            likeBtn: false,
+            userID: -1
         };
         this.openDetail = this.openDetail.bind(this);
         this.sortByDate = this.sortByDate.bind(this);
         this.sortByLikes = this.sortByLikes.bind(this);
     };
 
+    componentWillMount() {
+        this.setState({
+            userID: Cookies.get('user_id')
+        });
+    }
+
     componentDidMount() {
         fetch('http://localhost:5000/products/').then((res) => {
             return res.json();
         }).then((json) => {
-            console.log(json.products);
             this.setState({products: json.products});
 	    this.sortByDate();
         });
@@ -75,6 +82,7 @@ class Gallery extends React.Component {
                                                       name={product.name}
                                                       provider={product.supplier}
                                                       p_id={product.id}
+                                                      user_id={this.state.userID}
                                                       src={product.image}
                                                       handleClick={(e) => this.openDetail(product, e)}
                                                       alt={'Image number ' + product.id}/>

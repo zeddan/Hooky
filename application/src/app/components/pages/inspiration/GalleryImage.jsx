@@ -1,7 +1,5 @@
 import React from 'react';
-
-import Paper from 'material-ui/Paper';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import * as _ from 'lodash';
 
 class GalleryImage extends React.Component {
     constructor(props) {
@@ -9,38 +7,41 @@ class GalleryImage extends React.Component {
         this.state = {
             likes: this.props.likes,
             name: this.props.name,
-            provider: this.props.provider,
-            shadow: 1,
+            provider: this.props.provider
 
         };
-        console.log("Gallery Image likes: " + this.state.likes);
         this.like = this.like.bind(this);
+        this.haveILikedThisItem = this.haveILikedThisItem.bind(this);
     };
 
-    onMouseOver = () => this.setState({ shadow: 3 });
-		onMouseOut = () => this.setState({ shadow: 1 });
+    haveILikedThisItem() {
+        let userID = parseInt(this.props.user_id);
+        let ids = this.state.likes.map((like) => { return like.user.id; });
+        return _.includes(ids, userID);
+    }
 
     render() {
         return (
-          <MuiThemeProvider>
-            <Paper className='gallery-card' zDepth={this.state.shadow} onMouseOver={this.onMouseOver}
-            onMouseOut={this.onMouseOut}>
+            <div className='gallery-card'>
                 <div className='bg'></div>
                 <div className='info'>
                     <div className='name'>{this.state.name}</div>
                     <div className='provider'>{this.state.provider}</div>
                     <div className='like-heart'
-                         onClick={() => this.like()}>
+                        onClick={() => this.like()}>
                         <div className='likes'>{this.state.likes.length}</div>
-                        <i className="heart fa fa-heart-o" aria-hidden="true"></i>
+                        { this.haveILikedThisItem() ?
+                            <i className="heart fa fa-heart" aria-hidden="true"></i>
+                            :
+                            <i className="heart fa fa-heart-o" aria-hidden="true"></i>
+                        }
                     </div>
                 </div>
                 <img className='gallery-thumbnail'
                      src={this.props.src}
                      onClick={this.props.handleClick}
                      alt={this.props.alt}/>
-                 </Paper>
-            </MuiThemeProvider>
+            </div>
         );
     };
 
