@@ -1,7 +1,7 @@
 @import "_screens.scss";
 
 .back-container {
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .back {
@@ -34,10 +34,20 @@
   }
 }
 
-
-
 .detail-container {
 
+  .detail-info-description {
+    padding: 0 5px 0 5px;
+  }
+
+  .small-email-btn {
+    width: 40px;
+  }
+  .like-table-row {
+    td {
+      vertical-align: middle !important;
+    }
+  }
   @include desktop {
     display: flex;
     flex-direction: column;
@@ -59,9 +69,11 @@
         visibility: hidden;
       }
     }
-    .detail-comments {
-    }
+    .detail-info-likes-container {
+      display: flex;
+      flex-direction: column;
 
+    }
 
   }
 }

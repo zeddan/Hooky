@@ -22,7 +22,7 @@ class GalleryImage extends React.Component {
 
     render() {
         return (
-            <div className='gallery-card'>
+            <div className='gallery-card' onClick={this.props.handleClick}>
                 <div className='bg'></div>
                 <div className='info'>
                     <div className='name'>{this.state.name}</div>
@@ -39,7 +39,6 @@ class GalleryImage extends React.Component {
                 </div>
                 <img className='gallery-thumbnail'
                      src={this.props.src}
-                     onClick={this.props.handleClick}
                      alt={this.props.alt}/>
             </div>
         );
