@@ -6,7 +6,6 @@ import {
 	Grid, Col, Row,
 	Form, FormGroup, FieldGroup, FormControl, ControlLabel, InputGroup,
 	Image, Thumbnail, Checkbox, Button, Panel} from 'react-bootstrap';
-	import ProductForm from '../../forms/ProductForm.jsx';
 
 	//Stylesheets
 	import './sass/Tips.scss';
@@ -36,7 +35,7 @@ import {
           return res.json();
         }).then((json) => {
           this.setState({
-		  product: json.product, 
+		  product: json.product,
 		  name: json.product.name,
 		  description: json.product.description,
 		  supplier: json.product.supplier,
