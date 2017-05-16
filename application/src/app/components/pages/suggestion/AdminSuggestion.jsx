@@ -5,18 +5,24 @@ import {Link} from "react-router";
 import {
 	Grid, Col, Row,
 	Form, FormGroup, FieldGroup, FormControl, ControlLabel, InputGroup,
-	Image, Thumbnail, Button, Panel} from 'react-bootstrap';
-	import ProductForm from '../../forms/ProductForm.jsx';
+	Image, Thumbnail, Checkbox, Button, Panel} from 'react-bootstrap';
 
 	//Stylesheets
 	import './sass/Tips.scss';
 
-	class Tips extends React.Component {
+	class AdminSuggestion extends React.Component {
 
 		constructor(props) {
 			super(props);
 			this.state = {
-				product: ''
+				product: '',
+				name: '',
+				description: '',
+				supplier: '',
+				webpage: '',
+				phone: '',
+				email: '',
+				address: ''
 			};
 
 			this.handleChange = this.handleChange.bind(this);
@@ -28,7 +34,16 @@ import {
         .then((res) => {
           return res.json();
         }).then((json) => {
-          this.setState({product: json.product});
+          this.setState({
+		  product: json.product,
+		  name: json.product.name,
+		  description: json.product.description,
+		  supplier: json.product.supplier,
+		  webpage: json.product.webpage,
+		  phone: json.product.phone,
+		  email: json.product.email,
+		  address: json.product.address
+	  });
           console.log(this.state.product);
         });
     }
@@ -125,7 +140,7 @@ import {
 											name='name'
 											type='text'
 											placeholder='Produktnamn'
-											value={this.state.product.name}
+											value={this.state.name}
 											onChange={this.handleChange}/>
 									</InputGroup>
 								</FormGroup>
@@ -136,7 +151,7 @@ import {
 										name='description'
 										componentClass='textarea'
 										placeholder='Beskrivning...'
-										value={this.state.product.description}
+										value={this.state.description}
 										onChange={this.handleChange} />
 								</FormGroup>
 
@@ -150,7 +165,7 @@ import {
 											name='supplier'
 											type='text'
 											placeholder='Leverantörens namn'
-											value={this.state.product.supplier}
+											value={this.state.supplier}
 											onChange={this.handleChange}/>
 									</InputGroup>
 								</FormGroup>
@@ -160,9 +175,10 @@ import {
 									<InputGroup>
 										<InputGroup.Addon><i className='fa fa-globe'/></InputGroup.Addon>
 										<FormControl
-											name='supplierWebpage'
+											name='webpage'
 											type='text'
 											placeholder='Hemsida'
+											value={this.state.webpage}
 											onChange={this.handleChange}/>
 									</InputGroup>
 								</FormGroup>
@@ -172,9 +188,10 @@ import {
 									<InputGroup>
 										<InputGroup.Addon><i className='fa fa-phone'/></InputGroup.Addon>
 										<FormControl
-											name='supplierPhone'
+											name='phone'
 											type='text'
 											placeholder='Nummer'
+											value={this.state.phone}
 											onChange={this.handleChange}/>
 									</InputGroup>
 								</FormGroup>
@@ -184,9 +201,10 @@ import {
 									<InputGroup>
 										<InputGroup.Addon><i className='fa fa-envelope'/></InputGroup.Addon>
 										<FormControl
-											name='supplierEmail'
+											name='email'
 											type='text'
 											placeholder='Email'
+											value={this.state.email}
 											onChange={this.handleChange}/>
 									</InputGroup>
 								</FormGroup>
@@ -196,13 +214,13 @@ import {
 									<InputGroup>
 										<InputGroup.Addon><i className='fa fa-address-card'/></InputGroup.Addon>
 										<FormControl
-											name='supplierAddress'
+											name='address'
 											type='text'
 											placeholder='Adress'
+											value={this.state.address}
 											onChange={this.handleChange}/>
 									</InputGroup>
 								</FormGroup>
-
 							</Col>
 						</Row>
 						<Row>
@@ -216,4 +234,4 @@ import {
 		}
 	}
 
-	export default Tips;
+	export default AdminSuggestion;
