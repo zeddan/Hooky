@@ -125,7 +125,7 @@ class Product(db.Model):
 
 @app.route('/like/', methods=['POST'])
 def like():
-    data = json.loads(request.data);
+    data = json.loads(request.data)
     user_id = data['user_id']
     product_id = data['product_id']
     user = User.query.filter_by(id=user_id).first()
