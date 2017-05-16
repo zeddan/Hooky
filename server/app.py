@@ -123,24 +123,41 @@ class Product(db.Model):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
-@app.route('/like/', methods=['POST'])
+@app.route('/like/', methods=['POST', 'DELETE'])
 def like():
-    data = json.loads(request.data)
-    user_id = data['user_id']
-    product_id = data['product_id']
-    user = User.query.filter_by(id=user_id).first()
-    product = Product.query.filter_by(id=product_id).first()
-    if not (user or product):
-        flash('User or product could not be found')
-        abort(401)
-    product.users.append(user)
-    db.session.add(product)
-    db.session.commit()
-    likes = []
-    [likes.append({'user':u.serialize()}) for u in product.users]
-    product = product.serialize()
-    product['likes'] = likes
-    return jsonify({'product': product}), 201
+    if request.method == 'POST':
+        data = json.loads(request.data)
+        user_id = data['user_id']
+        product_id = data['product_id']
+        user = User.query.filter_by(id=user_id).first()
+        product = Product.query.filter_by(id=product_id).first()
+        if not (user or product):
+            flash('User or product could not be found')
+            abort(401)
+        product.users.append(user)
+        db.session.add(product)
+        db.session.commit()
+        likes = []
+        [likes.append({'user':u.serialize()}) for u in product.users]
+        product = product.serialize()
+        product['likes'] = likes
+        return jsonify({'product': product}), 201
+    if request.method == 'DELETE':
+        data = json.loads(request.data)
+        product_id = data['product_id']
+        product = Product.query.filter_by(id=product_id).first()
+        user_id = data['user_id']
+        user = User.query.filter_by(id=user_id).first()
+        if not (user or product):
+            flash('User or product could not be found')
+            abort(401)
+        product.users.remove(user)
+        db.session.commit()
+        likes = []
+        [likes.append({'user':u.serialize()}) for u in product.users]
+        product = product.serialize()
+        product['likes'] = likes
+        return jsonify({'product': product}), 201
 
 
 @app.route('/users/', methods=['GET'])
