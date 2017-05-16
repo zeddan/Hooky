@@ -28,7 +28,7 @@ class GalleryImage extends React.Component {
                     <div className='name'>{this.state.name}</div>
                     <div className='provider'>{this.state.provider}</div>
                     <div className='like-heart'
-                        onClick={() => this.like()}>
+                        onClick={this.like}>
                         <div className='likes'>{this.state.likes.length}</div>
                         { this.haveILikedThisItem() ?
                             <i className="heart fa fa-heart" aria-hidden="true"></i>
@@ -44,7 +44,8 @@ class GalleryImage extends React.Component {
         );
     };
 
-    like() {
+    like(e) {
+        e.stopPropagation();
         fetch('http://localhost:5000/like/', {
             method: 'POST',
             headers: {
