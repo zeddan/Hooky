@@ -22,7 +22,7 @@ body {
   @include desktop {
     padding: 20px 15px 20px 15px;
   }
-  @include tablet{
+  @include tablet {
     padding: 20px 10px 20px 10px;
   }
 }
@@ -36,9 +36,23 @@ body {
   }
 }
 
-.col-sm-6{
-  padding-bottom: 30px;
-  padding-right: 0;
+.row {
+  margin: 0;
+
+  .col-sm-6 {
+    padding: 0 0 30px 0;
+  }
+
+  @include tablet {
+    .col-sm-6 {
+      padding: 0 30px 30px 0;
+    }
+  }
+  @include desktop {
+    .col-sm-6 {
+      padding: 0 30px 30px 0;
+    }
+  }
 }
 
 .gallery-card {
@@ -51,24 +65,22 @@ body {
 
   //margin-bottom: 1rem;
 
-
   @include desktop {
     height: 210px;
     //margin-bottom: 1.875rem;
   }
-  @include tablet{
+  @include tablet {
     height: 250px;
   }
-  @include mobile-s{
+  @include mobile-s {
     height: 330px;
   }
-  @include mobile-m{
+  @include mobile-m {
     height: 360px;
   }
-  @include mobile-l{
+  @include mobile-l {
     height: 380px;
   }
-
 
   .bg {
     position: absolute;
@@ -154,7 +166,7 @@ body {
     text-shadow: 0 0 1px #000000;
     font-size: 2.75rem;
   }
-  
+
   .fa-heart {
     z-index: -1;
     color: rgb(243, 66, 66);
