@@ -87,9 +87,11 @@ class Gallery extends React.Component {
       return (
          <div>
             <div className="gallery-sorting-container">
-               <Button bsStyle="link" onClick={this.sortByDate} disabled={this.state.dateBtn}>Senast Tillagda</Button>
-               <Button bsStyle="link" onClick={this.sortByLikes} disabled={this.state.likeBtn}>Flest Likes</Button>
-               <Button bsStyle="link" onClick={this.showMyLikes}>Mina Likes</Button>
+
+              <Button bsStyle="link" onClick={this.sortByDate} disabled={this.state.dateBtn}>Nya</Button>
+              <Button bsStyle="link" onClick={this.sortByLikes} disabled={this.state.likeBtn}>Populära</Button>
+              <Button bsStyle="link">Mina</Button>
+
             </div>
             <div className='container-fluid gallery-container'>
                <div className='row'>
