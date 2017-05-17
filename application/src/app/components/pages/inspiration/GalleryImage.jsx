@@ -4,18 +4,28 @@ import Paper from 'material-ui/Paper';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class GalleryImage extends React.Component {
-   constructor(props) {
-      super(props);
-      this.state = {
-         likes: this.props.likes,
-         name: this.props.name,
-         provider: this.props.provider,
-         elevation: this.props.elevation,
-      };
-      console.log("Gallery Image likes: " + this.state.likes);
-      this.like = this.like.bind(this);
-	this.haveILikedThisItem = this.haveILikedThisItem.bind(this);
-    	};   
+    constructor(props) {
+        super(props);
+        this.state = {
+            likes: this.props.likes,
+            name: this.props.name,
+            provider: this.props.provider,
+		elevation: this.props.elevation,
+            liked: false
+        };
+ console.log("Gallery Image likes: " + this.state.likes);
+        this.toggleLike = this.toggleLike.bind(this);
+        this.like = this.like.bind(this);
+        this.unlike = this.unlike.bind(this);
+        this.update = this.update.bind(this);
+        this.haveILikedThisItem = this.haveILikedThisItem.bind(this);
+    };
+
+    componentWillMount() {
+        this.setState({
+            liked: this.haveILikedThisItem()
+        });
+    }
 
     haveILikedThisItem() {
         let userID = parseInt(this.props.user_id);
@@ -40,7 +50,7 @@ class GalleryImage extends React.Component {
                   <div className='name'>{this.state.name}</div>
                   <div className='provider'>{this.state.provider}</div>
                   <div className='like-heart'
-                     onClick={this.like}>
+                    onClick={this.toggleLike}>
                      <div className='likes'>{this.state.likes.length}</div>
 			{ this.haveILikedThisItem() ?
                             <i className="heart fa fa-heart" aria-hidden="true"></i>
@@ -58,8 +68,34 @@ class GalleryImage extends React.Component {
       );
    };
 
-    like(e) {
+    toggleLike(e) {
         e.stopPropagation();
+        if (this.state.liked) {
+            this.unlike(e);
+        } else {
+            this.like(e);
+      }
+    }
+
+    unlike(e, update) {
+        fetch('http://localhost:5000/like/', {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: 2,
+                product_id: this.props.p_id
+            })
+        }).then((res) => {
+            return res.json();
+        }).then((json) => {
+            this.update(json);
+        });
+    }
+
+    like(e) {
         fetch('http://localhost:5000/like/', {
             method: 'POST',
             headers: {
@@ -73,9 +109,14 @@ class GalleryImage extends React.Component {
         }).then((res) => {
             return res.json();
         }).then((json) => {
-            this.setState({likes: json.product.likes});
+            this.update(json);
         });
     };
+
+    update(json) {
+        this.setState({ likes: json.product.likes, });
+        this.setState({ liked: this.haveILikedThisItem() });
+    }
 
 }
 
