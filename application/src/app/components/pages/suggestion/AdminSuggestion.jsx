@@ -6,7 +6,6 @@ import {
 	Grid, Col, Row,
 	Form, FormGroup, FieldGroup, FormControl, ControlLabel, InputGroup,
 	Image, Thumbnail, Checkbox, Button, Panel} from 'react-bootstrap';
-	import ProductForm from '../../forms/ProductForm.jsx';
 
 	//Stylesheets
 	import './sass/Tips.scss';
@@ -36,7 +35,7 @@ import {
           return res.json();
         }).then((json) => {
           this.setState({
-		  product: json.product, 
+		  product: json.product,
 		  name: json.product.name,
 		  description: json.product.description,
 		  supplier: json.product.supplier,
@@ -104,7 +103,7 @@ import {
 
 				<Grid id="content-container" className="show-grid">
 					<Form onSubmit={this.handleSubmit}>
-						<Row className="top-row">
+						<Row >
 							<Col lg={5} md={4} sm={6} xs={12} id="left-col">
 								<div className="items-container">
 									<div className="image-container">
