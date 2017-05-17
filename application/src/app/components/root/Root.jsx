@@ -1,7 +1,6 @@
 import React from 'react';
 
 //Components
-import NavBar from './NavBar.jsx';
 import NavigationBar from './NavigationBar.jsx';
 
 import {Row, Col} from 'react-bootstrap';
