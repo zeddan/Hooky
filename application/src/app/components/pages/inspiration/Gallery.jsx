@@ -31,7 +31,13 @@ class Gallery extends React.Component {
       fetch('http://localhost:5000/products/').then((res) => {
          return res.json();
       }).then((json) => {
-         this.setState({products: json.products});
+	 var arr = [];
+	 for (var i = 0; i < json.products.length; i++) {
+		 if(json.products[i].published == true){
+		 	arr.push(json.products[i]);
+		 }
+	 }
+         this.setState({products: arr});
          this.sortByDate();
       });
    };
