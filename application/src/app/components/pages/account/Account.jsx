@@ -9,6 +9,7 @@ class Account extends React.Component {
             name: 'Djäkne',
             email: 'info@djakne.se'
         };
+        this.logout = this.logout.bind(this);
     };
 
     componentDidMount() {
@@ -34,12 +35,20 @@ class Account extends React.Component {
                     <Button bsStyle="primary">
                         Ändra uppgifter
                     </Button>
-                    <Button bsStyle="primary">
+                    <Button onClick={() => this.logout()} bsStyle="primary">
                         Logga ut
                     </Button>
                 </div>
             </div>
         )
+    }
+
+    logout() {
+        fetch('http://localhost:5000/logout', {credentials: 'include'}).then((res) => {
+            return res.json();
+        }).then((json) => {
+            window.location = '/';
+        });
     }
 }
 

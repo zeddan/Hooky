@@ -281,7 +281,7 @@ def me():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return jsonify({'user_id': {}})
 
 
 @app.route('/register', methods=['POST'])
