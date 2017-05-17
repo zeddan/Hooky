@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../../css/account.scss';
 import {Button} from 'react-bootstrap';
+import Cookies from 'js-cookie';
 
 class Account extends React.Component {
     constructor(props) {
@@ -47,6 +48,8 @@ class Account extends React.Component {
         fetch('http://localhost:5000/logout', {credentials: 'include'}).then((res) => {
             return res.json();
         }).then((json) => {
+            Cookies.remove('name', {path: '/'});
+            Cookies.remove('user_id', {path: '/'});
             window.location = '/';
         });
     }
