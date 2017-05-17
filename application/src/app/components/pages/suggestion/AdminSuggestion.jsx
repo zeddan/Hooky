@@ -67,7 +67,7 @@ import {
 
 		handleCheckbox() {
 			this.setState({
-				published: true
+				published: !this.state.published
 			})
 		}
 
@@ -123,7 +123,9 @@ import {
 					published: this.state.published
 				})
 			});
-			});
+			}).then(function(res){
+                                window.location.replace('http://localhost:8080/admin');
+                        });
 
 			this.state.file = '';
 			
