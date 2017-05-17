@@ -12,10 +12,12 @@ class EnsureLoggedInContainer extends React.Component {
         fetch('http://localhost:5000/me', {credentials: 'include'}).then((res) => {
             return res.json();
         }).then((json) => {
+            const name = json.user.name;
             const user_id = json.user.id;
             if (user_id === undefined) {
                 window.location = '/';
             } else {
+                Cookies.set('name', name, { expires: 365, path: '/' });
                 Cookies.set('user_id', user_id, { expires: 365, path: '/' });
                 this.setState({ isLoggedIn: true });
             }
