@@ -101,11 +101,6 @@ class Detail extends React.Component {
                </Grid>
             </Row>
             <LikeList likes={this.state.product.likes}/>
-
-            {/*<div className="detail-info-container">
-
-
-            </div>*/}
          </div>
       );
    };
