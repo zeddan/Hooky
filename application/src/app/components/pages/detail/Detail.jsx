@@ -1,5 +1,6 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
+import Cookies from 'js-cookie';
 
 //Components
 import GalleryImage from "../inspiration/GalleryImage.jsx";
@@ -20,12 +21,10 @@ class Detail extends React.Component {
    }
 
    componentDidMount() {
-      console.log("Did mount");
       fetch('http://localhost:5000/products/' + this.props.routeParams.productId).then((res) => {
          return res.json();
       }).then((json) => {
          this.setState({product: json.product});
-         console.log("State: " + this.state.product);
       });
    }
 
@@ -65,6 +64,7 @@ class Detail extends React.Component {
                         name={this.state.product.name}
                         provider={this.state.product.supplier}
                         p_id={this.state.product.id}
+                        user_id={Cookies.get('user_id')}
                         src={this.state.product.image}
                         alt={this.state.product.name}/>
                   </Col>
@@ -103,11 +103,6 @@ class Detail extends React.Component {
                </Grid>
             </Row>
             <LikeList likes={this.state.product.likes}/>
-
-            {/*<div className="detail-info-container">
-
-
-            </div>*/}
          </div>
       );
    };
