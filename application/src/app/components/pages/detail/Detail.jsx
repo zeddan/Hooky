@@ -1,10 +1,14 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
+
+//Components
+import GalleryImage from "../inspiration/GalleryImage.jsx";
+import LikeList from './LikeList.jsx';
+import {Grid, Row, Col, Image} from 'react-bootstrap';
+
+//Stylesheets
 import "../../../css/inspiration.scss";
 import "../../../css/detail.scss";
-import GalleryImage from "../inspiration/GalleryImage.jsx";
-
-import {Grid, Row, Col, Image} from 'react-bootstrap';
 
 class Detail extends React.Component {
    constructor(props) {
@@ -74,7 +78,9 @@ class Detail extends React.Component {
                         <p>{this.state.product.description}</p>
                      </div>
                   </Col>
+                  </Grid>
 
+                  <Grid className="supplier-info-container">
                   <Col md={12} sm={12} xs={12} className="supplier-info">
                      <h3>Producent</h3>
 
@@ -96,7 +102,7 @@ class Detail extends React.Component {
                   </Col>
                </Grid>
             </Row>
-	<LikeList likes={this.state.product.likes}/>
+            <LikeList likes={this.state.product.likes}/>
 
             {/*<div className="detail-info-container">
 
