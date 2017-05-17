@@ -20,12 +20,10 @@ class Detail extends React.Component {
    }
 
    componentDidMount() {
-      console.log("Did mount");
       fetch('http://localhost:5000/products/' + this.props.routeParams.productId).then((res) => {
          return res.json();
       }).then((json) => {
          this.setState({product: json.product});
-         console.log("State: " + this.state.product);
       });
    }
 
