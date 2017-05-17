@@ -50,17 +50,16 @@ class LikeList extends React.Component {
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>
-                                <a href={'mailto:' + fullMailList}>
-                                    <img className="small-email-btn" alt="Email" src={emailAllSrc}/>
-                                </a>
-                            </th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         {tableItems}
                         </tbody>
                     </Table>
+                    <a className="btn btn-default mail-all" href={'mailto:' + fullMailList}>
+                        Email Alla
+                    </a>
                 </div>
             )
     }
