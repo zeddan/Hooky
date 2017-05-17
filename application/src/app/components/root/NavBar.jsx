@@ -8,12 +8,6 @@ import {Link, IndexLink} from "react-router";
 import "../../css/navigationBar.scss";
 
 class NavBar extends React.Component {
-	login(){
-		return $.getJSON('https://randomuser.me/api/')
-      			.then((data) => {
-        		this.setState({ person: data.results });
-      		});
-	}
 
     render() {
         return (
@@ -26,7 +20,7 @@ class NavBar extends React.Component {
                         <li><Link to="/about-us" activeClassName="active">About Us</Link></li>
                     </ul>
                     <div id="button-holder">
-			<LoginButton/>
+                        <LoginButton/>
                     </div>
                 </div>
             </div>
