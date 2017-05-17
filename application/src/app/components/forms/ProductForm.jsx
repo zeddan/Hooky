@@ -56,7 +56,6 @@ class ProductForm extends React.Component {
 		data.append('name', this.state.name)
 		data.append('description', this.state.description)
 		data.append('supplier', this.state.supplier)
-		alert('Namn: ' + this.state.name +'\nBeskrivning: ' + this.state.description);
 		fetch('http://localhost:5000/products/', {
 			method: 'POST',
 			headers: {
