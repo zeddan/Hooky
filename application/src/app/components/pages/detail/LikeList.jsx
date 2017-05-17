@@ -42,7 +42,7 @@ class LikeList extends React.Component {
             );
         else
             return (
-                <div>
+                <div className="container">
                     <hr/>
                     <h2 className="center-text">Likes</h2>
                     <Table hover>
