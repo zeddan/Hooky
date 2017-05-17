@@ -12,13 +12,12 @@ class Account extends React.Component {
     };
 
     componentDidMount() {
-        fetch('http://localhost:5000/me').then((res) => {
-            return res.json();
+        fetch('http://localhost:5000/me', {credentials: 'include'}).then((res) => {
+          return res.json();
         }).then((json) => {
-	    console.log("Me: " + JSON.stringify(json));
-	    if( json.user.email != undefined){
-            	this.setState({name: json.user.name, email: json.user.email});
-	    }
+          if (json.user.email != undefined) {
+            this.setState({name: json.user.name, email: json.user.email});
+          }
         });
     };
 
