@@ -1,17 +1,20 @@
 import React from 'react';
 import {Table} from "react-bootstrap";
 
-var emailSrc = "/app/components/pages/detail/email-alt.png";
+var emailSrc = "/app/components/pages/detail/email.png";
+var emailAllSrc = "/app/components/pages/detail/email-all.png";
 
 class LikeList extends React.Component {
 
     render() {
 
         var entries = this.props.likes;
+        var fullMailList ='';
         console.log("Entries");
         console.log(entries);
 
         var tableItems = entries.map((entry, index) => {
+            fullMailList += entry.user.email + ',';
             return (
                 <tr className="like-table-row" key={index + 1}>
                     <td >
@@ -29,6 +32,7 @@ class LikeList extends React.Component {
             );
         });
 
+        console.log(fullMailList);
         if (this.props.likes.length == 0)
             return (
                 <div>
@@ -53,6 +57,9 @@ class LikeList extends React.Component {
                         {tableItems}
                         </tbody>
                     </Table>
+                    <a className="btn btn-default mail-all" href={'mailto:' + fullMailList}>
+                        Email Alla
+                    </a>
                 </div>
             )
     }

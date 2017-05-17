@@ -6,6 +6,7 @@ import {
 	Grid, Col, Row,
 	Form, FormGroup, FieldGroup, FormControl, ControlLabel, InputGroup,
 	Image, Thumbnail, Checkbox, Button, Panel} from 'react-bootstrap';
+	import ProductForm from '../../forms/ProductForm.jsx';
 
 	//Stylesheets
 	import './sass/Tips.scss';
@@ -15,6 +16,8 @@ import {
 		constructor(props) {
 			super(props);
 			this.state = {
+				file: '',
+				image: '',
 				product: '',
 				name: '',
 				description: '',
@@ -36,6 +39,7 @@ import {
         }).then((json) => {
           this.setState({
 		  product: json.product,
+		  image: json.product.image,
 		  name: json.product.name,
 		  description: json.product.description,
 		  supplier: json.product.supplier,
@@ -68,7 +72,7 @@ import {
 
 				this.setState({
 					file: file,
-					imageURL: reader.result
+					image: reader.result
 				});
 			}
 
@@ -77,25 +81,41 @@ import {
 
 		handleSubmit(event) {
 			event.preventDefault();
-			/*
-			var data = new FormData()
+			var data = new FormData();
 			data.append('file', this.state.file);
-			data.append('name', this.state.name);
-			data.append('description', this.state.description);
-			data.append('supplier', this.state.supplier);
-			alert('Namn: ' + this.state.name +'\nBeskrivning: ' + this.state.description);
-			fetch('http://localhost:5000/products/', {
+
+			fetch('http://localhost:5000/images/', {
 				method: 'POST',
+				body: data
+			}).then((response) => response.json())
+			.then((responseData)=> {
+				console.log(responseData.image);
+				if(responseData.image != ''){
+					this.setState({image:responseData.image})
+				}
+			}).then(()=>{
+
+			fetch('http://localhost:5000/products/'+this.state.product.id+'/', {
+				method: 'PUT',
 				headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
 				},
-				mode: 'no-cors',
-				body: data
+				body: JSON.stringify({
+					name: this.state.name,
+					description: this.state.description,
+					supplier: this.state.supplier,
+					webpage: this.state.webpage,
+					phone: this.state.phone,
+					email: this.state.email,
+					image: this.state.image,
+					address: this.state.address
+				})
+			});
 			});
 
 			this.state.file = '';
-			*/
+			
 		}
 
 		render() {
@@ -103,12 +123,12 @@ import {
 
 				<Grid id="content-container" className="show-grid">
 					<Form onSubmit={this.handleSubmit}>
-						<Row >
+						<Row>
 							<Col lg={5} md={4} sm={6} xs={12} id="left-col">
 								<div className="items-container">
 									<div className="image-container">
 										<div className="visible-xs">
-											<Image id="product-image" src={this.state.product.image}/>
+											<Image id="product-image" src={this.state.image}/>
 											<div className="text-container">
 												<h3>Produktbild</h3>
 												<p>Lägg till en bild på produkten som fångar intresse.</p>
@@ -118,7 +138,7 @@ import {
 											</div>
 										</div>
 
-									<Thumbnail src={this.state.product.image} className="hidden-xs">
+									<Thumbnail src={this.state.image} className="hidden-xs">
 										<h3>Produktbild</h3>
 										<p>Lägg till en bild på produkten som fångar intresse.</p>
 
