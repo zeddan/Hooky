@@ -1,5 +1,6 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
+import Cookies from 'js-cookie';
 
 //Components
 import GalleryImage from "../inspiration/GalleryImage.jsx";
@@ -63,6 +64,7 @@ class Detail extends React.Component {
                         name={this.state.product.name}
                         provider={this.state.product.supplier}
                         p_id={this.state.product.id}
+                        user_id={Cookies.get('user_id')}
                         src={this.state.product.image}
                         alt={this.state.product.name}/>
                   </Col>
