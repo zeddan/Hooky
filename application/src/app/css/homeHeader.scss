@@ -1,3 +1,5 @@
+@import "_screens.scss";
+
 $font-color: #eeeeee;
 
 #home-header {
@@ -15,7 +17,6 @@ $font-color: #eeeeee;
     font-size: 40px !important;
     color: $font-color !important;
   }
-  
 }
 
 .btn-link {
@@ -23,7 +24,28 @@ $font-color: #eeeeee;
   font-size: 20px !important;
 }
 
-#home-login-btn-holder {
+.modal-body {
+  display: flex;
+  flex-direction: column;
+
+  a {
+    margin: auto;
+
+    img {
+      width: 100% !important;
+    }
+
+    @include desktop {
+      img {
+        width: 50% !important;
+      }
+    }
+    @include tablet {
+      img {
+        width: 80% !important;
+      }
+    }
+  }
 }
 
 h1 {
@@ -32,7 +54,7 @@ h1 {
 }
 
 h3 {
-    text-transform: uppercase !important; 
-    font-weight: bolder;
-    font-size: 20px;
+  text-transform: uppercase !important;
+  font-weight: bolder;
+  font-size: 20px;
 }
