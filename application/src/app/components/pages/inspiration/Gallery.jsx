@@ -38,7 +38,6 @@ class Gallery extends React.Component {
         var newArr = this.state.products.sort(function(a, b) {
             var aa = new Date(a.pub_date);
             var bb = new Date(b.pub_date);
-
             if (aa !== bb) {
                 if (aa > bb) { return -1; }
                 if (aa < bb) { return 1; }
@@ -86,7 +85,7 @@ class Gallery extends React.Component {
                           name={product.name}
                           provider={product.supplier}
                           p_id={product.id}
- 			user_id={this.state.userID}
+                          user_id={this.state.userID}
                           src={product.image}
                           handleClick={(e) => this.openDetail(product, e)}
                           alt={'Image number ' + product.id}/>
