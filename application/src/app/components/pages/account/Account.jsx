@@ -7,7 +7,7 @@ class Account extends React.Component {
         super(props);
         this.state = {
             name: 'Djäkne',
-	    email: 'info@djakne.se'
+            email: 'info@djakne.se'
         };
     };
 
@@ -39,7 +39,6 @@ class Account extends React.Component {
                     </Button>
                 </div>
             </div>
-
         )
     }
 }
