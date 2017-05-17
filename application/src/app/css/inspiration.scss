@@ -54,7 +54,7 @@ body {
   button[disabled]{
     text-decoration: underline;
     opacity: 1;
-    font: bold;
+    cursor: default;
   }
 }
 
