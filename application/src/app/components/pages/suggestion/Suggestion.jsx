@@ -11,7 +11,7 @@ import {
 	//Stylesheets
 	import './sass/Tips.scss';
 
-	class Tips extends React.Component {
+	class Suggestion extends React.Component {
 
 		constructor(props) {
 			super(props);
@@ -214,4 +214,4 @@ import {
 		}
 	}
 
-	export default Tips;
+	export default Suggestion;

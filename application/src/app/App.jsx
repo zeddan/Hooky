@@ -4,6 +4,7 @@ import {render} from "react-dom";
 //Components
 import Root from "./components/root/Root.jsx";
 import EnsureLoggedInContainer from "./components/root/EnsureLoggedInContainer.jsx";
+import EnsureAdminLoggedInContainer from "./components/root/EnsureAdminLoggedInContainer.jsx";
 import Home from "./components/pages/home/Home.jsx";
 import Suggestion from './components/pages/suggestion/Suggestion.jsx';
 import AdminSuggestion from './components/pages/suggestion/AdminSuggestion.jsx';
@@ -25,6 +26,9 @@ class App extends React.Component {
                         <Route path="inspiration/detail/:productId" component={Detail}/>
                         <Route path="suggestion" component={Suggestion}/>
                         <Route path="account" component={Account}/>
+                    </Route>
+
+                    <Route component={EnsureAdminLoggedInContainer}>
                         <Route path="admin" component={SuggestionsList}/>
                         <Route path="admin/suggestion/:productId" component={AdminSuggestion}/>
                     </Route>

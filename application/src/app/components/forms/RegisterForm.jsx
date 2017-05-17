@@ -37,7 +37,6 @@ class RegisterForm extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('Email: ' + this.state.email + '\nPassword: ' + this.state.password + '\nUsername: ' + this.state.name);
         fetch('http://localhost:5000/register', {
             method: 'POST',
             mode: 'no-cors',

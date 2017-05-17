@@ -126,9 +126,11 @@ class Product(db.Model):
 
 @app.route('/like/', methods=['POST', 'DELETE'])
 def like():
+    if not current_user.is_authenticated:
+        abort(401)
     if request.method == 'POST':
         data = json.loads(request.data)
-        user_id = data['user_id']
+        user_id = current_user.__getattr__('id')
         product_id = data['product_id']
         user = User.query.filter_by(id=user_id).first()
         product = Product.query.filter_by(id=product_id).first()
@@ -147,7 +149,7 @@ def like():
         data = json.loads(request.data)
         product_id = data['product_id']
         product = Product.query.filter_by(id=product_id).first()
-        user_id = data['user_id']
+        user_id = current_user.__getattr__('id')
         user = User.query.filter_by(id=user_id).first()
         if not (user or product):
             flash('User or product could not be found')
@@ -271,7 +273,8 @@ def me():
         'name': current_user.__getattr__('name'),
         'social_id': current_user.__getattr__('social_id'),
         'id': current_user.__getattr__('id'),
-        'email': current_user.__getattr__('email')
+        'email': current_user.__getattr__('email'),
+        'admin': current_user.__getattr__('admin')
     }
     return jsonify({'user': user})
 
@@ -279,7 +282,7 @@ def me():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return jsonify({'user_id': {}})
 
 
 @app.route('/register', methods=['POST'])

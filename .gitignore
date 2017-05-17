@@ -42,3 +42,5 @@ npm-debug.log
 bower_components/
 .module-cache
 server/images
+
+.orig

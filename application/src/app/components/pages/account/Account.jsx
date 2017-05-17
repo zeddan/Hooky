@@ -7,18 +7,18 @@ class Account extends React.Component {
         super(props);
         this.state = {
             name: 'Djäkne',
-	    email: 'info@djakne.se'
+            email: 'info@djakne.se'
         };
+        this.logout = this.logout.bind(this);
     };
 
     componentDidMount() {
-        fetch('http://localhost:5000/me').then((res) => {
-            return res.json();
+        fetch('http://localhost:5000/me', {credentials: 'include'}).then((res) => {
+          return res.json();
         }).then((json) => {
-	    console.log("Me: " + JSON.stringify(json));
-	    if( json.user.email != undefined){
-            	this.setState({name: json.user.name, email: json.user.email});
-	    }
+          if (json.user.email != undefined) {
+            this.setState({name: json.user.name, email: json.user.email});
+          }
         });
     };
 
@@ -35,13 +35,20 @@ class Account extends React.Component {
                     <Button bsStyle="primary">
                         Ändra uppgifter
                     </Button>
-                    <Button bsStyle="primary">
+                    <Button onClick={() => this.logout()} bsStyle="primary">
                         Logga ut
                     </Button>
                 </div>
             </div>
-
         )
+    }
+
+    logout() {
+        fetch('http://localhost:5000/logout', {credentials: 'include'}).then((res) => {
+            return res.json();
+        }).then((json) => {
+            window.location = '/';
+        });
     }
 }
 
