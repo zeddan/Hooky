@@ -28,11 +28,33 @@ body {
 }
 
 .gallery-sorting-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  //display: flex;
+  //flex-direction: row;
+  //justify-content: space-around;
+  text-align: center;
+
   button {
     color: #333 !important;
+    opacity: 0.65;
+    //font-size: 18px !important;
+    @include mobile-l{
+      font-size: 17px !important;
+      flex-direction: row;
+      
+    }
+    @include mobile-m{
+      font-size: 17px !important;
+      flex-direction: row;
+    }
+    @include mobile-s{
+      font-size: 17px !important;
+      flex-direction: row;
+    }
+  }
+  button[disabled]{
+    text-decoration: underline;
+    opacity: 1;
+    font: bold;
   }
 }
 
