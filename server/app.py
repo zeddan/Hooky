@@ -272,7 +272,8 @@ def me():
         'name': current_user.__getattr__('name'),
         'social_id': current_user.__getattr__('social_id'),
         'id': current_user.__getattr__('id'),
-        'email': current_user.__getattr__('email')
+        'email': current_user.__getattr__('email'),
+        'admin': current_user.__getattr__('admin')
     }
     return jsonify({'user': user})
 
