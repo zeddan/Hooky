@@ -65,12 +65,12 @@ class GalleryImage extends React.Component {
     unlike(e, update) {
         fetch('http://localhost:5000/like/', {
             method: 'DELETE',
+            credentials: 'include',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user_id: 2,
                 product_id: this.props.p_id
             })
         }).then((res) => {
@@ -83,12 +83,12 @@ class GalleryImage extends React.Component {
     like(e) {
         fetch('http://localhost:5000/like/', {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user_id: 2,
                 product_id: this.props.p_id
             })
         }).then((res) => {
