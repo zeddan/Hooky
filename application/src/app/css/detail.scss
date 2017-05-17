@@ -59,6 +59,11 @@
   }
 }
 
+.col-xs-12{
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
 .mail-all{
   width: 100%;
   @include desktop{
