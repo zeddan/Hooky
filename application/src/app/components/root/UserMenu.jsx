@@ -16,15 +16,16 @@ class UserMenu extends React.Component {
       };
    }
 
-
-
-
-   logOut() {
-
-   }
-
    changeUserInfo() {
       alert("change user info");
+   }
+
+   logout() {
+      fetch('http://localhost:5000/logout', {credentials: 'include'}).then((res) => {
+           return res.json();
+      }).then((json) => {
+           window.location = '/';
+      });
    }
 
    render() {
@@ -37,7 +38,7 @@ class UserMenu extends React.Component {
                   <h4>{this.state.email}</h4>
                   <br></br>
                   <h3 className="menu-btn" onClick={() => this.changeUserInfo()}>Ändra uppgifter</h3>
-                  <h3 className="menu-btn" onClick={() => this.logOut()}>Logga ut</h3>
+                  <h3 className="menu-btn" onClick={() => this.logout()}>Logga ut</h3>
                </div>
             </Paper>
          </MuiThemeProvider>
