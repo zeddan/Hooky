@@ -24,7 +24,13 @@ class SuggestionsList extends React.Component{
           return res.json();
       }).then((json) => {
           console.log(json);
-          this.setState({products: json.products});
+	  var prods = [];
+	  for(var i = 0; i < json.products.length; i++){
+		  if(json.products[i].published != true) {
+			  prods.push(json.products[i])
+		  }
+	  }
+          this.setState({products: prods});
       });
   };
 

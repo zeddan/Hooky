@@ -42,7 +42,7 @@ class LikeList extends React.Component {
             );
         else
             return (
-                <div>
+                <div className="container">
                     <hr/>
                     <h2 className="center-text">Likes</h2>
                     <Table hover>
@@ -58,7 +58,7 @@ class LikeList extends React.Component {
                         </tbody>
                     </Table>
                     <a className="btn btn-default mail-all" href={'mailto:' + fullMailList}>
-                        Email Alla
+                        Skicka till alla
                     </a>
                 </div>
             )

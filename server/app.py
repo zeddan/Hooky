@@ -101,7 +101,8 @@ class Product(db.Model):
         lazy='joined',
         back_populates="products")
 
-    def __init__(self, user_id, name, image, description, supplier, webpage, phone, email, address, published=False, pub_date=None):
+    def __init__(self, user_id, name, image, description, supplier, webpage,
+                 phone, email, address, published, pub_date=None):
         self.user_id = user_id
         self.name = name
         self.image = image
@@ -201,11 +202,13 @@ def allowed_file(filename):
     return '.' in filename and \
             filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
+@app.route('/images/', methods=['POST'])
+def upload_file():
+    return jsonify({'image': get_image_url(request.files)}), 201
 
 @app.route('/images/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
 
 @app.route('/products/', methods=['GET', 'POST'])
 def get_post_products():
@@ -223,7 +226,7 @@ def get_post_products():
         prod = Product(1, request.form['name'], image, \
                        request.form['description'], request.form['supplier'],\
                        request.form['webpage'], request.form['phone'],\
-                       request.form['email'], request.form['address'])
+                       request.form['email'], request.form['address'], False)
         db.session.add(prod)
         db.session.commit()
         return jsonify({'product': prod.serialize()}), 201
@@ -242,19 +245,17 @@ def get_del_put_product(p_id):
         db.session.delete(Product.query.get(p_id))
         db.session.commit()
         return jsonify({'result': True})
-
     if request.method == 'PUT':
-        image = get_image_url(request.files)
         prod = Product.query.get(p_id)
-        prod.name = request.form['name']
-        prod.image = request.form['image']
-        prod.description = request.form['description']
-        prod.supplier = request.form['supplier']
-        prod.webpage = request.form['webpage']
-        prod.phone = request.form['phone']
-        prod.email = request.form['email']
-        prod.address = request.form['address']
-        prod.published = request.form['published']
+        prod.name = request.json.get('name','')
+        prod.image = request.json.get('image','')
+        prod.description = request.json.get('description','')
+        prod.supplier = request.json.get('supplier','')
+        prod.webpage = request.json.get('webpage','')
+        prod.phone = request.json.get('phone','')
+        prod.email = request.json.get('email','')
+        prod.address = request.json.get('address','')
+        prod.published = request.json.get('published')
         db.session.commit()
         return jsonify({'product': prod.serialize()})
 

@@ -25,11 +25,13 @@ import {
 				webpage: '',
 				phone: '',
 				email: '',
-				address: ''
+				address: '',
+				published: ''
 			};
 
 			this.handleChange = this.handleChange.bind(this);
 			this.handleSubmit = this.handleSubmit.bind(this);
+			this.handleCheckbox = this.handleCheckbox.bind(this);
 		}
 
     componentDidMount() {
@@ -46,7 +48,8 @@ import {
 		  webpage: json.product.webpage,
 		  phone: json.product.phone,
 		  email: json.product.email,
-		  address: json.product.address
+		  address: json.product.address,
+		  published: json.product.published
 	  });
           console.log(this.state.product);
         });
@@ -60,6 +63,12 @@ import {
 			this.setState({
 				[name]: value,
 			});
+		}
+
+		handleCheckbox() {
+			this.setState({
+				published: !this.state.published
+			})
 		}
 
 		_handleImageChange(e) {
@@ -81,6 +90,7 @@ import {
 
 		handleSubmit(event) {
 			event.preventDefault();
+			console.log(this.state.published)
 			var data = new FormData();
 			data.append('file', this.state.file);
 
@@ -109,10 +119,13 @@ import {
 					phone: this.state.phone,
 					email: this.state.email,
 					image: this.state.image,
-					address: this.state.address
+					address: this.state.address,
+					published: this.state.published
 				})
 			});
-			});
+			}).then(function(res){
+                                window.location.replace('http://localhost:8080/admin');
+                        });
 
 			this.state.file = '';
 			
@@ -239,6 +252,18 @@ import {
 											placeholder='Adress'
 											value={this.state.address}
 											onChange={this.handleChange}/>
+									</InputGroup>
+								</FormGroup>
+								
+								<FormGroup>
+									<ControlLabel>Publish</ControlLabel>
+									<InputGroup>
+										<Checkbox
+											name='published'
+											type='checkbox'
+											placeholder='publish'
+											checked={this.state.published}
+											onChange={this.handleCheckbox}>Publish</Checkbox>
 									</InputGroup>
 								</FormGroup>
 							</Col>
