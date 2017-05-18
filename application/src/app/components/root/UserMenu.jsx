@@ -1,8 +1,10 @@
 import React from 'react';
+import {browserHistory} from "react-router";
 
 import Paper from 'material-ui/Paper';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import Cookies from 'js-cookie';
 
 import '../../css/userMenu.scss';
 
@@ -25,6 +27,8 @@ class UserMenu extends React.Component {
       fetch('http://localhost:5000/logout', {credentials: 'include'}).then((res) => {
            return res.json();
       }).then((json) => {
+           Cookies.remove('name', {path: '/'});
+           Cookies.remove('user_id', {path: '/'});
            window.location = '/';
       });
    }

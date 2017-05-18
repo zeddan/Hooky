@@ -1,5 +1,12 @@
 @import "_screens";
 
+.content h2 {
+   margin-top: 15px;
+}
+
+.profile-item {
+   margin-top: 25px;
+}
 
 #account-info {
   display: flex;
@@ -23,4 +30,3 @@
     width: 80%;
   }
 }
-

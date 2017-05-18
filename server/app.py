@@ -58,7 +58,7 @@ class User(UserMixin, db.Model):
         self.social_id = social_id
         self.name = name
         self.email = email
-        self.admin = admin
+        self.admin = True #Ta bort sedan!
 
     def __repr__(self):
         return str(self.serialize())
