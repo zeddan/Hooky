@@ -56,7 +56,11 @@ class LoginForm extends React.Component {
 	    this.setState({showError: ''});
             throw new Error(response.statusText);
         }).then((json) => {
-            window.location.replace('/inspiration');
+		if(json.user.admin == true){
+			window.location.replace('/admin');
+		}else {
+            		window.location.replace('/inspiration');
+		}
         }).catch((reason) => {
             // error handling ...
        });

@@ -14,14 +14,35 @@ $font-color: #eeeeee;
   z-index: 1;
 
   h1 {
-    font-size: 40px !important;
+    font-size: 35px !important;
     color: $font-color !important;
+    font-family: 'Ranga', sans-serif !important;
+      padding-left: 30px;
   }
+}
+
+#loginbutton:hover,
+#loginbutton:focus {
+    border: solid 2px !important;
 }
 
 .btn-link {
   color: $font-color !important;
   font-size: 20px !important;
+    font-family: 'Ranga', sans-serif !important;
+    text-decoration: none !important;
+    
+}
+
+#loginbutton {
+    border: solid 1px;
+    margin-right: 30px;
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+
 }
 
 .modal-body {

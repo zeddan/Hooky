@@ -9,7 +9,7 @@ class HomeHeader extends React.Component {
     render() {
         return (
             <div id="home-header">
-                <h1>HOOKY</h1>
+                <h1 id="logga">Hooky</h1>
                 <div id="home-login-btn-holder">
                     <LoginButton/>
                 </div>
