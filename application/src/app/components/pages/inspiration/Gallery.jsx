@@ -13,6 +13,7 @@ class Gallery extends React.Component {
          displayProducts: [],
          dateBtn: true,
          likeBtn: false,
+	 myLikes: false,
          userID: -1
       };
       this.openDetail = this.openDetail.bind(this);
@@ -56,7 +57,8 @@ class Gallery extends React.Component {
       this.setState({
          displayProducts: newArr,
          dateBtn: true,
-         likeBtn: false
+         likeBtn: false,
+	 myLikes: false
       });
    };
 
@@ -67,25 +69,27 @@ class Gallery extends React.Component {
       this.setState({
          displayProducts: newArr,
          dateBtn: false,
-         likeBtn: true
+         likeBtn: true,
+	 myLikes: false
       });
    }
 
    showMyLikes() {
-      var newArr = this.state.products.filter((product) => {
-         var liked = false;
-         product.likes.map((like) => {
-            if(like.user.id == this.state.userID){
-               liked = true;
-            }
-         });
-
-         return liked;
-      });
-
-      this.setState({
-         displayProducts: newArr,
-      });
+	var newArr = this.state.products.filter((product) => {
+          var liked = false;
+          product.likes.map((like) => {
+             if(like.user.id == this.state.userID){
+                liked = true;
+              }
+	  });
+	return liked;
+	});
+	   this.setState({
+		   displayProducts: newArr,
+		   dateBtn: false,
+		   likeBtn: false,
+		   myLikes: true
+	   });
    }
 
 
@@ -96,7 +100,7 @@ class Gallery extends React.Component {
 
               <Button bsStyle="link" onClick={this.sortByDate} disabled={this.state.dateBtn}>Nya</Button>
               <Button bsStyle="link" onClick={this.sortByLikes} disabled={this.state.likeBtn}>Populära</Button>
-              <Button bsStyle="link">Mina</Button>
+              <Button bsStyle="link" onClick={this.showMyLikes} disabled={this.state.myLikes}>Mina</Button>
 
             </div>
             <div className='container-fluid gallery-container'>
