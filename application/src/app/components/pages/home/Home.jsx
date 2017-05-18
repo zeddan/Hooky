@@ -5,7 +5,7 @@ import {Button, Col} from 'react-bootstrap';
 import RegisterButton from '../../buttons/RegisterButton.jsx';
 import LinkedinBtn from '../../buttons/LinkedInButton.jsx';
 import ProductButton from '../../buttons/ProductButton.jsx';
-import Info from './Info.jsx';
+import Footer from './Footer.jsx';
 import About from './About.jsx';
 import HomeBanner from "./HomeBanner.jsx";
 import HomeHeader from './HomeHeader.jsx';
@@ -42,23 +42,16 @@ class Home extends React.Component {
                     <HomeHeader/>
                     <HomeBanner/>
                 </div>
-                <div id="home-content">	 	    
-                    <h2>Gör era företagsköp tillsammans & spara upp till 40%</h2>
+                <div id="home-content">	 
+                    <h3 id="gooddeal">En bra affär för dig och de Skånska bönderna</h3>
+                    <h4 id="local">Lokala råvaror är populära och intresset för närproducerat ökar. Hooky visar var produkterna kommer från och berättar historien bakom varje produkt. Varje vecka presenterar vi nya färska matråvaror från utvalda Skånska gårdar. Hooky köper sina varor direkt från utvalda bönder. Genom kollektiva inköp lyckas vi hålla priserna låga. Dessutom tar vi bort mellanhänder så att bönderna slipper onödiga kostnader och så att ni kan få kvalitetsvaror till bättre priser.</h4>
                     <hr/>
-                    <h3>Bli medlem gratis</h3>
+                    <h5>Registrera dig och få tillgång till färsk mat och matråvaror av hög kvalitet från hundratals småskaliga verksamheter i Skåne! </h5>
 		    
                     <LinkedinBtn/>
-
                     <RegisterButton/>
                     <hr/>
-		    
-                    <Info/>
-                    <About/>
-                    
-                    <h3>Bli medlem gratis</h3>
-		   
-                    <LinkedinBtn/>
-                    <RegisterButton/>
+		    		<Footer/>
                     
                     
 

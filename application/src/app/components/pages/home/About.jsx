@@ -8,18 +8,12 @@ class About extends React.Component {
         return (
             
             <div className="center-text">
-               <hr id="moveLine"/>             
 
-                <h2>Vi är Hooky!</h2>
+                <h2>Hooky = Win Win <br/>för dig + bönderna</h2>
                 <div id="about-us-holder">
-                    <p>Letar ni efter spännande och unika produkter att använda er av på er restaurang eller att sälja i er butik? Då har ni kommit rätt! Vi på Hooky vill inspirera till att använda närproducerat och ekologiskt, men även öppna upp era ögon för unika kvalitetsprodukter, både från svenska och utländska leverantörer.</p>
-                    
-                    <p>Vi skapar möjligheten för företag att gå samman och göra beställningar till lägsta möjliga pris utan att kompromissa på kvalitet. Vi förhandlar med våra leverantörer och tar hand om er leverans och betalning, så att ni kan spara tid och pengar.</p>
-                    
-                    <p>Kvalitet är viktigt för oss och vi är säkra att det är viktigt för er också!</p>
 
-                      
-                    
+                    <p>Hooky köper sina varor direkt från utvalda bönder. Genom kollektivt inköp tillsammans med andra lyckas vi hålla priserna låga. Dessutom tar vi bort mellanhänder så att du kan få för kvalitetsvaror till bättre priser och bönderna mer betalt för sina produkter.
+                    </p>
                 </div>
                 <hr/>
             </div>
