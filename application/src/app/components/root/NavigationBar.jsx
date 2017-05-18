@@ -99,11 +99,15 @@ class NavigationBar extends React.Component {
                      </NavItem>
                   </LinkContainer>
 
-                  <LinkContainer to={"/account"}>
-                     <NavItem id="nav-item-profile">
-                        {this.state.name}
-                     </NavItem>
-                  </LinkContainer>
+
+                  <NavItem id="nav-item-profile" onClick={() => this.toggleMenu()}>
+                     <div id="icon-profile">
+                     {this.state.name}
+
+                     <i className="material-icons icon icon-profile">arrow_drop_down</i>
+                     </div>
+                  </NavItem>
+
                </Nav>
             </Navbar>
             <div className="modal-container">
