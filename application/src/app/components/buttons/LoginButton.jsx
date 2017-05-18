@@ -29,7 +29,7 @@ class LoginButton extends React.Component {
     render() {
         return (
             <ButtonToolbar>
-                <Button bsStyle="link" onClick={this.showModal}>
+                <Button id="loginbuttonmove" bsStyle="link" onClick={this.showModal}>
                     <span id="loginbutton">Logga in</span>
                 </Button>
 

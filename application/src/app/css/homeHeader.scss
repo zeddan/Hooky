@@ -21,17 +21,15 @@ $font-color: #eeeeee;
   }
 }
 
-#loginbutton:hover,
-#loginbutton:focus {
-    border: solid 2px !important;
-}
-
 .btn-link {
   color: $font-color !important;
   font-size: 20px !important;
     font-family: 'Ranga', sans-serif !important;
     text-decoration: none !important;
-    
+}
+
+#loginbuttonmove {
+    padding-top: 15px !important;
 }
 
 #loginbutton {
@@ -42,7 +40,11 @@ $font-color: #eeeeee;
     padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
+}
 
+#loginbutton:hover,
+#loginbutton:focus {
+    border: solid 2px !important;
 }
 
 .modal-body {
