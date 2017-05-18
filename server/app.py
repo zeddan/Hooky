@@ -60,7 +60,7 @@ class User(UserMixin, db.Model):
         self.social_id = social_id
         self.name = name
         self.email = email
-        self.admin = True #Ta bort sedan!
+        self.admin = admin
 
     def __repr__(self):
         return str(self.serialize())
@@ -186,9 +186,10 @@ def get_put_user(id):
         return jsonify({'user': User.query.get(id).serialize()})
     if request.method == 'PUT':
         user = User.query.get(id)
-        user.name = request.json.get('name')
-        user.company = request.json.get('company')
-        user.delivers_to = request.json.get('delivers_to')
+        user.name = request.json.get('name', user.name)
+        user.company = request.json.get('company', user.company)
+        user.delivers_to = request.json.get('delivers_to', user.delivers_to)
+        user.admin = request.json.get('admin', user.admin)
         db.session.commit()
         return jsonify({'user':user.serialize()})
 
@@ -337,7 +338,7 @@ def login():
     user = User.query.filter_by(email=mail).first()
     if user and user.check_password(password):
         login_user(user, True)
-        return jsonify({'user_id': current_user.__getattr__('id')})
+        return jsonify({'user': user.serialize()})
     abort(401)
 
 
@@ -364,6 +365,8 @@ def oauth_callback(provider):
         db.session.add(user)
         db.session.commit()
     login_user(user, True)
+    if user.admin is True:
+        return redirect('http://localhost:8080/admin')
     return redirect('http://localhost:8080')
 
 
