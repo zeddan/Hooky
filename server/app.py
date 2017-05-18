@@ -45,6 +45,9 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(80))
     admin = db.Column(db.Boolean)
     pw_hash = db.Column(db.String(200))
+    added_products = db.relationship(
+        'Product',
+        back_populates="added_by")
     products = db.relationship(
         'Product',
         secondary=users_products,
@@ -84,6 +87,8 @@ class User(UserMixin, db.Model):
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    added_by = db.relationship('User',
+                               uselist=False,back_populates='added_products')
     user_id = db.Column(db.Integer(), db.ForeignKey('users.id'))
     name = db.Column(db.String(30))
     image = db.Column(db.String(80))
@@ -218,15 +223,21 @@ def get_post_products():
             likes = []
             [likes.append({'user':u.serialize()}) for u in p.users]
             product = p.serialize()
+            product['added_by'] = p.added_by.serialize()
             product['likes'] = likes
             products.append(product)
         return jsonify({'products': products})
     if request.method == 'POST':
+        if not current_user.is_authenticated:
+                    abort(401)
         image = get_image_url(request.files)
+        user_id = current_user.__getattr__('id')
+        user = User.query.filter_by(id=user_id).first()
         prod = Product(1, request.form['name'], image, \
                        request.form['description'], request.form['supplier'],\
                        request.form['webpage'], request.form['phone'],\
                        request.form['email'], request.form['address'], False)
+        prod.added_by = user
         db.session.add(prod)
         db.session.commit()
         return jsonify({'product': prod.serialize()}), 201
