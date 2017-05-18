@@ -72,20 +72,18 @@ class Gallery extends React.Component {
    }
 
    showMyLikes() {
-      var newArr = this.state.products.filter((product) => {
-         var liked = false;
-         product.likes.map((like) => {
-            if(like.user.id == this.state.userID){
-               liked = true;
-            }
-         });
-
-         return liked;
-      });
-
-      this.setState({
-         displayProducts: newArr,
-      });
+	var newArr = this.state.products.filter((product) => {
+          var liked = false;
+          product.likes.map((like) => {
+             if(like.user.id == this.state.userID){
+                liked = true;
+              }
+	  });
+	return liked;
+	});
+	   this.setState({
+		   displayProducts: newArr
+	   });
    }
 
 
@@ -96,7 +94,7 @@ class Gallery extends React.Component {
 
               <Button bsStyle="link" onClick={this.sortByDate} disabled={this.state.dateBtn}>Nya</Button>
               <Button bsStyle="link" onClick={this.sortByLikes} disabled={this.state.likeBtn}>Populära</Button>
-              <Button bsStyle="link">Mina</Button>
+              <Button bsStyle="link" onClick={this.showMyLikes}>Mina</Button>
 
             </div>
             <div className='container-fluid gallery-container'>
