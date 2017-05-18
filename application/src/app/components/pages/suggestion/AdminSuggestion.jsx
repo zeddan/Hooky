@@ -59,7 +59,6 @@ import {
 		  published: json.product.published,
 		  publish: (json.product.published) ? 'Avpublicera' : 'Publicera' 
 	  });
-          console.log(this.state.added_by);
         });
     }
 
@@ -194,6 +193,9 @@ import {
 										<label htmlFor="file" className="btn btn-default">Lägg till bild</label>
 									</Thumbnail>
 									</div>
+								<h3>Tipsad av:</h3>
+								<p>{this.state.added_by.name}, {this.state.added_by.company}</p>
+								<p>{this.state.added_by.email}</p>
 								</div>
 							</Col>
 

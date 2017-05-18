@@ -7,7 +7,7 @@ import '../../../css/banner.scss';
 
 import '../../../css/banner.scss';
 
-var bannerSrc = "app/components/pages/home/veggie.jpg";
+var bannerSrc = "app/components/pages/home/morot.jpg";
 
 class HomeBanner extends React.Component {
 
@@ -17,8 +17,8 @@ class HomeBanner extends React.Component {
                 <img src={bannerSrc} alt="happy-eating" id="home-banner-img"/>
                 <div className="bannerContentHolder">
                     {/*Använda & istället för och?*/}
-                    <h2>Passion för god <br/>kvalitet & bra priser</h2>
-                    <p>Tillsammans kan vi inspireras <br/> av bra produkter</p>
+                    <h2 id="headerlocal">Lokala och <br/>förstklassiga råvaror</h2>
+                    <p>Direkt från Skånska gårdar</p>
 
                 </div>
             </div>

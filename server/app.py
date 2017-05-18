@@ -259,11 +259,12 @@ def get_post_products():
 @app.route('/products/<p_id>/', methods=['GET', 'DELETE', 'PUT'])
 def get_del_put_product(p_id):
     if request.method == 'GET':
-        product = Product.query.get(p_id)
+        prod = Product.query.get(p_id)
         likes = []
-        [likes.append({'user':u.serialize()}) for u in product.users]
-        product = product.serialize()
+        [likes.append({'user':u.serialize()}) for u in prod.users]
+        product = prod.serialize()
         product['likes'] = likes
+        product['added_by'] = prod.added_by.serialize() 
         return jsonify({'product': product})
     if request.method == 'DELETE':
         db.session.delete(Product.query.get(p_id))
