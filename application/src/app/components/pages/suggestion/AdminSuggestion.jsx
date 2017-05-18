@@ -22,12 +22,14 @@ import {
 				name: '',
 				description: '',
 				supplier: '',
+				supplier_description: '',
 				webpage: '',
 				phone: '',
 				email: '',
 				address: '',
 				published: '',
-				publish:'Publicera'
+				publish:'Publicera',
+				added_by: ''
 			};
 
 			this.handleChange = this.handleChange.bind(this);
@@ -44,10 +46,12 @@ import {
         }).then((json) => {
           this.setState({
 		  product: json.product,
+		  added_by: json.product.added_by,
 		  image: json.product.image,
 		  name: json.product.name,
 		  description: json.product.description,
 		  supplier: json.product.supplier,
+		  supplier_description: json.product.supplier_description,
 		  webpage: json.product.webpage,
 		  phone: json.product.phone,
 		  email: json.product.email,
@@ -55,7 +59,6 @@ import {
 		  published: json.product.published,
 		  publish: (json.product.published) ? 'Avpublicera' : 'Publicera' 
 	  });
-          console.log(this.state.product);
         });
     }
 
@@ -136,6 +139,7 @@ import {
 					name: this.state.name,
 					description: this.state.description,
 					supplier: this.state.supplier,
+					supplier_description: this.state.supplier_description,
 					webpage: this.state.webpage,
 					phone: this.state.phone,
 					email: this.state.email,
@@ -143,10 +147,10 @@ import {
 					address: this.state.address,
 					published: this.state.published
 				})
-			});
+			})
 			}).then(function(res){
                                 window.location.assign('http://localhost:8080/admin');
-                        });
+                        }).done();
 
 			this.state.file = '';
 			});
@@ -189,6 +193,9 @@ import {
 										<label htmlFor="file" className="btn btn-default">Lägg till bild</label>
 									</Thumbnail>
 									</div>
+								<h3>Tipsad av:</h3>
+								<p>{this.state.added_by.name}, {this.state.added_by.company}</p>
+								<p>{this.state.added_by.email}</p>
 								</div>
 							</Col>
 
@@ -245,6 +252,16 @@ import {
 											onChange={this.handleChange}/>
 									</InputGroup>
 								</FormGroup>
+						
+								<FormGroup>
+                                                                        <ControlLabel>Beskrivning av leverantör</ControlLabel>
+                                                                        <FormControl
+                                                                                name='supplier_description'
+                                                                                componentClass='textarea'
+                                                                                placeholder='Beskrivning...'
+                                                                                value={this.state.supplier_description}
+                                                                                onChange={this.handleChange} />
+                                                                </FormGroup>
 
 								<FormGroup>
 									<ControlLabel>Telefonnummer</ControlLabel>

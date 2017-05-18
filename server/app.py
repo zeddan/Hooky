@@ -42,6 +42,8 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     social_id = db.Column(db.String(64), unique=True)
     name = db.Column(db.String(64))
+    company = db.Column(db.String(64))
+    delivers_to = db.Column(db.String(100))
     email = db.Column(db.String(80))
     admin = db.Column(db.Boolean)
     pw_hash = db.Column(db.String(200))
@@ -94,6 +96,7 @@ class Product(db.Model):
     image = db.Column(db.String(80))
     description = db.Column(db.String(200))
     supplier = db.Column(db.String(30))
+    supplier_description = db.Column(db.String(500))
     webpage = db.Column(db.String(80))
     phone = db.Column(db.String(40))
     email = db.Column(db.String(80))
@@ -106,12 +109,14 @@ class Product(db.Model):
         lazy='joined',
         back_populates="products")
 
-    def __init__(self, user_id, name, image, description, supplier, webpage,
+    def __init__(self, user_id, name, image, description, supplier,
+                 supplier_description, webpage,
                  phone, email, address, published, pub_date=None):
         self.user_id = user_id
         self.name = name
         self.image = image
         self.description = description
+        self.supplier_description = supplier_description
         self.supplier = supplier
         self.webpage = webpage
         self.phone = phone
@@ -175,9 +180,17 @@ def get_users():
         users.append(p.serialize())
     return jsonify({'users': users})
 
-@app.route('/users/<int:id>/')
-def get_user(id):
-    return jsonify({'user': User.query.get(id).serialize()})
+@app.route('/users/<int:id>/', methods=['GET', 'PUT'])
+def get_put_user(id):
+    if request.method == 'GET':
+        return jsonify({'user': User.query.get(id).serialize()})
+    if request.method == 'PUT':
+        user = User.query.get(id)
+        user.name = request.json.get('name')
+        user.company = request.json.get('company')
+        user.delivers_to = request.json.get('delivers_to')
+        db.session.commit()
+        return jsonify({'user':user.serialize()})
 
 def append_time(filename):
     name, ext = os.path.splitext(filename)
@@ -235,7 +248,7 @@ def get_post_products():
         user = User.query.filter_by(id=user_id).first()
         prod = Product(1, request.form['name'], image, \
                        request.form['description'], request.form['supplier'],\
-                       request.form['webpage'], request.form['phone'],\
+                       request.form['supplier_description'], request.form['webpage'], request.form['phone'],\
                        request.form['email'], request.form['address'], False)
         prod.added_by = user
         db.session.add(prod)
@@ -246,11 +259,12 @@ def get_post_products():
 @app.route('/products/<p_id>/', methods=['GET', 'DELETE', 'PUT'])
 def get_del_put_product(p_id):
     if request.method == 'GET':
-        product = Product.query.get(p_id)
+        prod = Product.query.get(p_id)
         likes = []
-        [likes.append({'user':u.serialize()}) for u in product.users]
-        product = product.serialize()
+        [likes.append({'user':u.serialize()}) for u in prod.users]
+        product = prod.serialize()
         product['likes'] = likes
+        product['added_by'] = prod.added_by.serialize() 
         return jsonify({'product': product})
     if request.method == 'DELETE':
         db.session.delete(Product.query.get(p_id))
@@ -282,6 +296,8 @@ def me():
         return jsonify({'user': {}})
     user = {
         'name': current_user.__getattr__('name'),
+        'company': current_user.__getattr__('company'),
+        'delivers_to': current_user.__getattr__('delivers_to'),
         'social_id': current_user.__getattr__('social_id'),
         'id': current_user.__getattr__('id'),
         'email': current_user.__getattr__('email'),
