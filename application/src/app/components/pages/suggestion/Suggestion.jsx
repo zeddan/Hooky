@@ -68,6 +68,7 @@ import {
 			alert('Namn: ' + this.state.name +'\nBeskrivning: ' + this.state.description);
 			fetch('http://localhost:5000/products/', {
 				method: 'POST',
+				credentials: 'include',
 				headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'

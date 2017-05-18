@@ -1,11 +1,12 @@
 import React from 'react';
 import {Link} from "react-router";
-
+import {browserHistory} from 'react-router';
 //Components
 import {
 	Grid, Col, Row,
 	Form, FormGroup, FieldGroup, FormControl, ControlLabel, InputGroup,
 	Image, Thumbnail, Checkbox, Button, Panel} from 'react-bootstrap';
+	import ProductForm from '../../forms/ProductForm.jsx';
 
 	//Stylesheets
 	import './sass/Tips.scss';
@@ -15,6 +16,8 @@ import {
 		constructor(props) {
 			super(props);
 			this.state = {
+				file: '',
+				image: '',
 				product: '',
 				name: '',
 				description: '',
@@ -22,11 +25,16 @@ import {
 				webpage: '',
 				phone: '',
 				email: '',
-				address: ''
+				address: '',
+				published: '',
+				publish:'Publicera'
 			};
 
 			this.handleChange = this.handleChange.bind(this);
 			this.handleSubmit = this.handleSubmit.bind(this);
+			this.handleCheckbox = this.handleCheckbox.bind(this);
+			this.deleteProduct = this.deleteProduct.bind(this);
+			this.publish = this.publish.bind(this);
 		}
 
     componentDidMount() {
@@ -36,13 +44,16 @@ import {
         }).then((json) => {
           this.setState({
 		  product: json.product,
+		  image: json.product.image,
 		  name: json.product.name,
 		  description: json.product.description,
 		  supplier: json.product.supplier,
 		  webpage: json.product.webpage,
 		  phone: json.product.phone,
 		  email: json.product.email,
-		  address: json.product.address
+		  address: json.product.address,
+		  published: json.product.published,
+		  publish: (json.product.published) ? 'Avpublicera' : 'Publicera' 
 	  });
           console.log(this.state.product);
         });
@@ -58,6 +69,12 @@ import {
 			});
 		}
 
+		handleCheckbox() {
+			this.setState({
+				published: !this.state.published
+			})
+		}
+
 		_handleImageChange(e) {
 			e.preventDefault();
 
@@ -68,47 +85,93 @@ import {
 
 				this.setState({
 					file: file,
-					imageURL: reader.result
+					image: reader.result
 				});
 			}
 
 			reader.readAsDataURL(file)
 		}
 
+		deleteProduct() {
+			fetch('http://localhost:5000/products/'+this.state.product.id+'/', {
+				method: 'DELETE',
+				headers: {
+					'Accept': 'application/json'
+				}
+			}).then(()=>{
+				window.location.assign('http://localhost:8080/admin');
+			});
+		}
+
+		publish(event) {
+			this.setState({published: !this.state.published})
+			this.handleSubmit(event);
+		}
+
 		handleSubmit(event) {
+			return new Promise((resolve, reject) => {
 			event.preventDefault();
-			/*
-			var data = new FormData()
+			console.log(this.state.published)
+			var data = new FormData();
 			data.append('file', this.state.file);
-			data.append('name', this.state.name);
-			data.append('description', this.state.description);
-			data.append('supplier', this.state.supplier);
-			alert('Namn: ' + this.state.name +'\nBeskrivning: ' + this.state.description);
-			fetch('http://localhost:5000/products/', {
+
+			fetch('http://localhost:5000/images/', {
 				method: 'POST',
+				body: data
+			}).then((response) => response.json())
+			.then((responseData)=> {
+				console.log(responseData.image);
+				if(responseData.image != ''){
+					this.setState({image:responseData.image})
+				}
+			}).then(()=>{
+
+			fetch('http://localhost:5000/products/'+this.state.product.id+'/', {
+				method: 'PUT',
 				headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
 				},
-				mode: 'no-cors',
-				body: data
+				body: JSON.stringify({
+					name: this.state.name,
+					description: this.state.description,
+					supplier: this.state.supplier,
+					webpage: this.state.webpage,
+					phone: this.state.phone,
+					email: this.state.email,
+					image: this.state.image,
+					address: this.state.address,
+					published: this.state.published
+				})
 			});
+			}).then(function(res){
+                                window.location.assign('http://localhost:8080/admin');
+                        });
 
 			this.state.file = '';
-			*/
+			});
+			
 		}
+
+		onClickBack() {
+    			  browserHistory.push('/admin');
+   		}
 
 		render() {
 			return (
 
 				<Grid id="content-container" className="show-grid">
 					<Form onSubmit={this.handleSubmit}>
-						<Row >
+						<Row>
 							<Col lg={5} md={4} sm={6} xs={12} id="left-col">
 								<div className="items-container">
+				<div className="back-container horizontal-container" onClick={this.onClickBack}>
+				                        <i className="material-icons icon">arrow_back</i>
+				                        <p>Alla produkter</p>
+				                   </div>
 									<div className="image-container">
 										<div className="visible-xs">
-											<Image id="product-image" src={this.state.product.image}/>
+											<Image id="product-image" src={this.state.image}/>
 											<div className="text-container">
 												<h3>Produktbild</h3>
 												<p>Lägg till en bild på produkten som fångar intresse.</p>
@@ -118,7 +181,7 @@ import {
 											</div>
 										</div>
 
-									<Thumbnail src={this.state.product.image} className="hidden-xs">
+									<Thumbnail src={this.state.image} className="hidden-xs">
 										<h3>Produktbild</h3>
 										<p>Lägg till en bild på produkten som fångar intresse.</p>
 
@@ -221,12 +284,15 @@ import {
 											onChange={this.handleChange}/>
 									</InputGroup>
 								</FormGroup>
+								
 							</Col>
 						</Row>
 						<Row>
 							<Col>
-								<Button id='submit-btn' bsStyle='danger' bsSize='large' type='submit' block>Lägg till produkt</Button>
-							</Col>
+								<Button id='submit-btn' onClick={this.publish} bsStyle='success' bsSize='large' block>{this.state.publish}</Button>
+								<Button id='submit-btn' bsStyle='info' bsSize='large' type='submit' block>Uppdatera produkt</Button>
+                                                                <Button id='submit-btn' onClick={this.deleteProduct} bsStyle='danger' bsSize='large' block>Ta bort produkt</Button>
+                                                        </Col>
 						</Row>
 					</Form>
 				</Grid>

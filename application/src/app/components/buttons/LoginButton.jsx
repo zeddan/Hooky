@@ -4,6 +4,7 @@ import React from 'react';
 import {Button, ButtonToolbar, Modal} from 'react-bootstrap';
 import LoginForm from '../forms/LoginForm.jsx';
 import LinkedInButton from '../buttons/LinkedInButton.jsx';
+import RegisterForm from '../forms/RegisterForm.jsx';
 
 class LoginButton extends React.Component {
 
@@ -45,6 +46,9 @@ class LoginButton extends React.Component {
                         <LinkedInButton/>
                         <hr/>
                         <LoginForm/>
+                        <hr/>
+                        <p id="noaccount">Har du inget konto? <br/>Registrera dig här</p>
+                        <RegisterForm/>
                     </Modal.Body>
                 </Modal>
             </ButtonToolbar>

@@ -10,10 +10,9 @@ class GalleryImage extends React.Component {
             likes: this.props.likes,
             name: this.props.name,
             provider: this.props.provider,
-		elevation: this.props.elevation,
+            elevation: this.props.elevation,
             liked: false
         };
- console.log("Gallery Image likes: " + this.state.likes);
         this.toggleLike = this.toggleLike.bind(this);
         this.like = this.like.bind(this);
         this.unlike = this.unlike.bind(this);
@@ -44,7 +43,7 @@ class GalleryImage extends React.Component {
                zDepth={this.state.elevation}
                onMouseOver={this.props.enableLift && this.onMouseOver}
                onMouseOut={this.props.enableLift && this.onMouseOut}
-		onClick={this.props.handleClick}>
+               onClick={this.props.handleClick}>
                <div className='bg'></div>
                <div className='info'>
                   <div className='name'>{this.state.name}</div>
@@ -52,17 +51,14 @@ class GalleryImage extends React.Component {
                   <div className='like-heart'
                     onClick={this.toggleLike}>
                      <div className='likes'>{this.state.likes.length}</div>
-			{ this.haveILikedThisItem() ?
+                        { this.haveILikedThisItem() ?
                             <i className="heart fa fa-heart" aria-hidden="true"></i>
                             :
                             <i className="heart fa fa-heart-o" aria-hidden="true"></i>
                         }
                   </div>
                </div>
-               <img className='gallery-thumbnail'
-                  src={this.props.src}
-                 
-                  alt={this.props.alt}/>
+               <img className='gallery-thumbnail' src={this.props.src} alt={this.props.alt}/>
             </Paper>
          </MuiThemeProvider>
       );

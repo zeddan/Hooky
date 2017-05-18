@@ -15,7 +15,8 @@ class SuggestionsList extends React.Component{
   constructor() {
     super();
     this.state = {
-      products: []
+      published: [],
+      unpublished : []
     };
   }
 
@@ -24,7 +25,19 @@ class SuggestionsList extends React.Component{
           return res.json();
       }).then((json) => {
           console.log(json);
-          this.setState({products: json.products});
+	  var unpublished = [];
+	  var published = [];
+	  for(var i = 0; i < json.products.length; i++){
+		  if(json.products[i].published != true) {
+			  unpublished.push(json.products[i])
+		  }else {
+			  published.push(json.products[i])
+		  }
+	  }
+          this.setState({
+		  published: published,
+		  unpublished: unpublished
+	  });
       });
   };
 
@@ -38,10 +51,16 @@ class SuggestionsList extends React.Component{
       <Grid>
         <Row>
           <Col>
+	    <h3>Opublicerade produkter</h3>
             <Table
-              entries={this.state.products}
+              entries={this.state.unpublished}
               handleClick={(prod) => this.onListItemClick(prod)}
               />
+	    <h3>Publicerade produkter</h3>
+	    <Table
+	      entries={this.state.published}
+	      handleClick={(prod) => this.onListItemClick(prod)}
+	      />
           </Col>
         </Row>
       </Grid>

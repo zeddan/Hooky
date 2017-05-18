@@ -45,6 +45,9 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(80))
     admin = db.Column(db.Boolean)
     pw_hash = db.Column(db.String(200))
+    added_products = db.relationship(
+        'Product',
+        back_populates="added_by")
     products = db.relationship(
         'Product',
         secondary=users_products,
@@ -84,6 +87,8 @@ class User(UserMixin, db.Model):
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    added_by = db.relationship('User',
+                               uselist=False,back_populates='added_products')
     user_id = db.Column(db.Integer(), db.ForeignKey('users.id'))
     name = db.Column(db.String(30))
     image = db.Column(db.String(80))
@@ -101,7 +106,8 @@ class Product(db.Model):
         lazy='joined',
         back_populates="products")
 
-    def __init__(self, user_id, name, image, description, supplier, webpage, phone, email, address, published=False, pub_date=None):
+    def __init__(self, user_id, name, image, description, supplier, webpage,
+                 phone, email, address, published, pub_date=None):
         self.user_id = user_id
         self.name = name
         self.image = image
@@ -201,11 +207,13 @@ def allowed_file(filename):
     return '.' in filename and \
             filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
+@app.route('/images/', methods=['POST'])
+def upload_file():
+    return jsonify({'image': get_image_url(request.files)}), 201
 
 @app.route('/images/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
 
 @app.route('/products/', methods=['GET', 'POST'])
 def get_post_products():
@@ -215,15 +223,21 @@ def get_post_products():
             likes = []
             [likes.append({'user':u.serialize()}) for u in p.users]
             product = p.serialize()
+            product['added_by'] = p.added_by.serialize()
             product['likes'] = likes
             products.append(product)
         return jsonify({'products': products})
     if request.method == 'POST':
+        if not current_user.is_authenticated:
+                    abort(401)
         image = get_image_url(request.files)
+        user_id = current_user.__getattr__('id')
+        user = User.query.filter_by(id=user_id).first()
         prod = Product(1, request.form['name'], image, \
                        request.form['description'], request.form['supplier'],\
                        request.form['webpage'], request.form['phone'],\
-                       request.form['email'], request.form['address'])
+                       request.form['email'], request.form['address'], False)
+        prod.added_by = user
         db.session.add(prod)
         db.session.commit()
         return jsonify({'product': prod.serialize()}), 201
@@ -242,19 +256,17 @@ def get_del_put_product(p_id):
         db.session.delete(Product.query.get(p_id))
         db.session.commit()
         return jsonify({'result': True})
-
     if request.method == 'PUT':
-        image = get_image_url(request.files)
         prod = Product.query.get(p_id)
-        prod.name = request.form['name']
-        prod.image = request.form['image']
-        prod.description = request.form['description']
-        prod.supplier = request.form['supplier']
-        prod.webpage = request.form['webpage']
-        prod.phone = request.form['phone']
-        prod.email = request.form['email']
-        prod.address = request.form['address']
-        prod.published = request.form['published']
+        prod.name = request.json.get('name','')
+        prod.image = request.json.get('image','')
+        prod.description = request.json.get('description','')
+        prod.supplier = request.json.get('supplier','')
+        prod.webpage = request.json.get('webpage','')
+        prod.phone = request.json.get('phone','')
+        prod.email = request.json.get('email','')
+        prod.address = request.json.get('address','')
+        prod.published = request.json.get('published')
         db.session.commit()
         return jsonify({'product': prod.serialize()})
 
@@ -272,7 +284,8 @@ def me():
         'name': current_user.__getattr__('name'),
         'social_id': current_user.__getattr__('social_id'),
         'id': current_user.__getattr__('id'),
-        'email': current_user.__getattr__('email')
+        'email': current_user.__getattr__('email'),
+        'admin': current_user.__getattr__('admin')
     }
     return jsonify({'user': user})
 
@@ -280,7 +293,7 @@ def me():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return jsonify({'user_id': {}})
 
 
 @app.route('/register', methods=['POST'])

@@ -12,7 +12,7 @@ class TableItems extends React.Component {
           <td>
             <div className="suggestion-listitem">
               <p id="title"><strong>{entry.name}</strong>, {entry.supplier}</p>
-              <p id="user">{entry.user_id}</p>
+              <p id="user">{entry.added_by.name}</p>
             </div>
           </td>
         </tr>
