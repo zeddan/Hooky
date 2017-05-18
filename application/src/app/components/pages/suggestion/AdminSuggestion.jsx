@@ -26,13 +26,15 @@ import {
 				phone: '',
 				email: '',
 				address: '',
-				published: ''
+				published: '',
+				publish:'Publicera'
 			};
 
 			this.handleChange = this.handleChange.bind(this);
 			this.handleSubmit = this.handleSubmit.bind(this);
 			this.handleCheckbox = this.handleCheckbox.bind(this);
 			this.deleteProduct = this.deleteProduct.bind(this);
+			this.publish = this.publish.bind(this);
 		}
 
     componentDidMount() {
@@ -50,7 +52,8 @@ import {
 		  phone: json.product.phone,
 		  email: json.product.email,
 		  address: json.product.address,
-		  published: json.product.published
+		  published: json.product.published,
+		  publish: (json.product.published) ? 'Avpublicera' : 'Publicera' 
 	  });
           console.log(this.state.product);
         });
@@ -98,6 +101,11 @@ import {
 			}).then(()=>{
 				window.location.assign('http://localhost:8080/admin');
 			});
+		}
+
+		publish(event) {
+			this.setState({published: !this.state.published})
+			this.handleSubmit(event);
 		}
 
 		handleSubmit(event) {
@@ -275,22 +283,12 @@ import {
 									</InputGroup>
 								</FormGroup>
 								
-								<FormGroup>
-									<ControlLabel>Publicera</ControlLabel>
-									<InputGroup>
-										<Checkbox
-											name='published'
-											type='checkbox'
-											placeholder='publish'
-											checked={this.state.published}
-											onChange={this.handleCheckbox}>Publicera</Checkbox>
-									</InputGroup>
-								</FormGroup>
 							</Col>
 						</Row>
 						<Row>
 							<Col>
-								<Button id='submit-btn' bsStyle='success' bsSize='large' type='submit' block>Uppdatera produkt</Button>
+								<Button id='submit-btn' onClick={this.publish} bsStyle='success' bsSize='large' block>{this.state.publish}</Button>
+								<Button id='submit-btn' bsStyle='info' bsSize='large' type='submit' block>Uppdatera produkt</Button>
                                                                 <Button id='submit-btn' onClick={this.deleteProduct} bsStyle='danger' bsSize='large' block>Ta bort produkt</Button>
                                                         </Col>
 						</Row>
