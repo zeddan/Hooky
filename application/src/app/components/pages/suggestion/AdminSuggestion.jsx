@@ -32,6 +32,7 @@ import {
 			this.handleChange = this.handleChange.bind(this);
 			this.handleSubmit = this.handleSubmit.bind(this);
 			this.handleCheckbox = this.handleCheckbox.bind(this);
+			this.deleteProduct = this.deleteProduct.bind(this);
 		}
 
     componentDidMount() {
@@ -86,6 +87,17 @@ import {
 			}
 
 			reader.readAsDataURL(file)
+		}
+
+		deleteProduct() {
+			fetch('http://localhost:5000/products/'+this.state.product.id+'/', {
+				method: 'DELETE',
+				headers: {
+					'Accept': 'application/json'
+				}
+			}).then(()=>{
+				window.location.assign('http://localhost:8080/admin');
+			});
 		}
 
 		handleSubmit(event) {
@@ -264,22 +276,23 @@ import {
 								</FormGroup>
 								
 								<FormGroup>
-									<ControlLabel>Publish</ControlLabel>
+									<ControlLabel>Publicera</ControlLabel>
 									<InputGroup>
 										<Checkbox
 											name='published'
 											type='checkbox'
 											placeholder='publish'
 											checked={this.state.published}
-											onChange={this.handleCheckbox}>Publish</Checkbox>
+											onChange={this.handleCheckbox}>Publicera</Checkbox>
 									</InputGroup>
 								</FormGroup>
 							</Col>
 						</Row>
 						<Row>
 							<Col>
-								<Button id='submit-btn' bsStyle='danger' bsSize='large' type='submit' block>Lägg till produkt</Button>
-							</Col>
+								<Button id='submit-btn' bsStyle='success' bsSize='large' type='submit' block>Uppdatera produkt</Button>
+                                                                <Button id='submit-btn' onClick={this.deleteProduct} bsStyle='danger' bsSize='large' block>Ta bort produkt</Button>
+                                                        </Col>
 						</Row>
 					</Form>
 				</Grid>
