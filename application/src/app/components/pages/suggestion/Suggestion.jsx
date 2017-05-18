@@ -24,6 +24,7 @@ import {
 				email: '',
 				address: '',
 				file: '',
+				supplier_description: '',
 				imageURL: 'https://itavo.nl/img/placeholder.jpg',
 			};
 
@@ -65,6 +66,7 @@ import {
 			data.append('phone', this.state.phone)
 			data.append('address', this.state.address)
 			data.append('email', this.state.email)
+			data.append('supplier_description', this.state.supplier_description)
 			alert('Namn: ' + this.state.name +'\nBeskrivning: ' + this.state.description);
 			fetch('http://localhost:5000/products/', {
 				method: 'POST',
@@ -153,6 +155,15 @@ import {
 											onChange={this.handleChange}/>
 									</InputGroup>
 								</FormGroup>
+
+								<FormGroup>
+                                                                        <ControlLabel>Beskrivning av leverantör</ControlLabel>
+                                                                        <FormControl
+                                                                                name='supplier_description'
+                                                                                componentClass='textarea'
+                                                                                placeholder='Beskrivning...'
+                                                                                onChange={this.handleChange} />
+                                                                </FormGroup>
 
 								<FormGroup>
 									<ControlLabel>Hemsida</ControlLabel>
