@@ -109,6 +109,7 @@ import {
 		}
 
 		handleSubmit(event) {
+			return new Promise((resolve, reject) => {
 			event.preventDefault();
 			console.log(this.state.published)
 			var data = new FormData();
@@ -148,6 +149,7 @@ import {
                         });
 
 			this.state.file = '';
+			});
 			
 		}
 
