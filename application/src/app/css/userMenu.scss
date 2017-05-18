@@ -1,6 +1,11 @@
 h3, h4{
    margin: 10px auto 10px auto;
 }
+
+.menu-btn {
+   cursor: pointer;  
+}
+
 #popup {
    position: fixed;
    max-height: none;
@@ -11,6 +16,7 @@ h3, h4{
    right: 0;
    width: 100%;
 }
+
 .menu-card {
    display: flex;
    flex-direction: column;

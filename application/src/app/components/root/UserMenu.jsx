@@ -7,12 +7,24 @@ import '../../css/userMenu.scss';
 
 class UserMenu extends React.Component {
 
+   constructor(props) {
+      super(props);
+
+      this.state = {
+         name: props.name,
+         email: props.email
+      };
+   }
+
+
+
+
    logOut() {
 
    }
 
    changeUserInfo() {
-
+      alert("change user info");
    }
 
    render() {
@@ -21,8 +33,8 @@ class UserMenu extends React.Component {
             <Paper id="popup">
                <div className="menu-card">
                   <h3>Profil</h3>
-                  <h4>Företaget AB</h4>
-                  <h4>oladahl.lel@gmail.com</h4>
+                  <h4>{this.state.name}</h4>
+                  <h4>{this.state.email}</h4>
                   <br></br>
                   <h3 className="menu-btn" onClick={() => this.changeUserInfo()}>Ändra uppgifter</h3>
                   <h3 className="menu-btn" onClick={() => this.logOut()}>Logga ut</h3>

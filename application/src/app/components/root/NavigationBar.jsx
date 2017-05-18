@@ -14,9 +14,21 @@ class NavigationBar extends React.Component {
    constructor() {
       super();
       this.state = {
-         isVisible: false
+         isVisible: false,
+         name: 'Djäkne',
+         email: 'info@djakne.se'
       }
    }
+
+   componentDidMount() {
+      fetch('http://localhost:5000/me', {credentials: 'include'}).then((res) => {
+         return res.json();
+      }).then((json) => {
+         if (json.user.email != undefined) {
+           this.setState({name: json.user.name, email: json.user.email});
+         }
+      });
+   };
 
    toggleMenu() {
       this.setState({
@@ -26,10 +38,11 @@ class NavigationBar extends React.Component {
 
 
 
+
    render() {
       return(
          <div>
-            {this.state.isVisible && <UserMenu />}
+            {this.state.isVisible && <UserMenu name={this.state.name} email={this.state.email}/>}
             <Navbar fixedTop={true} >
                <Nav>
                   <LinkContainer to={"/inspiration"} className="hidden-md hidden-lg">
