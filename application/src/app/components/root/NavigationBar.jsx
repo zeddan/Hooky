@@ -1,4 +1,5 @@
 import React from 'react';
+import Cookies from 'js-cookie';
 
 //Components
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
@@ -8,7 +9,26 @@ import {LinkContainer} from "react-router-bootstrap";
 import './sass/NavigationBar.scss';
 
 class NavigationBar extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: ''
+    }
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        name: Cookies.get('name')
+      });
+    }, 100);
+  }
+
   render() {
+    if (this.state.name == '') {
+      return null;
+    }
     return(
       <Navbar fixedTop={true} >
         <Nav>
@@ -46,7 +66,7 @@ class NavigationBar extends React.Component {
 
           <LinkContainer to={"/account"}>
             <NavItem id="nav-item-profile">
-              Företaget
+              {this.state.name}
             </NavItem>
           </LinkContainer>
         </Nav>
