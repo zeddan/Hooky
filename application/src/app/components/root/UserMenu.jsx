@@ -3,6 +3,7 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+
 import '../../css/userMenu.scss';
 
 class UserMenu extends React.Component {
@@ -12,12 +13,12 @@ class UserMenu extends React.Component {
 
       this.state = {
          name: props.name,
-         email: props.email
+         email: props.email,
       };
    }
 
    changeUserInfo() {
-      alert("change user info");
+
    }
 
    logout() {
@@ -30,18 +31,22 @@ class UserMenu extends React.Component {
 
    render() {
       return(
-         <MuiThemeProvider >
-            <Paper id="popup">
-               <div className="menu-card">
-                  <h3>Profil</h3>
-                  <h4>{this.state.name}</h4>
-                  <h4>{this.state.email}</h4>
-                  <br></br>
-                  <h3 className="menu-btn" onClick={() => this.changeUserInfo()}>Ändra uppgifter</h3>
-                  <h3 className="menu-btn" onClick={() => this.logout()}>Logga ut</h3>
-               </div>
-            </Paper>
-         </MuiThemeProvider>
+
+         <div >
+            <MuiThemeProvider >
+               <Paper id="popup">
+                  <div className="menu-card">
+                     <h3>Profil</h3>
+                     <h4>{this.state.name}</h4>
+                     <h4>{this.state.email}</h4>
+                     <br></br>
+                     <h3 className="menu-btn" onClick={() => this.props.onClick()}>Ändra uppgifter</h3>
+                     <h3 className="menu-btn" onClick={() => this.logout()}>Logga ut</h3>
+                  </div>
+               </Paper>
+            </MuiThemeProvider>
+
+         </div>
       )
    }
 }

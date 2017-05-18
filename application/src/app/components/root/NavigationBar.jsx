@@ -3,6 +3,7 @@ import React from 'react';
 //Components
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import {LinkContainer} from "react-router-bootstrap";
+import ChangeProfileModal from './ChangeProfileModal.jsx';
 
 import UserMenu from './UserMenu.jsx';
 
@@ -16,7 +17,8 @@ class NavigationBar extends React.Component {
       this.state = {
          isVisible: false,
          name: 'Djäkne',
-         email: 'info@djakne.se'
+         email: 'info@djakne.se',
+         showModal: false
       }
    }
 
@@ -25,7 +27,7 @@ class NavigationBar extends React.Component {
          return res.json();
       }).then((json) => {
          if (json.user.email != undefined) {
-           this.setState({name: json.user.name, email: json.user.email});
+            this.setState({name: json.user.name, email: json.user.email});
          }
       });
    };
@@ -36,13 +38,18 @@ class NavigationBar extends React.Component {
       });
    }
 
-
+   handleClick() {
+      this.setState({
+         isVisible: false,
+         showModal: true
+      });
+   }
 
 
    render() {
       return(
          <div>
-            {this.state.isVisible && <UserMenu name={this.state.name} email={this.state.email}/>}
+            {this.state.isVisible && <UserMenu name={this.state.name} email={this.state.email} onClick={() => this.handleClick()}/>}
             <Navbar fixedTop={true} >
                <Nav>
                   <LinkContainer to={"/inspiration"} className="hidden-md hidden-lg">
@@ -84,6 +91,12 @@ class NavigationBar extends React.Component {
                   </LinkContainer>
                </Nav>
             </Navbar>
+
+            {/*
+            <div className="modal-container">
+               {this.state.showModal && <ChangeProfileModal />}
+            </div>
+            */}
          </div>
       );
    }
