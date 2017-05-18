@@ -16,8 +16,12 @@
     padding-right: 20px;
 }
 
-#button-holder{
+.visible {
+   display: block;
+}
 
+.invisible {
+   display: none;
 }
 
 ul.header li {
@@ -47,13 +51,13 @@ ul.header li a {
 
 .navbar-nav > li > a {
     margin-top: -4px;
- 
+
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
     background-color: #777;
     color: #eee;
-    
+
     @include tablet {
         background-color: #777;
         color: #eee;
@@ -63,7 +67,7 @@ ul.header li a {
         font-size: 1.5em !important;
         font-weight: 900;
         color: black;
-  } 
+  }
 }
 
 
