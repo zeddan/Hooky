@@ -28,8 +28,13 @@ class NavigationBar extends React.Component {
       fetch('http://localhost:5000/me', {credentials: 'include'}).then((res) => {
          return res.json();
       }).then((json) => {
+         console.log(json.user);
          if (json.user.email != undefined) {
-            this.setState({name: json.user.name, email: json.user.email});
+            this.setState({
+               name: json.user.name,
+               email: json.user.email,
+               admin: json.user.admin
+            });
          }
       });
 
@@ -60,11 +65,24 @@ class NavigationBar extends React.Component {
       });
    }
 
+   onClickAdmin() {
+      this.setState({
+         isVisible: false
+      });
+      var path = `/admin`;
+      browserHistory.push(path);
+   }
+
 
    render() {
       return(
          <div>
-            {this.state.isVisible && <UserMenu name={this.state.name} email={this.state.email} onClick={() => this.onClickChangeProfile()}/>}
+            {this.state.isVisible && <UserMenu
+               name={this.state.name}
+               email={this.state.email}
+               admin={this.state.admin}
+               onClickAdmin={() => this.onClickAdmin()}
+               onClick={() => this.onClickChangeProfile()}/>}
             <Navbar fixedTop={true} >
                <Nav>
                   <LinkContainer to={"/inspiration"} className="hidden-md hidden-lg">
@@ -102,9 +120,8 @@ class NavigationBar extends React.Component {
 
                   <NavItem id="nav-item-profile" onClick={() => this.toggleMenu()}>
                      <div id="icon-profile">
-                     {this.state.name}
-
-                     <i className="material-icons icon icon-profile">arrow_drop_down</i>
+                        {this.state.name}
+                        <i className="material-icons icon icon-profile">arrow_drop_down</i>
                      </div>
                   </NavItem>
 
@@ -113,9 +130,9 @@ class NavigationBar extends React.Component {
             <div className="modal-container">
                {this.state.showModal && <ChangeProfileModal onExited={() => this.onExitedModal()}/>}
             </div>
-            </div>
-         );
-      }
+         </div>
+      );
    }
+}
 
-   export default NavigationBar;
+export default NavigationBar;

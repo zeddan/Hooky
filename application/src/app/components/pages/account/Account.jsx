@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Grid, Row, Col} from 'react-bootstrap';
+import {Grid, Row, Col, Form, FormGroup} from 'react-bootstrap';
 import Cookies from 'js-cookie';
 
 import '../../../css/account.scss';
@@ -31,25 +31,27 @@ class Account extends React.Component {
          <Grid>
             <Row>
                <Col xs={12}>
-                  <h2>Min Profil</h2>
-                  <div className="profile-item">
-                     <h3>Namn</h3>
-                     <h4>{this.state.name}</h4>
-                  </div>
+                  <Form>
+                     <h2>Min Profil</h2>
+                     <div className="profile-item">
+                        <h3>Namn</h3>
 
-                  <div className="profile-item">
-                     <h3>Email</h3>
-                     <h4>{this.state.email}</h4>
-                  </div>
+                        <h4>{this.state.name}</h4>
+                     </div>
 
-                  <div className="profile-item">
-                     <h3>Adress</h3>
-                     <h4>Testvägen 15 22649 Lund</h4>
-                  </div>
+                     <div className="profile-item">
+                        <h3>Email</h3>
+                        <h4>{this.state.email}</h4>
+                     </div>
 
-                  <br></br>
-                  <h3>Ändra uppgifter</h3>
+                     <div className="profile-item">
+                        <h3>Adress</h3>
+                        <h4>Testvägen 15 22649 Lund</h4>
+                     </div>
 
+                     <br></br>
+                     <h3>Ändra uppgifter</h3>
+                  </Form>
 
                </Col>
             </Row>
