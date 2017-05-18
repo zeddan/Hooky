@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router";
-
+import {browserHistory} from 'react-router';
 //Components
 import {
 	Grid, Col, Row,
@@ -124,12 +124,16 @@ import {
 				})
 			});
 			}).then(function(res){
-                                window.location.replace('http://localhost:8080/admin');
+                                window.location.assign('http://localhost:8080/admin');
                         });
 
 			this.state.file = '';
 			
 		}
+
+		onClickBack() {
+    			  browserHistory.push('/admin');
+   		}
 
 		render() {
 			return (
@@ -139,6 +143,10 @@ import {
 						<Row>
 							<Col lg={5} md={4} sm={6} xs={12} id="left-col">
 								<div className="items-container">
+				<div className="back-container horizontal-container" onClick={this.onClickBack}>
+				                        <i className="material-icons icon">arrow_back</i>
+				                        <p>Alla produkter</p>
+				                   </div>
 									<div className="image-container">
 										<div className="visible-xs">
 											<Image id="product-image" src={this.state.image}/>
