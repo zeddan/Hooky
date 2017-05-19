@@ -5,7 +5,7 @@ import {
     Grid, Col, Row,
     Form, FormGroup, FieldGroup, FormControl, ControlLabel, InputGroup,
     Image, Thumbnail, Button, Panel
-}from'react-bootstrap';
+} from 'react-bootstrap';
 import ProductForm from '../../forms/ProductForm.jsx';
 
 //Stylesheets
