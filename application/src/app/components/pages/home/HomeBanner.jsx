@@ -6,7 +6,6 @@ import React from 'react';
 import '../../../css/style.scss';
 
 var bannerSrc = "app/components/pages/home/morot.jpg";
-var bannerSrc = "app/components/pages/home/veggie.jpg";
 
 class HomeBanner extends React.Component {
 
