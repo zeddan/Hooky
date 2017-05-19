@@ -14,7 +14,7 @@ class Footer extends React.Component {
 
                 <h2>Hooky</h2>
                 <p>Made with love in Malmö</p>
-                <p>- 2017 -</p>
+                <p id="year">- 2017 -</p>
             </div>
 		);
 	};

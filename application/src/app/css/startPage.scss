@@ -154,7 +154,7 @@
     }
     p {
         font-size: 0.9rem;
-        margin: 0px;        
+        margin: 0px;   
 
         @include tablet {
             margin-left: auto;
@@ -168,6 +168,10 @@
             font-size: 15px;
             width: 60%;
         }
+    }
+    #year {
+        padding-bottom: 50px;
+
     }
 
 
