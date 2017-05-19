@@ -1,10 +1,13 @@
 import React from 'react';
+import {Router} from 'react-router';
 //Components
+import Cookies from 'js-cookie';
 import {
     Button,
     Form,
     FormGroup,
     Col,
+    Checkbox,
     ControlLabel,
     FormControl,
     HelpBlock
@@ -50,7 +53,7 @@ class LoginForm extends React.Component {
             if (response.ok) {
                 return response.json();
             }
-            this.setState({showError: ''});
+            throw new Error(response.statusText);
         }).then((json) => {
             if (json.user.admin == true) {
                 window.location.replace('/admin');
@@ -58,7 +61,7 @@ class LoginForm extends React.Component {
                 window.location.replace('/inspiration');
             }
         }).catch((reason) => {
-            throw new Error(response.statusText);
+            this.setState({showError: ''});
         });
 
         event.preventDefault();
