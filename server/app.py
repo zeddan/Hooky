@@ -45,6 +45,8 @@ class User(UserMixin, db.Model):
     company = db.Column(db.String(64))
     delivers_to = db.Column(db.String(100))
     email = db.Column(db.String(80))
+    about = db.Column(db.String(500))
+    zipcode = db.Column(db.Integer)
     admin = db.Column(db.Boolean)
     pw_hash = db.Column(db.String(200))
     added_products = db.relationship(
@@ -190,6 +192,8 @@ def get_put_user(id):
         user.company = request.json.get('company', user.company)
         user.delivers_to = request.json.get('delivers_to', user.delivers_to)
         user.admin = request.json.get('admin', user.admin)
+        user.zipcode = request.json.get('zipcode', user.zipcode)
+        user.about = request.json.get('about', user.about)
         db.session.commit()
         return jsonify({'user':user.serialize()})
 
