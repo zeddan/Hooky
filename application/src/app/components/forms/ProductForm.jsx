@@ -4,7 +4,6 @@ import {
 	Form,
 	FormGroup,
 	Col,
-	Checkbox,
 	ControlLabel,
 	FormControl
 } from 'react-bootstrap';

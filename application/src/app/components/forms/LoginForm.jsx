@@ -1,13 +1,10 @@
 import React from 'react';
-import {Router} from 'react-router';
 //Components
-import Cookies from 'js-cookie';
 import {
     Button,
     Form,
     FormGroup,
     Col,
-    Checkbox,
     ControlLabel,
     FormControl,
     HelpBlock

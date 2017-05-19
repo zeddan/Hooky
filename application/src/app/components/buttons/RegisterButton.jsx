@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Components
-import {Button,ButtonToolbar,Modal} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
 import RegisterForm from '../forms/RegisterForm.jsx';
 
 var emailSrc = "app/components/buttons/emailButton.png";

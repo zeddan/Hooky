@@ -2,7 +2,6 @@ import React from 'react';
 import GalleryImage from './GalleryImage.jsx';
 import {browserHistory} from "react-router";
 import {Button} from 'react-bootstrap';
-import * as _ from 'lodash';
 import Cookies from 'js-cookie';
 
 class Gallery extends React.Component {

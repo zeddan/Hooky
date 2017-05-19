@@ -1,9 +1,10 @@
 import React from 'react';
 
-import {Grid, Row, Col, Form, FormGroup} from 'react-bootstrap';
+import {Grid, Row, Col, Form} from 'react-bootstrap';
+import '../../../css/style.scss';
 import Cookies from 'js-cookie';
 
-import '../../../css/account.scss';
+import '../../../css/_account.scss';
 
 class Account extends React.Component {
    constructor(props) {

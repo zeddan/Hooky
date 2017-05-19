@@ -1,10 +1,9 @@
 import React from 'react';
 
 //Components
-import {Button, Col, Grid, Row} from 'react-bootstrap';
 
 //Stylesheets
-import '../../../css/info.scss';
+import '../../../css/style.scss';
 
 class Footer extends React.Component {
 

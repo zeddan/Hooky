@@ -6,10 +6,8 @@ import {
     ControlLabel,
     Form,
     Col,
-    Checkbox,
     FormControl,
     FormGroup,
-    HelpBlock
 } from 'react-bootstrap';
 
 class RegisterForm extends React.Component {

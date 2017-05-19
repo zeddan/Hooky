@@ -1,0 +1,69 @@
+@import '_screens.scss';
+
+//Main styles
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+//Move image down slightly
+@include desktop {
+  #left-col {
+    margin-top: 25px;
+  }
+}
+
+@include tablet {
+  #left-col {
+    margin-top: 25px;
+  }
+
+  #content-container {
+    padding-top: 20px;
+  }
+}
+
+.horizontal-container {
+  display: flex;
+  flex-direction: row;
+
+  p {
+    margin-top: 15px;
+  }
+}
+
+#back {
+  height: 50px;
+  width: 50px;
+}
+
+textarea.form-control {
+  height: 100px;
+}
+
+#left-col {
+  margin-top: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.items-container {
+  display: table;
+
+  label{
+    width: 100%;
+  }
+}
+
+#product-image {
+  width: 100%;
+  height: auto;
+}
+
+#submit-btn{
+  margin-bottom: 15px;
+}

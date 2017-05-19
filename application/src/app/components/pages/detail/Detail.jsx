@@ -5,11 +5,10 @@ import Cookies from 'js-cookie';
 //Components
 import GalleryImage from "../inspiration/GalleryImage.jsx";
 import LikeList from './LikeList.jsx';
-import {Grid, Row, Col, Image} from 'react-bootstrap';
+import {Grid, Row, Col} from 'react-bootstrap';
 
 //Stylesheets
-import "../../../css/inspiration.scss";
-import "../../../css/detail.scss";
+import "../../../css/style.scss";
 
 class Detail extends React.Component {
    constructor(props) {

@@ -3,7 +3,6 @@ import React from 'react';
 //Components
 import NavigationBar from './NavigationBar.jsx';
 
-import {Row, Col} from 'react-bootstrap';
 //Stylesheets
 import '../../css/style.scss';
 

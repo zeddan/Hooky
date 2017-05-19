@@ -9,14 +9,14 @@
     margin: auto;
     padding: 5px !important;
   }
-  @include desktop{
+  @include desktop {
     .btn {
       width: 50%;
       margin: auto;
       padding: 10px !important;
     }
   }
-  @include tablet{
+  @include tablet {
     .btn {
       width: 70%;
       margin: auto;
@@ -44,7 +44,6 @@
       width: 20%;
     }
   }
-
 
   h2 {
     padding-top: 10px;
@@ -92,8 +91,6 @@
       width: 60%;
     }
   }
-    
-
 }
 
 

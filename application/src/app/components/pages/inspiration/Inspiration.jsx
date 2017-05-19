@@ -1,6 +1,6 @@
 import React from 'react';
 import Gallery from './Gallery.jsx';
-import "../../../css/inspiration.scss";
+import "../../../css/style.scss";
 
 
 class Inspiration extends React.Component {
