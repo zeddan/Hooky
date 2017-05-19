@@ -6,8 +6,10 @@ import {
     ControlLabel,
     Form,
     Col,
+    Checkbox,
     FormControl,
     FormGroup,
+    HelpBlock
 } from 'react-bootstrap';
 
 class RegisterForm extends React.Component {
@@ -17,7 +19,8 @@ class RegisterForm extends React.Component {
         this.state = {
             email: '',
             password: '',
-            name: ''
+            name: '',
+            showError: 'hidden'
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -37,12 +40,29 @@ class RegisterForm extends React.Component {
     handleSubmit(event) {
         fetch('http://localhost:5000/register', {
             method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             credentials: 'include',
             body: JSON.stringify({
                 email: this.state.email,
                 password: this.state.password,
                 name: this.state.name
             })
+        }).then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error(response.statusText);
+        }).then((json) => {
+            if (json.user.admin == true) {
+                window.location.replace('/admin');
+            } else {
+                window.location.replace('/inspiration');
+            }
+        }).catch((reason) => {
+            this.setState({showError: ''});
         });
 
         event.preventDefault();

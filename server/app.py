@@ -315,6 +315,8 @@ def logout():
 
 @app.route('/register', methods=['POST'])
 def register():
+    # user = User.query.filter_by(id=1).first()
+    # return jsonify({'user': user.serialize()})
     data = json.loads(request.data)
     email = data['email']
     password = data['password']
@@ -327,7 +329,8 @@ def register():
     user.set_password(password)
     db.session.add(user)
     db.session.commit()
-    return redirect(url_for('index'))
+    login_user(user, True)
+    return jsonify({'user': user.serialize()})
 
 
 @app.route('/login', methods=['POST'])
