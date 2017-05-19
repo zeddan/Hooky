@@ -127,9 +127,10 @@ class NavigationBar extends React.Component {
                   <NavItem id="nav-item-profile" onClick={() => this.showMenu()}>
                      <div id="icon-profile">
                         {this.state.name}
-                        <i className="material-icons icon icon-profile">arrow_drop_down</i>
+                        
                      </div>
                   </NavItem>
+                        <i className="material-icons icon icon-profile">arrow_drop_down</i>
 
                     </Nav>
                 </Navbar>

@@ -9,8 +9,6 @@ import Table from './Table.jsx';
 //Stylesheets
 import '../../../css/style.scss';
 
-{/*<<<<<<< Updated upstream*/
-}
 class SuggestionsList extends React.Component {
     constructor() {
         super();
@@ -41,36 +39,18 @@ class SuggestionsList extends React.Component {
         });
     };
 
-// =======
-// class SuggestionsList extends React.Component {
-//     constructor() {
-//         super();
-//         this.state = {
-//             products: []
-//         };
-//     }
-//
-//     componentDidMount() {
-//         fetch('http://localhost:5000/products').then((res) => {
-//             return res.json();
-//         }).then((json) => {
-//             console.log(json);
-//             this.setState({products: json.products});
-//         });
-//     };
-// >>>>>>> Stashed changes
-
     onListItemClick(productId) {
         const path = `/admin/suggestion/${productId}`;
         browserHistory.push(path);
     }
 
-// <<<<<<< Updated upstream
     render() {
         return (
             <Grid>
                 <Row>
                     <Col>
+                        <h2 className="center-text">Hantera Produkter</h2>
+                        <hr/>
                         <h3>Opublicerade produkter</h3>
                         <Table
                             entries={this.state.unpublished}
@@ -87,22 +67,5 @@ class SuggestionsList extends React.Component {
         );
     }
 
-// =======
-//     render() {
-//         return (
-//             <Grid>
-//                 <Row>
-//                     <Col>
-//                         <Table
-//                             entries={this.state.products}
-//                             handleClick={(prod) => this.onListItemClick(prod)}
-//                         />
-//                     </Col>
-//                 </Row>
-//             </Grid>
-//         );
-//     }
-// >>>>>>> Stashed changes
 }
-
 export default SuggestionsList;

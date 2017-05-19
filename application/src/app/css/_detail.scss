@@ -1,10 +1,5 @@
 @import "_screens.scss";
 
-.container {
-  // padding-left: 0;
-  // padding-right: 0;
-}
-
 .back-container {
   cursor: pointer;
 }
@@ -59,18 +54,6 @@
   }
 }
 
-//<<<<<<< Updated upstream:application/src/app/css/detail.scss
-///*
-//=======
-//<<<<<<< Updated upstream:application/src/app/css/detail.scss
-//>>>>>>> Stashed changes:application/src/app/css/_detail.scss
-//.col-xs-12 {
-//  padding-right: 0 !important;
-//  padding-left: 0 !important;
-//}
-
-//*/
-
 .mail-all {
   width: 17.5%;
   float: right;
@@ -88,12 +71,6 @@
   @include mobile-s {
     width: 25%;
     margin: 5px;
-    //=======
-    //.mail-all {
-    //  width: 100%;
-    //  @include desktop {
-    //    padding: 5px;
-    //>>>>>>> Stashed changes:application/src/app/css/_detail.scss
   }
 }
 
