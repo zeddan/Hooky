@@ -49,6 +49,8 @@ class SuggestionsList extends React.Component {
             <Grid>
                 <Row>
                     <Col>
+                        <h2 className="center-text">Hantera Produkter</h2>
+                        <hr/>
                         <h3>Opublicerade produkter</h3>
                         <Table
                             entries={this.state.unpublished}
