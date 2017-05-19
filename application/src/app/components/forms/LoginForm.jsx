@@ -54,7 +54,6 @@ class LoginForm extends React.Component {
                 return response.json();
             }
             this.setState({showError: ''});
-            throw new Error(response.statusText);
         }).then((json) => {
             if (json.user.admin == true) {
                 window.location.replace('/admin');
@@ -62,7 +61,7 @@ class LoginForm extends React.Component {
                 window.location.replace('/inspiration');
             }
         }).catch((reason) => {
-            // error handling ...
+            throw new Error(response.statusText);
         });
 
         event.preventDefault();
