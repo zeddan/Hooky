@@ -25,12 +25,12 @@ class App extends React.Component {
                     <Route component={EnsureLoggedInContainer}>
                         <Route path="inspiration" component={Inspiration} ignoreScrollBehavior/>
                         <Route path="inspiration/detail/:productId" component={Detail}/>
-			<Route path="users/:userID" component={UserProfile}/>
                         <Route path="suggestion" component={Suggestion}/>
                         <Route path="account" component={Account}/>
                     </Route>
 
                     <Route component={EnsureAdminLoggedInContainer}>
+			<Route path="users/:userID" component={UserProfile}/>
                         <Route path="admin" component={SuggestionsList}/>
                         <Route path="admin/suggestion/:productId" component={AdminSuggestion}/>
                     </Route>
