@@ -1,6 +1,8 @@
 import React from 'react';
 import {browserHistory} from "react-router";
 
+import onClickOutside from 'react-onclickoutside';
+
 import Paper from 'material-ui/Paper';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -34,12 +36,16 @@ class UserMenu extends React.Component {
       });
    }
 
+   handleClickOutside = event => {
+      this.props.hide();
+   }
+
    render() {
       return(
 
          <div >
             <MuiThemeProvider >
-               <Paper id="popup">
+               <Paper id="popup" tabIndex="0" >
                   <div className="menu-card">
                      <h3>Profil</h3>
                      <h4>{this.state.name}</h4>
@@ -57,4 +63,4 @@ class UserMenu extends React.Component {
    }
 }
 
-export default UserMenu;
+export default onClickOutside(UserMenu);

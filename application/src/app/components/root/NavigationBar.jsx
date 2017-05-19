@@ -45,11 +45,7 @@ class NavigationBar extends React.Component {
       }, 100);
    };
 
-   toggleMenu() {
-      this.setState({
-         isVisible: !this.state.isVisible
-      });
-   }
+
 
    onClickChangeProfile() {
       this.setState({
@@ -73,16 +69,33 @@ class NavigationBar extends React.Component {
       browserHistory.push(path);
    }
 
+   showMenu() {
+      this.setState({
+         isVisible: true
+      });
+   }
+
+   hideMenu() {
+      this.setState({
+         isVisible: false
+      });
+   }
 
    render() {
       return(
          <div>
-            {this.state.isVisible && <UserMenu
-               name={this.state.name}
-               email={this.state.email}
-               admin={this.state.admin}
-               onClickAdmin={() => this.onClickAdmin()}
-               onClick={() => this.onClickChangeProfile()}/>}
+            {
+               this.state.isVisible
+               &&
+               <UserMenu
+                  name={this.state.name}
+                  email={this.state.email}
+                  admin={this.state.admin}
+                  onClickAdmin={() => this.onClickAdmin()}
+                  onClick={() => this.onClickChangeProfile()}
+                  hide={() => this.hideMenu()} />
+            }
+
             <Navbar fixedTop={true} >
                <Nav>
                   <LinkContainer to={"/inspiration"} className="hidden-md hidden-lg">
@@ -104,7 +117,7 @@ class NavigationBar extends React.Component {
                   </LinkContainer>
 
 
-                  <NavItem className="hidden-md hidden-lg" onClick={() => this.toggleMenu()}>
+                  <NavItem className="hidden-md hidden-lg" onClick={() => this.showMenu()}>
                      <i className="fa fa-user-circle fa-lg"/>
                   </NavItem>
 
@@ -118,7 +131,7 @@ class NavigationBar extends React.Component {
                   </LinkContainer>
 
 
-                  <NavItem id="nav-item-profile" onClick={() => this.toggleMenu()}>
+                  <NavItem id="nav-item-profile" onClick={() => this.showMenu()}>
                      <div id="icon-profile">
                         {this.state.name}
                         <i className="material-icons icon icon-profile">arrow_drop_down</i>
