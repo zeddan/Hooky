@@ -10,7 +10,8 @@ class UserProfile extends React.Component {
       super(props);
       this.state = {
          name: 'Djäkne',
-         email: 'info@djakne.se'
+         email: 'info@djakne.se',
+	 company: 'Okänt'
       };
       this.logout = this.logout.bind(this);
    };
@@ -21,7 +22,12 @@ class UserProfile extends React.Component {
       }).then((json) => {
          console.log(json.user);
          if (json.user.email != undefined) {
-            this.setState({name: json.user.name, email: json.user.email});
+            this.setState({
+		name: json.user.name, 
+		email: json.user.email, 
+		company: json.user.company,
+	    	delivers_to: json.user.delivers_to
+	    });
          }
       });
    };
@@ -32,25 +38,23 @@ class UserProfile extends React.Component {
             <Row>
                <Col xs={12}>
                   <Form>
-                     <h2>Min Profil</h2>
-                     <div className="profile-item">
-                        <h3>Namn</h3>
-
-                        <h4>{this.state.name}</h4>
-                     </div>
+                     <h2>{this.state.name}</h2>
 
                      <div className="profile-item">
                         <h3>Email</h3>
                         <h4>{this.state.email}</h4>
                      </div>
 
-                     <div className="profile-item">
-                        <h3>Adress</h3>
-                        <h4>Testvägen 15 22649 Lund</h4>
+		     <div className="profile-item">
+                        <h3>Företag</h3>
+                        <h4>{this.state.company}</h4>
                      </div>
 
-                     <br></br>
-                     <h3>Ändra uppgifter</h3>
+	      	     <div className="profile-item">
+	                <h3>Verksam i</h3>
+	                <h4>{this.state.delivers_to}</h4>
+	             </div>
+
                   </Form>
 
                </Col>
