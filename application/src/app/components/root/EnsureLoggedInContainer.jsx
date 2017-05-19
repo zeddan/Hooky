@@ -5,7 +5,7 @@ class EnsureLoggedInContainer extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { isLoggedIn: false }
+        this.state = {isLoggedIn: false}
     }
 
     componentDidMount() {
@@ -17,9 +17,14 @@ class EnsureLoggedInContainer extends React.Component {
             if (user_id === undefined) {
                 window.location = '/';
             } else {
+{/*<<<<<<< Updated upstream*/}
                 Cookies.set('name', name, { expires: 365, path: '/' });
                 Cookies.set('user_id', user_id, { expires: 365, path: '/' });
                 this.setState({ isLoggedIn: true });
+// =======
+//                 Cookies.set('user_id', user_id, {expires: 365, path: '/'});
+//                 this.setState({isLoggedIn: true});
+// >>>>>>> Stashed changes
             }
         });
     }

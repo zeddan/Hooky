@@ -1,11 +1,10 @@
 import React from 'react';
-import Cookies from 'js-cookie';
 
 class EnsureAdminLoggedInContainer extends React.Component {
-     
+
     constructor(props) {
         super(props);
-        this.state = { isAdmin: false }
+        this.state = {isAdmin: false}
     }
 
     componentDidMount() {
@@ -14,7 +13,7 @@ class EnsureAdminLoggedInContainer extends React.Component {
         }).then((json) => {
             console.log(json);
             if (json.user.admin == true) {
-                this.setState({ isAdmin: true });
+                this.setState({isAdmin: true});
             } else {
                 window.location = '/';
             }

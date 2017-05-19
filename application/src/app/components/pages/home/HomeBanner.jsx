@@ -3,11 +3,10 @@ import React from 'react';
 //Components
 
 //Stylesheets
-import '../../../css/banner.scss';
-
-import '../../../css/banner.scss';
+import '../../../css/style.scss';
 
 var bannerSrc = "app/components/pages/home/morot.jpg";
+var bannerSrc = "app/components/pages/home/veggie.jpg";
 
 class HomeBanner extends React.Component {
 

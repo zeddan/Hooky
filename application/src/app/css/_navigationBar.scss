@@ -1,0 +1,144 @@
+@import './_screens.scss';
+@import './_colors.scss';
+@import './_fonts.scss';
+
+#header {
+  margin: 0;
+  background-color: #232323;
+}
+
+#header h1 {
+  color: #FFFFFF;
+  margin: 0px;
+}
+
+#navigation {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+
+#icon-profile {
+  text-align: center;
+  display: inline-block;
+  float: none;
+  margin-top: 15px;
+}
+
+.navbar.center .navbar-inner .nav {
+  display: inline-block;
+  float: none;
+}
+
+.visible {
+  display: block;
+}
+
+.invisible {
+  display: none;
+}
+
+ul.header li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+}
+
+ul.header {
+  background-color: #232323;
+  padding: 0;
+}
+
+ul.header li a {
+  color: #FFF;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 20px;
+  display: inline-block;
+}
+
+.nav-btn {
+  width: 100px;
+  margin-left: 5px !important;
+}
+
+.navbar-nav > li > a {
+  margin-top: -4px;
+
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
+  background-color: #777;
+  color: #eee;
+
+  @include tablet {
+    background-color: #777;
+    color: #eee;
+  }
+  @include desktop {
+    background-color: #f8f8f8;
+    font-size: 1.5em !important;
+    font-weight: 900;
+    color: black;
+  }
+}
+
+.navbar-default .navbar-nav > .active > a#nav-item-home, .navbar-default .navbar-nav > .active > a#nav-item-home:focus, .navbar-default .navbar-nav > .active > a#nav-item-home:hover {
+  font-size: 2.5em !important;
+}
+
+i:focus {
+  outline: 0;
+}
+
+.navbar-nav {
+  display: table;
+  width: 100%;
+  margin: 0;
+}
+
+.navbar-nav > li {
+  float: none;
+  display: table-cell;
+  text-align: center;
+}
+
+.navbar-nav > li > a {
+  line-height: 40px;
+}
+
+.icon-noactive {
+  color: $navitem-inactive-color;
+}
+
+.icon-active, a:hover, a:focus {
+  color: $navitem-active-color;
+}
+
+@include desktop {
+  .navbar-nav {
+    width: auto;
+  }
+
+  .navbar-nav > li > a {
+    line-height: 30px;
+    padding-bottom: 5px;
+  }
+
+  #nav-item-home {
+    color: black;
+    font-size: 35px;
+
+    font-family: $ranga;
+  }
+
+  #nav-item-tip {
+    color: black;
+    font-size: 20px;
+  }
+
+  #nav-item-profile {
+    color: black;
+    font-size: 20px;
+  }
+}

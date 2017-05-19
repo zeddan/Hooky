@@ -2,7 +2,6 @@ import React from 'react';
 import {Table} from "react-bootstrap";
 
 var emailSrc = "/app/components/pages/detail/email.png";
-var emailAllSrc = "/app/components/pages/detail/email-all.png";
 
 class LikeList extends React.Component {
 

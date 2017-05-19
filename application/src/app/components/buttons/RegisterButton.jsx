@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Components
-import {Button,ButtonToolbar,Modal} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
 import RegisterForm from '../forms/RegisterForm.jsx';
 
 var emailSrc = "app/components/buttons/emailButton.png";
@@ -37,7 +37,7 @@ class RegisterButton extends React.Component {
                     dialogClassName="custom-modal"
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title-lg">Hooky - Register</Modal.Title>
+                        <Modal.Title id="contained-modal-title-lg">Registrera med email</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                        <RegisterForm/>

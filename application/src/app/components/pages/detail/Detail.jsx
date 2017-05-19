@@ -5,11 +5,10 @@ import Cookies from 'js-cookie';
 //Components
 import GalleryImage from "../inspiration/GalleryImage.jsx";
 import LikeList from './LikeList.jsx';
-import {Grid, Row, Col, Image} from 'react-bootstrap';
+import {Grid, Row, Col} from 'react-bootstrap';
 
 //Stylesheets
-import "../../../css/inspiration.scss";
-import "../../../css/detail.scss";
+import "../../../css/style.scss";
 
 class Detail extends React.Component {
    constructor(props) {
@@ -76,6 +75,8 @@ class Detail extends React.Component {
                         <h1 className="hidden-sm hidden-xs">{this.state.product.name}</h1>
                         <h3 className="hidden-sm hidden-xs">Beskrivning</h3>
                         <p>{this.state.product.description}</p>
+	      		<h3>Info om leverantören</h3>
+	      		<p>{this.state.product.supplier_description}</p>
                      </div>
                   </Col>
                   </Grid>

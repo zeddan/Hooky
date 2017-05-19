@@ -20,7 +20,7 @@ class LoginForm extends React.Component {
         this.state = {
             email: '',
             password: '',
-	    showError: 'hidden'
+            showError: 'hidden'
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -53,17 +53,16 @@ class LoginForm extends React.Component {
             if (response.ok) {
                 return response.json();
             }
-	    this.setState({showError: ''});
             throw new Error(response.statusText);
         }).then((json) => {
-		if(json.user.admin == true){
-			window.location.replace('/admin');
-		}else {
-            		window.location.replace('/inspiration');
-		}
+            if (json.user.admin == true) {
+                window.location.replace('/admin');
+            } else {
+                window.location.replace('/inspiration');
+            }
         }).catch((reason) => {
-            // error handling ...
-       });
+            this.setState({showError: ''});
+        });
 
         event.preventDefault();
     }
@@ -91,11 +90,11 @@ class LoginForm extends React.Component {
                     </Col>
                 </FormGroup>
 
-		<FormGroup controlId="formValidationWarning1" validationState="error" className={this.state.showError}>
-		<Col smOffset={2} sm={10}>
-			<HelpBlock>Wrong email or password</HelpBlock>
-		</Col>
-		</FormGroup>
+                <FormGroup controlId="formValidationWarning1" validationState="error" className={this.state.showError}>
+                    <Col smOffset={2} sm={10}>
+                        <HelpBlock>Wrong email or password</HelpBlock>
+                    </Col>
+                </FormGroup>
 
                 <FormGroup>
                     <Col smOffset={2} sm={10}>

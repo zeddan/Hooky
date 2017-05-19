@@ -1,10 +1,9 @@
 import React from 'react';
 
 //Components
-import {Button, Col, Grid, Row} from 'react-bootstrap';
 
 //Stylesheets
-import '../../../css/info.scss';
+import '../../../css/style.scss';
 
 class Footer extends React.Component {
 
@@ -14,7 +13,7 @@ class Footer extends React.Component {
 
                 <h2>Hooky</h2>
                 <p>Made with love in Malmö</p>
-                <p>- 2017 -</p>
+                <p id="year">- 2017 -</p>
             </div>
 		);
 	};

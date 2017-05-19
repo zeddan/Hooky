@@ -1,17 +1,14 @@
 import React from 'react';
 
 //Components
-import {Button, Col} from 'react-bootstrap';
 import RegisterButton from '../../buttons/RegisterButton.jsx';
 import LinkedinBtn from '../../buttons/LinkedInButton.jsx';
-import ProductButton from '../../buttons/ProductButton.jsx';
 import Footer from './Footer.jsx';
-import About from './About.jsx';
 import HomeBanner from "./HomeBanner.jsx";
 import HomeHeader from './HomeHeader.jsx';
 
 //Stylesheets
-import '../../../css/startPage.scss';
+import '../../../css/style.scss';
 
 class Home extends React.Component {
 

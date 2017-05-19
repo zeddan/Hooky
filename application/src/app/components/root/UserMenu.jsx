@@ -1,5 +1,4 @@
 import React from 'react';
-import {browserHistory} from "react-router";
 
 import onClickOutside from 'react-onclickoutside';
 
@@ -8,7 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Cookies from 'js-cookie';
 
-import '../../css/userMenu.scss';
+import '../../css/style.scss';
 
 class UserMenu extends React.Component {
 

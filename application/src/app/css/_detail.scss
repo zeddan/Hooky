@@ -59,30 +59,41 @@
   }
 }
 
-/*
-.col-xs-12{
-  padding-right: 0 !important;
-  padding-left: 0 !important;
-}
-*/
+//<<<<<<< Updated upstream:application/src/app/css/detail.scss
+///*
+//=======
+//<<<<<<< Updated upstream:application/src/app/css/detail.scss
+//>>>>>>> Stashed changes:application/src/app/css/_detail.scss
+//.col-xs-12 {
+//  padding-right: 0 !important;
+//  padding-left: 0 !important;
+//}
 
-.mail-all{
+//*/
+
+.mail-all {
   width: 17.5%;
   float: right;
-  @include desktop{
+  @include desktop {
     padding: 5px;
   }
-  @include mobile-l{
+  @include mobile-l {
     width: 25%;
     margin: 5px;
   }
-  @include mobile-m{
+  @include mobile-m {
     width: 25%;
     margin: 5px;
   }
-  @include mobile-s{
+  @include mobile-s {
     width: 25%;
     margin: 5px;
+    //=======
+    //.mail-all {
+    //  width: 100%;
+    //  @include desktop {
+    //    padding: 5px;
+    //>>>>>>> Stashed changes:application/src/app/css/_detail.scss
   }
 }
 
@@ -131,6 +142,5 @@
       flex-direction: column;
 
     }
-
   }
 }
