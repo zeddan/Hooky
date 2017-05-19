@@ -1,4 +1,4 @@
-@import "screens";
+@import "_screens.scss";
 
 .modal-body {
   display: flex;
@@ -9,6 +9,7 @@
     margin: auto;
     padding: 5px !important;
   }
+
   @include desktop {
     .btn {
       width: 50%;
