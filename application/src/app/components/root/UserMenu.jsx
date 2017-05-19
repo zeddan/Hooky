@@ -51,7 +51,7 @@ class UserMenu extends React.Component {
                      <h4>{this.state.email}</h4>
                      <br></br>
                      <h3 className="menu-btn" onClick={() => this.props.onClick()}>Ändra uppgifter</h3>
-                     {this.state.admin && <h3 className="menu-btn" onClick={() => this.props.onClickAdmin()}>Admin</h3>}
+                     {this.state.admin && <h3 className="menu-btn" onClick={() => this.props.onClickAdmin()}>Hantera Produkter</h3>}
                      <h3 className="menu-btn" onClick={() => this.logout()}>Logga ut</h3>
                   </div>
                </Paper>
