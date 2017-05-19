@@ -9,6 +9,7 @@ import Home from "./components/pages/home/Home.jsx";
 import Suggestion from './components/pages/suggestion/Suggestion.jsx';
 import AdminSuggestion from './components/pages/suggestion/AdminSuggestion.jsx';
 import Account from './components/pages/account/Account.jsx';
+import UserProfile from './components/pages/account/UserProfile.jsx';
 import Inspiration from "./components/pages/inspiration/Inspiration.jsx";
 import Detail from './components/pages/detail/Detail.jsx';
 import SuggestionsList from './components/pages/suggestion/SuggestionsList.jsx';
@@ -24,6 +25,7 @@ class App extends React.Component {
                     <Route component={EnsureLoggedInContainer}>
                         <Route path="inspiration" component={Inspiration} ignoreScrollBehavior/>
                         <Route path="inspiration/detail/:productId" component={Detail}/>
+			<Route path="users/:userID" component={UserProfile}/>
                         <Route path="suggestion" component={Suggestion}/>
                         <Route path="account" component={Account}/>
                     </Route>
