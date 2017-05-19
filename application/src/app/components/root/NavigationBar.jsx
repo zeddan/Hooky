@@ -24,14 +24,6 @@ class NavigationBar extends React.Component {
         }
     }
 
-    componentWillMount() {
-        setTimeout(() => {
-            this.setState({
-                name: Cookies.get('name')
-            });
-        }, 750);
-    }
-
     componentDidMount() {
         fetch('http://localhost:5000/me', {credentials: 'include'}).then((res) => {
             return res.json();
