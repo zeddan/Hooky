@@ -34,7 +34,7 @@ class AdminSuggestion extends React.Component {
             publish: 'Publicera',
             added_by: ''
         };
-
+	this.gotoUser = this.gotoUser.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCheckbox = this.handleCheckbox.bind(this);
@@ -164,6 +164,11 @@ class AdminSuggestion extends React.Component {
         browserHistory.push('/admin');
     }
 
+    gotoUser(user){
+	    const path = `/users/${user}`;
+	    browserHistory.push(path);
+    }
+
     render() {
         return (
 
@@ -199,7 +204,7 @@ class AdminSuggestion extends React.Component {
                                     </Thumbnail>
                                 </div>
                                 <h3>Tipsad av:</h3>
-                                <p>{this.state.added_by.name}, {this.state.added_by.company}</p>
+				<p>{this.state.added_by.name}</p>
                                 <p>{this.state.added_by.email}</p>
                             </div>
                         </Col>

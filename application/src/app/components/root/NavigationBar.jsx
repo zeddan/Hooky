@@ -40,12 +40,6 @@ class NavigationBar extends React.Component {
 
     };
 
-    toggleMenu() {
-        this.setState({
-            isVisible: !this.state.isVisible
-        });
-    }
-
     onClickChangeProfile() {
         this.setState({
             isVisible: false
@@ -60,31 +54,48 @@ class NavigationBar extends React.Component {
         });
     }
 
-    onClickAdmin() {
-        this.setState({
-            isVisible: false
-        });
-        var path = `/admin`;
-        browserHistory.push(path);
-    }
+   onClickAdmin() {
+      this.setState({
+         isVisible: false
+      });
+      var path = `/admin`;
+      browserHistory.push(path);
+   }
 
+   showMenu() {
+      this.setState({
+         isVisible: true
+      });
+   }
 
-    render() {
-        return (
-            <div>
-                {this.state.isVisible && <UserMenu
-                    name={this.state.name}
-                    email={this.state.email}
-                    admin={this.state.admin}
-                    onClickAdmin={() => this.onClickAdmin()}
-                    onClick={() => this.onClickChangeProfile()}/>}
-                <Navbar fixedTop={true}>
-                    <Nav>
-                        <LinkContainer to={"/inspiration"} className="hidden-md hidden-lg">
-                            <NavItem>
-                                <i className="fa fa-home fa-lg"/>
-                            </NavItem>
-                        </LinkContainer>
+   hideMenu() {
+      this.setState({
+         isVisible: false
+      });
+   }
+
+   render() {
+      return(
+         <div>
+            {
+               this.state.isVisible
+               &&
+               <UserMenu
+                  name={this.state.name}
+                  email={this.state.email}
+                  admin={this.state.admin}
+                  onClickAdmin={() => this.onClickAdmin()}
+                  onClick={() => this.onClickChangeProfile()}
+                  hide={() => this.hideMenu()} />
+            }
+
+            <Navbar fixedTop={true} >
+               <Nav>
+                  <LinkContainer to={"/inspiration"} className="hidden-md hidden-lg">
+                     <NavItem>
+                        <i className="fa fa-home fa-lg"/>
+                     </NavItem>
+                  </LinkContainer>
 
                         <LinkContainer to={"/inspiration"} className="hidden-sm hidden-xs">
                             <NavItem id="nav-item-home">
@@ -99,9 +110,9 @@ class NavigationBar extends React.Component {
                         </LinkContainer>
 
 
-                        <NavItem className="hidden-md hidden-lg" onClick={() => this.toggleMenu()}>
-                            <i className="fa fa-user-circle fa-lg"/>
-                        </NavItem>
+                  <NavItem className="hidden-md hidden-lg" onClick={() => this.showMenu()}>
+                     <i className="fa fa-user-circle fa-lg"/>
+                  </NavItem>
 
 
                     </Nav>
@@ -113,12 +124,12 @@ class NavigationBar extends React.Component {
                         </LinkContainer>
 
 
-                        <NavItem id="nav-item-profile" onClick={() => this.toggleMenu()}>
-                            <div id="icon-profile">
-                                {this.state.name}
-                                <i className="material-icons icon icon-profile">arrow_drop_down</i>
-                            </div>
-                        </NavItem>
+                  <NavItem id="nav-item-profile" onClick={() => this.showMenu()}>
+                     <div id="icon-profile">
+                        {this.state.name}
+                        <i className="material-icons icon icon-profile">arrow_drop_down</i>
+                     </div>
+                  </NavItem>
 
                     </Nav>
                 </Navbar>

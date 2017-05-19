@@ -9,6 +9,7 @@ import Home from "./components/pages/home/Home.jsx";
 import Suggestion from './components/pages/suggestion/Suggestion.jsx';
 import AdminSuggestion from './components/pages/suggestion/AdminSuggestion.jsx';
 import Account from './components/pages/account/Account.jsx';
+import UserProfile from './components/pages/account/UserProfile.jsx';
 import Inspiration from "./components/pages/inspiration/Inspiration.jsx";
 import Detail from './components/pages/detail/Detail.jsx';
 import SuggestionsList from './components/pages/suggestion/SuggestionsList.jsx';
@@ -29,6 +30,7 @@ class App extends React.Component {
                     </Route>
 
                     <Route component={EnsureAdminLoggedInContainer}>
+			<Route path="users/:userID" component={UserProfile}/>
                         <Route path="admin" component={SuggestionsList}/>
                         <Route path="admin/suggestion/:productId" component={AdminSuggestion}/>
                     </Route>
