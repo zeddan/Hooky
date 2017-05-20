@@ -1,0 +1,24 @@
+.popup {
+    .modal-body {
+        text-align: center;
+        padding: 3em 1em 1em;
+    }
+
+    .modal-footer {
+        border-top: none;
+
+        .btn-default {
+            border: none;
+
+            &:hover, &:active {
+                background-color: none;
+                border: none;
+                box-shadow: none;
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+            }
+
+        }
+
+    }
+}
