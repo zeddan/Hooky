@@ -25,6 +25,12 @@
   margin-top: 15px;
 }
 
+.navbar > .container {
+   width: 100%;
+   padding-left: 0;
+   padding-right: 0;
+}
+
 .navbar.center .navbar-inner .nav {
   display: inline-block;
   float: none;
@@ -123,6 +129,12 @@ i:focus {
   .navbar-nav > li > a {
     line-height: 30px;
     padding-bottom: 5px;
+  }
+
+  .navbar > .container {
+     width: 100%;
+     padding-left: 0;
+     padding-right: 20px;
   }
 
   #nav-item-home {

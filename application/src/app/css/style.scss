@@ -7,7 +7,6 @@
 @import "_banner.scss";
 @import "_detail.scss";
 @import "_homeHeader.scss";
-@import "_info.scss";
 @import "_inspiration.scss";
 @import "_navigationBar.scss";
 @import "_startPage.scss";
@@ -41,6 +40,9 @@ h1, h2, h3, h4, h5, p, ul, li {
   text-align: center;
 }
 
+.hr-medium{
+  width: 20%;
+}
 :focus {
   outline: none !important;
 }

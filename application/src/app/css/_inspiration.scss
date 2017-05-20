@@ -30,20 +30,24 @@ body {
 
 .gallery-sorting-container {
   text-align: center;
-
+    font-family: $roboto;
+    
   button {
     color: $dark-grey !important;
-    opacity: 0.65;
-    font-size: $font-size;
+    opacity: 0.3;
     flex-direction: row;
+    text-transform: uppercase;
+      font-size: 0.7rem;
   }
 
   button[disabled] {
-    text-decoration: underline !important;
+    text-decoration: none!important;
     opacity: 1;
     cursor: default;
   }
 }
+
+
 
 .row {
   margin: 0;

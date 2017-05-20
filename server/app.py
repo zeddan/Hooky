@@ -46,7 +46,7 @@ class User(UserMixin, db.Model):
     delivers_to = db.Column(db.String(100))
     email = db.Column(db.String(80))
     about = db.Column(db.String(500))
-    zipcode = db.Column(db.Integer)
+    zipcode = db.Column(db.String(10))
     admin = db.Column(db.Boolean)
     pw_hash = db.Column(db.String(200))
     added_products = db.relationship(
@@ -306,7 +306,8 @@ def me():
         'social_id': current_user.__getattr__('social_id'),
         'id': current_user.__getattr__('id'),
         'email': current_user.__getattr__('email'),
-        'admin': current_user.__getattr__('admin')
+        'admin': current_user.__getattr__('admin'),
+        'zipcode': current_user.__getattr__('zipcode')
     }
     return jsonify({'user': user})
 
