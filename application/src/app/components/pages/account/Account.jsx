@@ -171,7 +171,7 @@ class Account extends React.Component {
                               onChange={this.handleChange}/>
                         </InputGroup>
                      </FormGroup>
-                     <Button id='submit-btn' bsStyle='default' bsSize='large' type='submit' block>Ändra uppgifter</Button>
+                     <Button id='submit-btn' bsStyle='success' bsSize='large' type='submit' block>Ändra uppgifter</Button>
                   </Form>
                </Col>
             </Row>
