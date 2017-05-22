@@ -25,9 +25,9 @@ class Account extends React.Component {
    };
 
    handleChange(event) {
-        this.setState({
-            [event.target.name]: event.target.value,
-        });
+      this.setState({
+         [event.target.name]: event.target.value,
+      });
    }
 
    handleSubmit(event) {
@@ -68,10 +68,9 @@ class Account extends React.Component {
 		    id: json.user.id,
 		    linkedin: (json.user.social_id == null) ? true : false
 	    });
-		 console.log(json.user.social_id);
-         }
-      });
-   };
+	 }
+	 });
+   }
 
    render() {
       return (
@@ -108,52 +107,52 @@ class Account extends React.Component {
                                </InputGroup>}
                   </FormGroup> 	
 
-		  <FormGroup>
-                                <ControlLabel>Om mig</ControlLabel>
-                                <FormControl
-                                    name='about'
-                                    componentClass='textarea'
-                                    value={this.state.about}
-                                    onChange={this.handleChange}/>
-                  </FormGroup>
+                     <FormGroup>
+                        <ControlLabel>Om mig</ControlLabel>
+                        <FormControl
+                           name='about'
+                           componentClass='textarea'
+                           value={this.state.about}
+                           onChange={this.handleChange}/>
+                     </FormGroup>
 
-		  <FormGroup>
-                                <ControlLabel>Företag</ControlLabel>
-                                <InputGroup>
-                                <InputGroup.Addon><i className='fa fa-info-circle'/></InputGroup.Addon>
-                                    <FormControl
-                                        name='company'
-                                        type='text'
-                                        value={this.state.company}
-                                        onChange={this.handleChange}/>
-                                </InputGroup>
-                   </FormGroup>
+                     <FormGroup>
+                        <ControlLabel>Företag</ControlLabel>
+                        <InputGroup>
+                           <InputGroup.Addon><i className='fa fa-info-circle'/></InputGroup.Addon>
+                           <FormControl
+                              name='company'
+                              type='text'
+                              value={this.state.company}
+                              onChange={this.handleChange}/>
+                        </InputGroup>
+                     </FormGroup>
 
-	          <FormGroup>
-	                        <ControlLabel>Verksam i</ControlLabel>
-	                        <InputGroup>
-	                        <InputGroup.Addon><i className='fa fa-info-circle'/></InputGroup.Addon>
-	                            <FormControl
-	                                name='delivers_to'
-	                                type='text'
-	                                value={this.state.delivers_to}
-	                                onChange={this.handleChange}/>
-	                        </InputGroup>
-	           </FormGroup>
+                     <FormGroup>
+                        <ControlLabel>Verksam i</ControlLabel>
+                        <InputGroup>
+                           <InputGroup.Addon><i className='fa fa-info-circle'/></InputGroup.Addon>
+                           <FormControl
+                              name='delivers_to'
+                              type='text'
+                              value={this.state.delivers_to}
+                              onChange={this.handleChange}/>
+                        </InputGroup>
+                     </FormGroup>
 
-		   <FormGroup>
-                                <ControlLabel>Zipcode</ControlLabel>
-                                <InputGroup>
-                                <InputGroup.Addon><i className='fa fa-info-circle'/></InputGroup.Addon>
-                                    <FormControl
-                                        name='zipcode'
-                                        type='text'
-                                        value={this.state.zipcode}
-                                        onChange={this.handleChange}/>
-                                </InputGroup>
-                   </FormGroup>
-		   <Button id='submit-btn' bsStyle='default' bsSize='large' type='submit' block>Ändra uppgifter</Button>
-	      	   </Form>
+                     <FormGroup>
+                        <ControlLabel>Zipcode</ControlLabel>
+                        <InputGroup>
+                           <InputGroup.Addon><i className='fa fa-info-circle'/></InputGroup.Addon>
+                           <FormControl
+                              name='zipcode'
+                              type='text'
+                              value={this.state.zipcode}
+                              onChange={this.handleChange}/>
+                        </InputGroup>
+                     </FormGroup>
+                     <Button id='submit-btn' bsStyle='default' bsSize='large' type='submit' block>Ändra uppgifter</Button>
+                  </Form>
                </Col>
             </Row>
          </Grid>

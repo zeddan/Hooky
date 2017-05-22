@@ -12,6 +12,7 @@
 @import "_startPage.scss";
 @import "_suggestions.scss";
 @import "_suggestionsList.scss";
+@import "_popup.scss";
 @import "_userMenu.scss";
 @import "_tips.scss";
 
@@ -39,6 +40,9 @@ h1, h2, h3, h4, h5, p, ul, li {
   text-align: center;
 }
 
+.hr-medium{
+  width: 20%;
+}
 :focus {
   outline: none !important;
 }

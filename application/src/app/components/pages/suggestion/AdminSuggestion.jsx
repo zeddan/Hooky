@@ -9,6 +9,7 @@ import {
     Image, Thumbnail, Checkbox, Button, Panel
 } from 'react-bootstrap';
 import ProductForm from '../../forms/ProductForm.jsx';
+import Popup from '../../Popup.jsx';
 
 //Stylesheets
 import '../../../css/_tips.scss';
@@ -31,7 +32,8 @@ class AdminSuggestion extends React.Component {
             address: '',
             published: '',
             publish: 'Publicera',
-            added_by: ''
+added_by: '',
+            popupMessage: ''
         };
 	this.gotoUser = this.gotoUser.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -39,6 +41,7 @@ class AdminSuggestion extends React.Component {
         this.handleCheckbox = this.handleCheckbox.bind(this);
         this.deleteProduct = this.deleteProduct.bind(this);
         this.publish = this.publish.bind(this);
+        this.openPopup = this.openPopup.bind(this);
     }
 
     componentDidMount() {
@@ -97,23 +100,40 @@ class AdminSuggestion extends React.Component {
         reader.readAsDataURL(file)
     }
 
+    openPopup(message) {
+        this.setState({
+            showPopup: true,
+            popupMessage: message
+        });
+    }
+
+    closePopup() {
+        this.setState({showPopup: false});
+        setTimeout(() => {
+            window.location.assign('http://localhost:8080/admin');
+        }, 500);
+    }
+
     deleteProduct() {
+        const openPopup = this.openPopup;
         fetch('http://localhost:5000/products/' + this.state.product.id + '/', {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json'
             }
         }).then(() => {
-            window.location.assign('http://localhost:8080/admin');
+            openPopup("Produkten är nu borttagen");
         });
     }
 
     publish(event) {
+        const newStatus = this.state.published ? "avpublicerad" : "publicerad";
         this.setState({published: !this.state.published})
-        this.handleSubmit(event);
+        this.handleSubmit(event, newStatus);
     }
 
-    handleSubmit(event) {
+    handleSubmit(event, publishedStatus) {
+        const openPopup = this.openPopup;
         return new Promise((resolve, reject) => {
             event.preventDefault();
             console.log(this.state.published)
@@ -151,7 +171,11 @@ class AdminSuggestion extends React.Component {
                     })
                 })
             }).then(function (res) {
-                window.location.assign('http://localhost:8080/admin');
+                if (publishedStatus) {
+                  openPopup("Produkten är nu " + publishedStatus);
+                } else {
+                  openPopup("Produkten är uppdaterad");
+                }
             }).done();
 
             this.state.file = '';
@@ -171,160 +195,168 @@ class AdminSuggestion extends React.Component {
     render() {
         return (
 
-            <Grid id="content-container" className="show-grid">
-                <Form onSubmit={this.handleSubmit}>
-                    <Row>
-                        <Col lg={5} md={4} sm={6} xs={12} id="left-col">
-                            <div className="items-container">
-                                <div className="back-container horizontal-container" onClick={this.onClickBack}>
-                                    <i className="material-icons icon">arrow_back</i>
-                                    <p>Alla produkter</p>
-                                </div>
-                                <div className="image-container">
-                                    <div className="visible-xs">
-                                        <Image id="product-image" src={this.state.image}/>
-                                        <div className="text-container">
+            <div>
+                <Popup show={this.state.showPopup} 
+                      close={e => this.closePopup(e)}
+                      message={this.state.popupMessage}
+                      />
+
+                <Grid id="content-container" className="show-grid">
+                    <Form onSubmit={e => this.handleSubmit(e, null)}>
+                        <Row>
+                            <Col lg={5} md={4} sm={6} xs={12} id="left-col">
+                                <div className="items-container">
+                                    <div className="back-container horizontal-container" onClick={this.onClickBack}>
+                                        <i className="material-icons icon">arrow_back</i>
+                                        <p>Alla produkter</p>
+                                    </div>
+                                    <div className="image-container">
+                                        <div className="visible-xs">
+                                            <Image id="product-image" src={this.state.image}/>
+                                            <div className="text-container">
+                                                <h3>Produktbild</h3>
+                                                <p>Lägg till en bild på produkten som fångar intresse.</p>
+
+                                                <input type="file" name="file" id="file" className="inputfile"
+                                                      onChange={(e) => this._handleImageChange(e)}/>
+                                                <label htmlFor="file" className="btn btn-default">Lägg till bild</label>
+                                            </div>
+                                        </div>
+
+                                        <Thumbnail src={this.state.image} className="hidden-xs">
                                             <h3>Produktbild</h3>
                                             <p>Lägg till en bild på produkten som fångar intresse.</p>
 
                                             <input type="file" name="file" id="file" className="inputfile"
-                                                   onChange={(e) => this._handleImageChange(e)}/>
+                                                  onChange={(e) => this._handleImageChange(e)}/>
                                             <label htmlFor="file" className="btn btn-default">Lägg till bild</label>
-                                        </div>
+                                        </Thumbnail>
                                     </div>
-
-                                    <Thumbnail src={this.state.image} className="hidden-xs">
-                                        <h3>Produktbild</h3>
-                                        <p>Lägg till en bild på produkten som fångar intresse.</p>
-
-                                        <input type="file" name="file" id="file" className="inputfile"
-                                               onChange={(e) => this._handleImageChange(e)}/>
-                                        <label htmlFor="file" className="btn btn-default">Lägg till bild</label>
-                                    </Thumbnail>
+                                    <h3>Tipsad av:</h3>
+            <p>{this.state.added_by.name}</p>
+                                    <p>{this.state.added_by.email}</p>
                                 </div>
-                                <h3>Tipsad av:</h3>
-				<p>{this.state.added_by.name}</p>
-                                <p>{this.state.added_by.email}</p>
-                            </div>
-                        </Col>
+                            </Col>
 
-                        <Col lg={7} md={7} sm={6} xs={12} id="right-col">
-                            <h3>Produkt</h3>
+                            <Col lg={7} md={7} sm={6} xs={12} id="right-col">
+                                <h3>Produkt</h3>
 
-                            <FormGroup>
-                                <ControlLabel>Namn på produkt</ControlLabel>
-                                <InputGroup>
-                                    <InputGroup.Addon><i className='fa fa-info-circle'/></InputGroup.Addon>
+                                <FormGroup>
+                                    <ControlLabel>Namn på produkt</ControlLabel>
+                                    <InputGroup>
+                                        <InputGroup.Addon><i className='fa fa-info-circle'/></InputGroup.Addon>
+                                        <FormControl
+                                            name='name'
+                                            type='text'
+                                            placeholder='Produktnamn'
+                                            value={this.state.name}
+                                            onChange={this.handleChange}/>
+                                    </InputGroup>
+                                </FormGroup>
+
+                                <FormGroup>
+                                    <ControlLabel>Beskrivning av produkt</ControlLabel>
                                     <FormControl
-                                        name='name'
-                                        type='text'
-                                        placeholder='Produktnamn'
-                                        value={this.state.name}
+                                        name='description'
+                                        componentClass='textarea'
+                                        placeholder='Beskrivning...'
+                                        value={this.state.description}
                                         onChange={this.handleChange}/>
-                                </InputGroup>
-                            </FormGroup>
+                                </FormGroup>
 
-                            <FormGroup>
-                                <ControlLabel>Beskrivning av produkt</ControlLabel>
-                                <FormControl
-                                    name='description'
-                                    componentClass='textarea'
-                                    placeholder='Beskrivning...'
-                                    value={this.state.description}
-                                    onChange={this.handleChange}/>
-                            </FormGroup>
+                                <h3>Leverantör</h3>
 
-                            <h3>Leverantör</h3>
+                                <FormGroup>
+                                    <ControlLabel>Namn</ControlLabel>
+                                    <InputGroup>
+                                        <InputGroup.Addon><i className='fa fa-truck'/></InputGroup.Addon>
+                                        <FormControl
+                                            name='supplier'
+                                            type='text'
+                                            placeholder='Leverantörens namn'
+                                            value={this.state.supplier}
+                                            onChange={this.handleChange}/>
+                                    </InputGroup>
+                                </FormGroup>
 
-                            <FormGroup>
-                                <ControlLabel>Namn</ControlLabel>
-                                <InputGroup>
-                                    <InputGroup.Addon><i className='fa fa-truck'/></InputGroup.Addon>
+                                <FormGroup>
+                                    <ControlLabel>Hemsida</ControlLabel>
+                                    <InputGroup>
+                                        <InputGroup.Addon><i className='fa fa-globe'/></InputGroup.Addon>
+                                        <FormControl
+                                            name='webpage'
+                                            type='text'
+                                            placeholder='Hemsida'
+                                            value={this.state.webpage}
+                                            onChange={this.handleChange}/>
+                                    </InputGroup>
+                                </FormGroup>
+
+                                <FormGroup>
+                                    <ControlLabel>Beskrivning av leverantör</ControlLabel>
                                     <FormControl
-                                        name='supplier'
-                                        type='text'
-                                        placeholder='Leverantörens namn'
-                                        value={this.state.supplier}
+                                        name='supplier_description'
+                                        componentClass='textarea'
+                                        placeholder='Beskrivning...'
+                                        value={this.state.supplier_description}
                                         onChange={this.handleChange}/>
-                                </InputGroup>
-                            </FormGroup>
+                                </FormGroup>
 
-                            <FormGroup>
-                                <ControlLabel>Hemsida</ControlLabel>
-                                <InputGroup>
-                                    <InputGroup.Addon><i className='fa fa-globe'/></InputGroup.Addon>
-                                    <FormControl
-                                        name='webpage'
-                                        type='text'
-                                        placeholder='Hemsida'
-                                        value={this.state.webpage}
-                                        onChange={this.handleChange}/>
-                                </InputGroup>
-                            </FormGroup>
+                                <FormGroup>
+                                    <ControlLabel>Telefonnummer</ControlLabel>
+                                    <InputGroup>
+                                        <InputGroup.Addon><i className='fa fa-phone'/></InputGroup.Addon>
+                                        <FormControl
+                                            name='phone'
+                                            type='text'
+                                            placeholder='Nummer'
+                                            value={this.state.phone}
+                                            onChange={this.handleChange}/>
+                                    </InputGroup>
+                                </FormGroup>
 
-                            <FormGroup>
-                                <ControlLabel>Beskrivning av leverantör</ControlLabel>
-                                <FormControl
-                                    name='supplier_description'
-                                    componentClass='textarea'
-                                    placeholder='Beskrivning...'
-                                    value={this.state.supplier_description}
-                                    onChange={this.handleChange}/>
-                            </FormGroup>
+                                <FormGroup>
+                                    <ControlLabel>Email</ControlLabel>
+                                    <InputGroup>
+                                        <InputGroup.Addon><i className='fa fa-envelope'/></InputGroup.Addon>
+                                        <FormControl
+                                            name='email'
+                                            type='text'
+                                            placeholder='Email'
+                                            value={this.state.email}
+                                            onChange={this.handleChange}/>
+                                    </InputGroup>
+                                </FormGroup>
 
-                            <FormGroup>
-                                <ControlLabel>Telefonnummer</ControlLabel>
-                                <InputGroup>
-                                    <InputGroup.Addon><i className='fa fa-phone'/></InputGroup.Addon>
-                                    <FormControl
-                                        name='phone'
-                                        type='text'
-                                        placeholder='Nummer'
-                                        value={this.state.phone}
-                                        onChange={this.handleChange}/>
-                                </InputGroup>
-                            </FormGroup>
+                                <FormGroup>
+                                    <ControlLabel>Adress</ControlLabel>
+                                    <InputGroup>
+                                        <InputGroup.Addon><i className='fa fa-address-card'/></InputGroup.Addon>
+                                        <FormControl
+                                            name='address'
+                                            type='text'
+                                            placeholder='Adress'
+                                            value={this.state.address}
+                                            onChange={this.handleChange}/>
+                                    </InputGroup>
+                                </FormGroup>
 
-                            <FormGroup>
-                                <ControlLabel>Email</ControlLabel>
-                                <InputGroup>
-                                    <InputGroup.Addon><i className='fa fa-envelope'/></InputGroup.Addon>
-                                    <FormControl
-                                        name='email'
-                                        type='text'
-                                        placeholder='Email'
-                                        value={this.state.email}
-                                        onChange={this.handleChange}/>
-                                </InputGroup>
-                            </FormGroup>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Button id='submit-btn' onClick={this.publish} bsStyle='success' bsSize='large'
+                                        block>{this.state.publish}</Button>
+                                <Button id='submit-btn' bsStyle='info' bsSize='large' type='submit' block>Uppdatera
+                                    produkt</Button>
+                                <Button id='submit-btn' onClick={this.deleteProduct} bsStyle='danger' bsSize='large' block>Ta
+                                    bort produkt</Button>
+                            </Col>
+                        </Row>
+                    </Form>
+                </Grid>
 
-                            <FormGroup>
-                                <ControlLabel>Adress</ControlLabel>
-                                <InputGroup>
-                                    <InputGroup.Addon><i className='fa fa-address-card'/></InputGroup.Addon>
-                                    <FormControl
-                                        name='address'
-                                        type='text'
-                                        placeholder='Adress'
-                                        value={this.state.address}
-                                        onChange={this.handleChange}/>
-                                </InputGroup>
-                            </FormGroup>
-
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Button id='submit-btn' onClick={this.publish} bsStyle='success' bsSize='large'
-                                    block>{this.state.publish}</Button>
-                            <Button id='submit-btn' bsStyle='info' bsSize='large' type='submit' block>Uppdatera
-                                produkt</Button>
-                            <Button id='submit-btn' onClick={this.deleteProduct} bsStyle='danger' bsSize='large' block>Ta
-                                bort produkt</Button>
-                        </Col>
-                    </Row>
-                </Form>
-            </Grid>
+            </div>
         );
     }
 }
