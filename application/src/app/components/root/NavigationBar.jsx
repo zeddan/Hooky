@@ -23,6 +23,8 @@ class NavigationBar extends React.Component {
          email: 'info@djakne.se',
          showModal: false
       }
+
+      this.test = this.test.bind(this);
    }
 
    componentDidMount() {
@@ -62,17 +64,27 @@ class NavigationBar extends React.Component {
    }
 
    showMenu() {
+      if(this.state.profileClicked != true) {
+         this.setState({
+            profileClicked: true,
+            isVisible: true
+         });
+      }
+   }
+
+   test() {
       this.setState({
-         profileClicked: true,
-         isVisible: true
+         profileClicked: false
       });
    }
 
    hideMenu() {
       this.setState({
-         profileClicked: false,
-         isVisible: false
+         isVisible: false,
       });
+
+      setTimeout(this.test, 500);
+
    }
 
    render() {
