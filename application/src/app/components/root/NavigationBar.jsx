@@ -13,18 +13,14 @@ import UserMenu from './UserMenu.jsx';
 import '../../css/style.scss';
 
 class NavigationBar extends React.Component {
-
    constructor() {
       super();
       this.state = {
-         isVisible: false,
+         menuVisible: false,
          profileClicked: false,
-         name: 'Djäkne',
-         email: 'info@djakne.se',
-         showModal: false
+         name: '',
+         email: '',
       }
-
-      this.test = this.test.bind(this);
    }
 
    componentDidMount() {
@@ -43,21 +39,15 @@ class NavigationBar extends React.Component {
 
    onClickChangeProfile() {
       this.setState({
-         isVisible: false
+         menuVisible: false
       });
       const path = `/account`;
       browserHistory.push(path);
    }
 
-   onExitedModal() {
-      this.setState({
-         showModal: false
-      });
-   }
-
    onClickAdmin() {
       this.setState({
-         isVisible: false
+         menuVisible: false
       });
       var path = `/admin`;
       browserHistory.push(path);
@@ -67,12 +57,12 @@ class NavigationBar extends React.Component {
       if(this.state.profileClicked != true) {
          this.setState({
             profileClicked: true,
-            isVisible: true
+            menuVisible: true
          });
       }
    }
 
-   test() {
+   resetProfileClicked() {
       this.setState({
          profileClicked: false
       });
@@ -80,18 +70,17 @@ class NavigationBar extends React.Component {
 
    hideMenu() {
       this.setState({
-         isVisible: false,
+         menuVisible: false,
       });
 
-      setTimeout(this.test, 500);
-
+      setTimeout(() => this.resetProfileClicked(), 500);
    }
 
    render() {
       return(
          <div>
             {
-               this.state.isVisible
+               this.state.menuVisible
                &&
                <UserMenu
                   name={this.state.name}
@@ -101,8 +90,7 @@ class NavigationBar extends React.Component {
                   onClick={() => this.onClickChangeProfile()}
                   hide={() => this.hideMenu()} />
             }
-
-            <Navbar fixedTop={true} >
+            <Navbar fixedTop={true}>
                <Nav>
                   <LinkContainer to={"/inspiration"} className="hidden-md hidden-lg">
                      <NavItem onClick={() => localStorage.setItem('scroll', 0)}>
@@ -135,7 +123,6 @@ class NavigationBar extends React.Component {
                      </NavItem>
                   </LinkContainer>
 
-
                   <NavItem id="nav-item-profile" onClick={() => this.showMenu()} >
                      <div id="icon-profile">
                         {this.state.name}
@@ -143,15 +130,10 @@ class NavigationBar extends React.Component {
 
                      <i id="arrow-icon" className="material-icons icon icon-profile">arrow_drop_down</i>
                   </NavItem>
-
                </Nav>
             </Navbar>
-            <div className="modal-container">
-               {this.state.showModal && <ChangeProfileModal onExited={() => this.onExitedModal()}/>}
-            </div>
          </div>
       );
    }
-
 }
 export default NavigationBar;
