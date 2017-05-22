@@ -50,6 +50,7 @@ class NavigationBar extends React.Component {
       this.setState({
          menuVisible: false
       });
+      this.resetProfileClicked();
       var path = `/admin`;
       browserHistory.push(path);
    }
