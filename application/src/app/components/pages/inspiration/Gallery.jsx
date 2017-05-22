@@ -13,7 +13,7 @@ class Gallery extends React.Component {
          displayProducts: [],
          dateBtn: true,
          likeBtn: false,
-	 myLikes: false,
+         myLikes: false,
          userID: -1
       };
       this.openDetail = this.openDetail.bind(this);
@@ -32,21 +32,21 @@ class Gallery extends React.Component {
       fetch('http://localhost:5000/products/').then((res) => {
          return res.json();
       }).then((json) => {
-	 var arr = [];
-	 for (var i = 0; i < json.products.length; i++) {
-		 if(json.products[i].published == true){
-		 	arr.push(json.products[i]);
-		 }
-	 }
+         var arr = [];
+         for (var i = 0; i < json.products.length; i++) {
+            if(json.products[i].published == true){
+               arr.push(json.products[i]);
+            }
+         }
          this.setState({products: arr});
-	 if (localStorage.getItem('sort') == 'likes'){
-		 this.sortByLikes();
-	 } else if (localStorage.getItem('sort') == 'myLikes'){
-         	this.showMyLikes();
-	 } else {
-		 this.sortByDate();
-	 }
-	      window.scrollTo(0,localStorage.getItem('scroll'));
+         if (localStorage.getItem('sort') == 'likes'){
+            this.sortByLikes();
+         } else if (localStorage.getItem('sort') == 'myLikes'){
+            this.showMyLikes();
+         } else {
+            this.sortByDate();
+         }
+         window.scrollTo(0,localStorage.getItem('scroll'));
       });
    };
 
@@ -65,11 +65,33 @@ class Gallery extends React.Component {
          displayProducts: newArr,
          dateBtn: true,
          likeBtn: false,
-	 myLikes: false,
-	 sort: 'date'
+         myLikes: false,
+         sort: 'date'
       });
-	localStorage.setItem('sort', 'date');
+      localStorage.setItem('sort', 'date');
    };
+
+   updateProducts() {
+      fetch('http://localhost:5000/products/').then((res) => {
+         return res.json();
+      }).then((json) => {
+         var arr = [];
+         for (var i = 0; i < json.products.length; i++) {
+            if(json.products[i].published == true){
+               arr.push(json.products[i]);
+            }
+         }
+         this.setState({products: arr});
+         if (localStorage.getItem('sort') == 'likes'){
+            this.sortByLikes();
+         } else if (localStorage.getItem('sort') == 'myLikes'){
+            this.showMyLikes();
+         } else {
+            this.sortByDate();
+         }
+         
+      });
+   }
 
    sortByLikes() {
       var newArr = this.state.products.sort(function(a, b){
@@ -79,29 +101,29 @@ class Gallery extends React.Component {
          displayProducts: newArr,
          dateBtn: false,
          likeBtn: true,
-	 myLikes: false,
-	 sort: 'likes'
+         myLikes: false,
+         sort: 'likes'
       });
-	   localStorage.setItem('sort', 'likes');
+      localStorage.setItem('sort', 'likes');
    }
 
    showMyLikes() {
-	var newArr = this.state.products.filter((product) => {
-          var liked = false;
-          product.likes.map((like) => {
-             if(like.user.id == this.state.userID){
-                liked = true;
-              }
-	  });
-	return liked;
-	});
-	   this.setState({
-		   displayProducts: newArr,
-		   dateBtn: false,
-		   likeBtn: false,
-		   myLikes: true
-	   });
-	   localStorage.setItem('sort', 'myLikes');
+      var newArr = this.state.products.filter((product) => {
+         var liked = false;
+         product.likes.map((like) => {
+            if(like.user.id == this.state.userID){
+               liked = true;
+            }
+         });
+         return liked;
+      });
+      this.setState({
+         displayProducts: newArr,
+         dateBtn: false,
+         likeBtn: false,
+         myLikes: true
+      });
+      localStorage.setItem('sort', 'myLikes');
    }
 
 
@@ -110,9 +132,9 @@ class Gallery extends React.Component {
          <div>
             <div className="gallery-sorting-container">
 
-              <Button bsStyle="link" onClick={this.sortByDate} disabled={this.state.dateBtn}>Nya</Button>
-              <Button bsStyle="link" onClick={this.sortByLikes} disabled={this.state.likeBtn}>Populära</Button>
-              <Button bsStyle="link" onClick={this.showMyLikes} disabled={this.state.myLikes}>Mina</Button>
+               <Button bsStyle="link" onClick={this.sortByDate} disabled={this.state.dateBtn}>Nya</Button>
+               <Button bsStyle="link" onClick={this.sortByLikes} disabled={this.state.likeBtn}>Populära</Button>
+               <Button bsStyle="link" onClick={this.showMyLikes} disabled={this.state.myLikes}>Mina</Button>
 
             </div>
             <div className='container-fluid gallery-container'>
@@ -131,6 +153,7 @@ class Gallery extends React.Component {
                                  p_id={product.id}
                                  user_id={this.state.userID}
                                  src={product.image}
+                                 updateProducts={() => this.updateProducts()}
                                  handleClick={(e) => this.openDetail(product, e)}
                                  alt={'Image number ' + product.id}/>
                            </div>
@@ -144,7 +167,7 @@ class Gallery extends React.Component {
    };
 
    openDetail(product, e) {
-	localStorage.setItem('scroll', document.body.scrollTop);
+      localStorage.setItem('scroll', document.body.scrollTop);
       const path = `/inspiration/detail/${product.id}`;
       browserHistory.push(path);
    };
