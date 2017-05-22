@@ -111,7 +111,8 @@ class NavigationBar extends React.Component {
                   </LinkContainer>
 
 
-                  <NavItem onClick={() => this.showMenu()} className={(this.state.profileClicked) ? 'hidden-md hidden-lg active' : 'hidden-md hidden-lg'}>
+                  <NavItem onClick={() => this.showMenu()}
+                     className={(this.state.profileClicked) ? 'hidden-md hidden-lg active' : 'hidden-md hidden-lg'}>
                      <i className="fa fa-user-circle fa-lg"/>
                   </NavItem>
                </Nav>
