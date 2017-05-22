@@ -89,7 +89,6 @@ class Gallery extends React.Component {
          } else {
             this.sortByDate();
          }
-         
       });
    }
 

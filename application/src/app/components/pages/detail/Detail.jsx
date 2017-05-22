@@ -48,6 +48,24 @@ class Detail extends React.Component {
         browserHistory.push('/admin/suggestion/' + this.state.product.id);
     }
 
+    updateProducts() {
+      fetch('http://localhost:5000/products/' + this.props.routeParams.productId).then((res) => {
+          return res.json();
+      }).then((json) => {
+          this.setState({product: json.product});
+      });
+      fetch('http://localhost:5000/me', {credentials: 'include'}).then((res) => {
+          return res.json();
+      }).then((json) => {
+          console.log(json.user);
+          if (json.user.email != undefined) {
+             this.setState({
+                  admin: json.user.admin
+             });
+          }
+      });
+   }
+
     render() {
         if (this.state.product.likes === undefined) {
             return null;
@@ -79,6 +97,7 @@ class Detail extends React.Component {
                                           enableLift={false}
                                           isDetail={true}
                                           name={this.state.product.name}
+                                          updateProducts={() => this.updateProducts()}
                                           provider={this.state.product.supplier}
                                           p_id={this.state.product.id}
                                           user_id={Cookies.get('user_id')}
