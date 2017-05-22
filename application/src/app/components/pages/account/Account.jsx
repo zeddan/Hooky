@@ -3,6 +3,7 @@ import React from 'react';
 import {Grid, Row, Col, Form, FormGroup, ControlLabel, InputGroup, FormControl, Button} from 'react-bootstrap';
 import '../../../css/style.scss';
 import Cookies from 'js-cookie';
+import Popup from '../../Popup.jsx';
 
 import '../../../css/_account.scss';
 
@@ -10,18 +11,20 @@ class Account extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
-         name: 'Djäkne',
+         name: '',
          email: 'info@djakne.se',
-	 about: 'Beskrivning...',
+	 about: '',
 	 zipcode: '12345',
 	 company: 'Ditt företag',
 	 delivers_to:'Vilket område är du verksam i',
 	 id: '',
-	 linkedin: true
+	 linkedin: true,
+	 showPopup: false
       };
       this.logout = this.logout.bind(this);
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.openPopup = this.openPopup.bind(this);
    };
 
    handleChange(event) {
@@ -48,8 +51,16 @@ class Account extends React.Component {
                         delivers_to: this.state.delivers_to,
                     })
                 }).then((response) => {
-			alert("Uppgifter ändrade");
+			this.openPopup();
 		});
+    }
+
+   openPopup() {
+        this.setState({showPopup: true});
+    }
+
+    closePopup() {
+        this.setState({showPopup: false});
     }
 
    componentDidMount() {
@@ -61,10 +72,10 @@ class Account extends React.Component {
             this.setState({
 		    name: json.user.name,
 		    email: json.user.email,
-		    about: json.user.about,
-		    zipcode: json.user.zipcode,
-		    company: json.user.company,
-		    delivers_to: json.user.delivers_to,
+		    about: (json.user.about != null) ? json.user.about : '',
+		    zipcode: (json.user.zipcode != null) ? json.user.zipcode : '',
+		    company: (json.user.company != null) ? json.user.company : '',
+		    delivers_to: (json.user.delivers_to != null) ? json.user.delivers_to : '',
 		    id: json.user.id,
 		    linkedin: (json.user.social_id == null) ? true : false
 	    });
@@ -74,6 +85,11 @@ class Account extends React.Component {
 
    render() {
       return (
+	<div>
+              <Popup show={this.state.showPopup}
+                     close={e => this.closePopup(e)}
+                     message="Uppgifterna ändrade"
+                     />
          <Grid>
             <Row>
                <Col xs={12}>
@@ -112,6 +128,7 @@ class Account extends React.Component {
                         <FormControl
                            name='about'
                            componentClass='textarea'
+	      		   placeholder='Beskrivning...'
                            value={this.state.about}
                            onChange={this.handleChange}/>
                      </FormGroup>
@@ -123,6 +140,7 @@ class Account extends React.Component {
                            <FormControl
                               name='company'
                               type='text'
+	      		      placeholder='Ditt företag'
                               value={this.state.company}
                               onChange={this.handleChange}/>
                         </InputGroup>
@@ -135,18 +153,20 @@ class Account extends React.Component {
                            <FormControl
                               name='delivers_to'
                               type='text'
+	      		      placeholder='Var ditt företag är verksamt'
                               value={this.state.delivers_to}
                               onChange={this.handleChange}/>
                         </InputGroup>
                      </FormGroup>
 
                      <FormGroup>
-                        <ControlLabel>Zipcode</ControlLabel>
+                        <ControlLabel>Postnummer</ControlLabel>
                         <InputGroup>
                            <InputGroup.Addon><i className='fa fa-info-circle'/></InputGroup.Addon>
                            <FormControl
                               name='zipcode'
                               type='text'
+	      		      placeholder='12345'
                               value={this.state.zipcode}
                               onChange={this.handleChange}/>
                         </InputGroup>
@@ -156,6 +176,7 @@ class Account extends React.Component {
                </Col>
             </Row>
          </Grid>
+	</div>
       )
    }
 
