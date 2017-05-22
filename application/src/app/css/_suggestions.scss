@@ -1,4 +1,5 @@
 @import '_screens.scss';
+@import '_fonts.scss';
 
 //Main styles
 .inputfile {
@@ -66,4 +67,18 @@ textarea.form-control {
 
 #submit-btn{
   margin-bottom: 15px;
+}
+
+.row {
+    font-family: $roboto;
+    
+    label {
+        font-weight: 100;
+        font-size: 0.9rem;
+    }
+    
+    p {
+        font-weight: 100;
+        font-size: 0.9rem;
+    }
 }
