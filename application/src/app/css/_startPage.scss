@@ -147,44 +147,7 @@
     @include tablet {
       font-size: 25px;
     }
-    p {
-      font-size: 0.9rem;
-      margin: 0px;
 
-      @include tablet {
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 15px;
-        width: 80%;
-      }
-      @include desktop {
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 15px;
-        width: 60%;
-      }
-    }
-    #year {
-      padding-bottom: 50px;
-
-    }
-
-    p {
-      font-size: 15px;
-
-      @include tablet {
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 15px;
-        width: 80%;
-      }
-      @include desktop {
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 15px;
-        width: 60%;
-      }
-    }
   }
     hr {
     width: 5%;
@@ -192,5 +155,31 @@
     border-top-color: $light-grey;
   }
 
+}
+
+#number {
+    p {
+      font-size: 0.7rem;
+      margin: 0px;
+
+      @include tablet {
+        margin-left: auto;
+        margin-right: auto;
+      font-size: 1rem;
+        width: 80%;
+      }
+      @include desktop {
+        margin-left: auto;
+        margin-right: auto;
+      font-size: 1rem;
+        width: 60%;
+      }
+    }
+      
+    #year {
+      margin-bottom: 50px !important;
+        font-weight: normal;
+    }
+    
 }
 
