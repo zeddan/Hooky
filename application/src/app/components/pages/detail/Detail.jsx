@@ -86,7 +86,6 @@ class Detail extends React.Component {
                                           alt={this.state.product.name}/>
                         </Col>
 
-
                         <Col md={7} xs={12}>
                             <div className="detail-info-description">
                                 <h3 className="hidden-lg hidden-md">Beskrivning</h3>
