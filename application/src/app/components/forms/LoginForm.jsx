@@ -92,7 +92,7 @@ class LoginForm extends React.Component {
 
                 <FormGroup controlId="formValidationWarning1" validationState="error" className={this.state.showError}>
                     <Col smOffset={2} sm={10}>
-                        <HelpBlock>Wrong email or password</HelpBlock>
+                        <HelpBlock>Fel email eller lösenord</HelpBlock>
                     </Col>
                 </FormGroup>
 
