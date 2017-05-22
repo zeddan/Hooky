@@ -73,12 +73,12 @@
     width: 50%;
     padding: 5px;
   }
+
 }
 
 .detail-container {
 
   .detail-info-description {
-    padding: 0 5px 0 5px;
   }
 
   .small-email-btn {
@@ -111,7 +111,6 @@
   @include desktop {
     display: flex;
     flex-direction: column;
-    padding: 10px;
 
     .detail-info-container {
       display: flex;
@@ -120,7 +119,6 @@
     .detail-info-description {
       display: flex;
       flex-direction: column;
-      padding: 10px;
       width: 100%;
     }
 

@@ -57,7 +57,7 @@ class LikeList extends React.Component {
                         </tbody>
                     </Table>
                     <a className="btn btn-default mail-all" href={'mailto:' + fullMailList}>
-                        Maila alla som gillat produkten
+                        Maila alla som har gillat produkten
                     </a>
                 </div>
             )
