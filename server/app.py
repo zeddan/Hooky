@@ -281,6 +281,7 @@ def get_del_put_product(p_id):
         prod.image = request.json.get('image','')
         prod.description = request.json.get('description','')
         prod.supplier = request.json.get('supplier','')
+        prod.supplier_description = request.json.get('supplier_description','')
         prod.webpage = request.json.get('webpage','')
         prod.phone = request.json.get('phone','')
         prod.email = request.json.get('email','')
