@@ -18,6 +18,7 @@ class NavigationBar extends React.Component {
       super();
       this.state = {
          isVisible: false,
+         profileClicked: false,
          name: 'Djäkne',
          email: 'info@djakne.se',
          showModal: false
@@ -28,7 +29,6 @@ class NavigationBar extends React.Component {
       fetch('http://localhost:5000/me', {credentials: 'include'}).then((res) => {
          return res.json();
       }).then((json) => {
-         console.log(json.user);
          if (json.user.email != undefined) {
             this.setState({
                name: json.user.name,
@@ -37,7 +37,6 @@ class NavigationBar extends React.Component {
             });
          }
       });
-
    };
 
    onClickChangeProfile() {
@@ -64,12 +63,14 @@ class NavigationBar extends React.Component {
 
    showMenu() {
       this.setState({
+         profileClicked: true,
          isVisible: true
       });
    }
 
    hideMenu() {
       this.setState({
+         profileClicked: false,
          isVisible: false
       });
    }
@@ -110,11 +111,9 @@ class NavigationBar extends React.Component {
                   </LinkContainer>
 
 
-                  <NavItem className="hidden-md hidden-lg" onClick={() => this.showMenu()}>
+                  <NavItem onClick={() => this.showMenu()} className={(this.state.profileClicked) ? 'hidden-md hidden-lg active' : 'hidden-md hidden-lg'}>
                      <i className="fa fa-user-circle fa-lg"/>
                   </NavItem>
-
-
                </Nav>
                <Nav className="hidden-sm hidden-xs" pullRight>
                   <LinkContainer to={"/suggestion"}>
@@ -124,13 +123,13 @@ class NavigationBar extends React.Component {
                   </LinkContainer>
 
 
-                  <NavItem id="nav-item-profile" onClick={() => this.showMenu()}>
+                  <NavItem id="nav-item-profile" onClick={() => this.showMenu()} >
                      <div id="icon-profile">
                         {this.state.name}
-
                      </div>
+
+                     <i id="arrow-icon" className="material-icons icon icon-profile">arrow_drop_down</i>
                   </NavItem>
-                  <i className="material-icons icon icon-profile">arrow_drop_down</i>
 
                </Nav>
             </Navbar>

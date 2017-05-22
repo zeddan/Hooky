@@ -238,7 +238,7 @@ class Suggestion extends React.Component {
                           </Row>
                           <Row>
                               <Col>
-                                  <Button id='submit-btn' bsStyle='default' bsSize='large' type='submit' block>Lägg till
+                                  <Button id='submit-btn' bsStyle='success' bsSize='large' type='submit' block>Lägg till
                                       produkt</Button>
                               </Col>
                           </Row>
