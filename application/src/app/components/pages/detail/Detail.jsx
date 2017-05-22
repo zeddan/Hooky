@@ -18,6 +18,8 @@ class Detail extends React.Component {
             product: '',
             admin: ''
         };
+
+        this.onClickEdit = this.onClickEdit.bind(this);
     }
 
     componentDidMount() {
@@ -26,20 +28,24 @@ class Detail extends React.Component {
         }).then((json) => {
             this.setState({product: json.product});
         });
-            fetch('http://localhost:5000/me', {credentials: 'include'}).then((res) => {
-                return res.json();
-            }).then((json) => {
-                console.log(json.user);
-                if (json.user.email != undefined) {
-                    this.setState({
-                        admin: json.user.admin
-                    });
-                }
-            });
+        fetch('http://localhost:5000/me', {credentials: 'include'}).then((res) => {
+            return res.json();
+        }).then((json) => {
+            console.log(json.user);
+            if (json.user.email != undefined) {
+                this.setState({
+                    admin: json.user.admin
+                });
+            }
+        });
     }
 
     onClickBack() {
         browserHistory.push('/inspiration');
+    }
+
+    onClickEdit() {
+        browserHistory.push('/admin/suggestion/' + this.state.product.id);
     }
 
     render() {
@@ -57,6 +63,10 @@ class Detail extends React.Component {
                                 <p>Alla produkter</p>
                             </div>
 
+                            {this.state.admin &&
+                            <div className="edit-btn horizontal-container" onClick={this.onClickEdit}>
+                                <i className="material-icons">edit</i>
+                            </div>}
                         </div>
                     </Col>
                 </Row>
@@ -111,7 +121,7 @@ class Detail extends React.Component {
                         </Col>
                     </Grid>
                 </Row>
-                {this.state.admin &&<LikeList likes={this.state.product.likes}/>}
+                {this.state.admin && <LikeList likes={this.state.product.likes}/>}
             </div>
         );
     };
