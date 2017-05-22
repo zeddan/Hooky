@@ -41,8 +41,8 @@ class LikeList extends React.Component {
             );
         else
             return (
-                <div className="container">
-                    <hr/>
+                <div className="likes-container">
+                    <hr className="hr-large"/>
                     <h2 className="center-text">Likes</h2>
                     <Table hover>
                         <thead>

@@ -53,24 +53,25 @@
     margin-top: 50px;
   }
 }
+.likes-container{
+  display: flex;
+  flex-direction: column;
+  margin:auto;
+
+  @include tablet{
+    padding:5px;
+  }
+  @include desktop{
+    width: 80%;
+  }
+}
 
 .mail-all {
-  width: 17.5%;
-  float: right;
+  width: 100%;
+  margin:auto;
   @include desktop {
+    width: 50%;
     padding: 5px;
-  }
-  @include mobile-l {
-    width: 25%;
-    margin: 5px;
-  }
-  @include mobile-m {
-    width: 25%;
-    margin: 5px;
-  }
-  @include mobile-s {
-    width: 25%;
-    margin: 5px;
   }
 }
 
@@ -86,6 +87,15 @@
   .like-table-row {
     td {
       vertical-align: middle !important;
+      p{
+        font-size: .8rem;
+      }
+      @include tablet{
+        font-size: 1rem;
+      }
+      @include desktop{
+        font-size: 1rem;
+      }
     }
   }
   .row {
