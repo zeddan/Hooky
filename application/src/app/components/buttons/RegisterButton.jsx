@@ -4,7 +4,7 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import RegisterForm from '../forms/RegisterForm.jsx';
 
-var emailSrc = "app/components/buttons/emailButton.png";
+var emailSrc = "app/components/buttons/emailButton-sw.png";
 
 class RegisterButton extends React.Component {
 

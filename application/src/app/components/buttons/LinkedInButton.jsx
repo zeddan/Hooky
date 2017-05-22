@@ -3,10 +3,10 @@ import React from 'react';
 //Components
 import {Button} from 'react-bootstrap';
 
-var linkedinSrc = "app/components/buttons/linkedin.png";
+var linkedinSrc = "app/components/buttons/linkedin-sw.png";
 
-var linkStyle={
-    padding:0
+var linkStyle = {
+    padding: 0
 }
 var imgStyle = {
     width: 100 + '%',
