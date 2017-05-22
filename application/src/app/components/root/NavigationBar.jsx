@@ -39,8 +39,9 @@ class NavigationBar extends React.Component {
 
    onClickChangeProfile() {
       this.setState({
-         menuVisible: false
+         menuVisible: false,
       });
+      this.resetProfileClicked();
       const path = `/account`;
       browserHistory.push(path);
    }
