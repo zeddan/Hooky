@@ -195,7 +195,7 @@ def get_put_user(id):
         user.zipcode = request.json.get('zipcode', user.zipcode)
         user.about = request.json.get('about', user.about)
         db.session.commit()
-        return jsonify({'user':user.serialize()})
+        return jsonify({'user':user.serialize()}), 201
 
 def append_time(filename):
     name, ext = os.path.splitext(filename)
@@ -307,7 +307,8 @@ def me():
         'id': current_user.__getattr__('id'),
         'email': current_user.__getattr__('email'),
         'admin': current_user.__getattr__('admin'),
-        'zipcode': current_user.__getattr__('zipcode')
+        'zipcode': current_user.__getattr__('zipcode'),
+        'about': current_user.__getattr__('about')
     }
     return jsonify({'user': user})
 

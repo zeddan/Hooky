@@ -13,10 +13,11 @@ class Account extends React.Component {
          name: 'Djäkne',
          email: 'info@djakne.se',
 	 about: 'Beskrivning...',
-	 zipcode: '',
-	 company: '',
-	 delivers_to:'',
-	 id: ''
+	 zipcode: '12345',
+	 company: 'Ditt företag',
+	 delivers_to:'Vilket område är du verksam i',
+	 id: '',
+	 linkedin: true
       };
       this.logout = this.logout.bind(this);
       this.handleChange = this.handleChange.bind(this);
@@ -46,7 +47,9 @@ class Account extends React.Component {
                         company: this.state.company,
                         delivers_to: this.state.delivers_to,
                     })
-                })
+                }).then((response) => {
+			alert("Uppgifter ändrade");
+		});
     }
 
    componentDidMount() {
@@ -62,8 +65,10 @@ class Account extends React.Component {
 		    zipcode: json.user.zipcode,
 		    company: json.user.company,
 		    delivers_to: json.user.delivers_to,
-		    id: json.user.id
+		    id: json.user.id,
+		    linkedin: (json.user.social_id == null) ? true : false
 	    });
+		 console.log(json.user.social_id);
          }
       });
    };
@@ -77,6 +82,8 @@ class Account extends React.Component {
 		  <h2>Min Profil</h2>
 		  <FormGroup>
                                 <ControlLabel>Namn</ControlLabel>
+	      {!this.state.linkedin && <p>{this.state.name}</p>}
+	      			{this.state.linkedin &&
                                 <InputGroup>
 	      			<InputGroup.Addon><i className='fa fa-info-circle'/></InputGroup.Addon>
                                     <FormControl
@@ -84,11 +91,13 @@ class Account extends React.Component {
                                         type='text'
                                         value={this.state.name}
                                         onChange={this.handleChange}/>
-                               </InputGroup>
+                               </InputGroup>}
                   </FormGroup>
 			
 		  <FormGroup>
                                 <ControlLabel>Email</ControlLabel>
+	      			{!this.state.linkedin && <p>{this.state.email}</p>}
+	      			{this.state.linkedin &&
                                 <InputGroup>
 	      			<InputGroup.Addon><i className='fa fa-info-circle'/></InputGroup.Addon>
                                     <FormControl
@@ -96,7 +105,7 @@ class Account extends React.Component {
                                         type='text'
                                         value={this.state.email}
                                         onChange={this.handleChange}/>
-                               </InputGroup>
+                               </InputGroup>}
                   </FormGroup> 	
 
 		  <FormGroup>
