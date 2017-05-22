@@ -198,41 +198,6 @@ class Suggestion extends React.Component {
                                       </InputGroup>
                                   </FormGroup>
 
-                                  <FormGroup>
-                                      <ControlLabel>Telefonnummer</ControlLabel>
-                                      <InputGroup>
-                                          <InputGroup.Addon><i className='fa fa-phone'/></InputGroup.Addon>
-                                          <FormControl
-                                              name='phone'
-                                              type='text'
-                                              placeholder='Nummer'
-                                              onChange={this.handleChange}/>
-                                      </InputGroup>
-                                  </FormGroup>
-
-                                  <FormGroup>
-                                      <ControlLabel>Email</ControlLabel>
-                                      <InputGroup>
-                                          <InputGroup.Addon><i className='fa fa-envelope'/></InputGroup.Addon>
-                                          <FormControl
-                                              name='email'
-                                              type='text'
-                                              placeholder='Email'
-                                              onChange={this.handleChange}/>
-                                      </InputGroup>
-                                  </FormGroup>
-
-                                  <FormGroup>
-                                      <ControlLabel>Adress</ControlLabel>
-                                      <InputGroup>
-                                          <InputGroup.Addon><i className='fa fa-address-card'/></InputGroup.Addon>
-                                          <FormControl
-                                              name='address'
-                                              type='text'
-                                              placeholder='Adress'
-                                              onChange={this.handleChange}/>
-                                      </InputGroup>
-                                  </FormGroup>
 
                               </Col>
                           </Row>

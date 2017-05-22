@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import GalleryImage from './GalleryImage.jsx';
 import {browserHistory} from "react-router";
 import {Button} from 'react-bootstrap';
@@ -45,6 +46,7 @@ class Gallery extends React.Component {
 	 } else {
 		 this.sortByDate();
 	 }
+	      window.scrollTo(0,localStorage.getItem('scroll'));
       });
    };
 
@@ -142,6 +144,7 @@ class Gallery extends React.Component {
    };
 
    openDetail(product, e) {
+	localStorage.setItem('scroll', document.body.scrollTop);
       const path = `/inspiration/detail/${product.id}`;
       browserHistory.push(path);
    };
