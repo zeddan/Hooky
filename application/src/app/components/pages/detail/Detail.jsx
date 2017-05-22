@@ -57,9 +57,6 @@ class Detail extends React.Component {
                                 <p>Alla produkter</p>
                             </div>
 
-                            <div className="edit-btn horizontal-container">
-                                <i className="material-icons">edit</i>
-                            </div>
                         </div>
                     </Col>
                 </Row>
