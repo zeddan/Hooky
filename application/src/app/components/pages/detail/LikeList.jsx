@@ -36,18 +36,18 @@ class LikeList extends React.Component {
             return (
                 <div>
                     <hr/>
-                    <h2 className="center-text">No Likes Yet, Be the first!</h2>
+                    <h2 className="center-text">Ingen har gillat produkten än!</h2>
                 </div>
             );
         else
             return (
                 <div className="likes-container">
                     <hr className="hr-large"/>
-                    <h2 className="center-text">Likes</h2>
+                    <h2 className="center-text">Produkten gillas av</h2>
                     <Table hover>
                         <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Namn</th>
                             <th>Email</th>
                             <th></th>
                         </tr>
@@ -57,7 +57,7 @@ class LikeList extends React.Component {
                         </tbody>
                     </Table>
                     <a className="btn btn-default mail-all" href={'mailto:' + fullMailList}>
-                        Kontakta alla
+                        Maila alla som gillat produkten
                     </a>
                 </div>
             )
