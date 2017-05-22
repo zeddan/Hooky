@@ -137,13 +137,12 @@ class Gallery extends React.Component {
                <Button bsStyle="link" onClick={this.showMyLikes} disabled={this.state.myLikes}>Mina</Button>
 
             </div>
-            <div className='container-fluid gallery-container'>
-               <div className='row'>
+            <div className='gallery-holder'>
                   {
                      this.state.displayProducts.map((product) => {
                         return (
 
-                           <div key={product.id} className='col-sm-6 col-md-3 col-xl-2'>
+                           <div key={product.id} className='gallery-item col-sm-6 col-md-3 col-xl-2'>
 
                               <GalleryImage likes={product.likes}
                                  elevation={1}
@@ -161,7 +160,6 @@ class Gallery extends React.Component {
                      })
                   }
                </div>
-            </div>
          </div>
       );
    };
