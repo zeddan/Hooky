@@ -59,7 +59,7 @@ class RegisterForm extends React.Component {
             if (json.user.admin == true) {
                 window.location.replace('/admin');
             } else {
-                window.location.replace('/inspiration');
+                window.location.replace('/account');
             }
         }).catch((reason) => {
             this.setState({showError: ''});
