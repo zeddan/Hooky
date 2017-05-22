@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Grid, Row, Col, Form, FormGroup, ControlLabel, InputGroup, FormControl, Button} from 'react-bootstrap';
+import {Grid, Row, HelpBlock, Col, Form, FormGroup, ControlLabel, InputGroup, FormControl, Button} from 'react-bootstrap';
 import '../../../css/style.scss';
 import Cookies from 'js-cookie';
 import Popup from '../../Popup.jsx';
@@ -83,6 +83,7 @@ class Account extends React.Component {
 	 });
    }
 
+
    render() {
       return (
 	<div>
@@ -96,7 +97,7 @@ class Account extends React.Component {
 	      	  <Form onSubmit={this.handleSubmit}>
 		  <h2>Min Profil</h2>
 		  <FormGroup>
-                                <ControlLabel>Namn</ControlLabel>
+                                <ControlLabel>Namn *</ControlLabel>
 	      {!this.state.linkedin && <p>{this.state.name}</p>}
 	      			{this.state.linkedin &&
                                 <InputGroup>
@@ -108,16 +109,17 @@ class Account extends React.Component {
                                         onChange={this.handleChange}/>
                                </InputGroup>}
                   </FormGroup>
+
 			
-		  <FormGroup>
-                                <ControlLabel>Email</ControlLabel>
+		  <FormGroup controlId='formHorizontalEmail'>
+                                <ControlLabel>Email *</ControlLabel>
 	      			{!this.state.linkedin && <p>{this.state.email}</p>}
 	      			{this.state.linkedin &&
                                 <InputGroup>
 	      			<InputGroup.Addon><i className='fa fa-info-circle'/></InputGroup.Addon>
                                     <FormControl
                                         name='email'
-                                        type='text'
+                                        type='email'
                                         value={this.state.email}
                                         onChange={this.handleChange}/>
                                </InputGroup>}
