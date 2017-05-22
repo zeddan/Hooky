@@ -17,6 +17,7 @@ class Popup extends React.Component {
         return (
           <div>
               <Modal
+                  onHide={this.props.close}
                   show={this.props.show}
                   dialogClassName="popup">
                   <Modal.Body>
