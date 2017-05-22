@@ -115,11 +115,28 @@ body {
     .name {
       font-weight: bold;
       font-size: 1.5em;
+
     }
 
     .provider {
       font-size: 1em;
       width: 75%;
+    }
+    @include desktop{
+      .name {
+        font-size: 1.2em;
+      }
+      .provider{
+        font-size:0.9em;
+      }
+    }
+    @include tablet{
+      .name {
+        font-size: 1.2em;
+      }
+      .provider{
+        font-size:0.9em;
+      }
     }
   }
 }
