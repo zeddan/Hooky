@@ -93,7 +93,7 @@ class NavigationBar extends React.Component {
             <Navbar fixedTop={true} >
                <Nav>
                   <LinkContainer to={"/inspiration"} className="hidden-md hidden-lg">
-                     <NavItem>
+                     <NavItem onClick={() => localStorage.setItem('scroll', 0)}>
                         <i className="fa fa-home fa-lg"/>
                      </NavItem>
                   </LinkContainer>
