@@ -113,8 +113,6 @@ class NavigationBar extends React.Component {
                   <NavItem className="hidden-md hidden-lg" onClick={() => this.showMenu()}>
                      <i className="fa fa-user-circle fa-lg"/>
                   </NavItem>
-
-
                </Nav>
                <Nav className="hidden-sm hidden-xs" pullRight>
                   <LinkContainer to={"/suggestion"}>
@@ -127,10 +125,10 @@ class NavigationBar extends React.Component {
                   <NavItem id="nav-item-profile" onClick={() => this.showMenu()}>
                      <div id="icon-profile">
                         {this.state.name}
-
                      </div>
+
+                     <i id="arrow-icon" className="material-icons icon icon-profile">arrow_drop_down</i>
                   </NavItem>
-                  <i className="material-icons icon icon-profile">arrow_drop_down</i>
 
                </Nav>
             </Navbar>
