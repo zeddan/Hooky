@@ -38,7 +38,13 @@ class Gallery extends React.Component {
 		 }
 	 }
          this.setState({products: arr});
-         this.sortByDate();
+	 if (localStorage.getItem('sort') == 'likes'){
+		 this.sortByLikes();
+	 } else if (localStorage.getItem('sort') == 'myLikes'){
+         	this.showMyLikes();
+	 } else {
+		 this.sortByDate();
+	 }
       });
    };
 
@@ -57,8 +63,10 @@ class Gallery extends React.Component {
          displayProducts: newArr,
          dateBtn: true,
          likeBtn: false,
-	 myLikes: false
+	 myLikes: false,
+	 sort: 'date'
       });
+	localStorage.setItem('sort', 'date');
    };
 
    sortByLikes() {
@@ -69,8 +77,10 @@ class Gallery extends React.Component {
          displayProducts: newArr,
          dateBtn: false,
          likeBtn: true,
-	 myLikes: false
+	 myLikes: false,
+	 sort: 'likes'
       });
+	   localStorage.setItem('sort', 'likes');
    }
 
    showMyLikes() {
@@ -89,6 +99,7 @@ class Gallery extends React.Component {
 		   likeBtn: false,
 		   myLikes: true
 	   });
+	   localStorage.setItem('sort', 'myLikes');
    }
 
 
