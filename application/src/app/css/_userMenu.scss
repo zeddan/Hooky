@@ -1,8 +1,10 @@
 @import '_screens.scss';
 
-h3, h4 {
+
+.menu-card >h3, .menu-card >h4 {
    margin: 10px auto 10px auto;
 }
+
 
 .menu-btn {
    cursor: pointer;
