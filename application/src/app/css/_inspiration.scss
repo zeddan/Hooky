@@ -21,7 +21,7 @@ body {
   padding: 0;
 
   @include desktop {
-    padding: 20px 15px 20px 15px;
+    padding: 5px 15px 20px 15px;
   }
   @include tablet {
     padding: 20px 10px 20px 10px;
