@@ -1,4 +1,4 @@
-# Projekt 2 - P16
+# Hooky
 
 A React project setup
 
